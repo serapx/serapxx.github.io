@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Deeply – Die App für echte Gespräche</title>
+  <meta name="description" content="Deeply – Tief reden. Echt fühlen. Die App für echte Gespräche mit Tagesfragen, DeepTalk, Matching und Reflexion." />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="icon" href="Logo.png" sizes="96x96" />
+
+  <style>
+    :root{
+      --bg:#0b1020; --card:#121a33; --soft:#1b2750;
+      --text:#e5e7eb; --muted:#b3b9c6;
+      --accent:#8ec5ff; --accent-2:#b38bff; --ok:#86efac;
+      --ring: 0 0 0 3px rgba(142,197,255,.35);
+      --radius: 18px; --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --grad: radial-gradient(1200px 800px at 70% -10%, rgba(179,139,255,.18), transparent 50%),
+              radial-gradient(1000px 700px at -10% 10%, rgba(142,197,255,.18), transparent 40%),
+              linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,0));
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font:500 16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;
+      color:var(--text); background:var(--bg);
+      -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    }
+    a{color:inherit; text-decoration:none}
+
+    /* App Shell */
+    .phone{ width:min(420px, 100%); margin:12px auto; border-radius:28px; border:1px solid rgba(255,255,255,.08); box-shadow:0 20px 60px rgba(0,0,0,.55); overflow:hidden; background:var(--bg); position:relative; }
+    .appbar{ position:sticky; top:0; z-index:10; display:flex; align-items:center; justify-content:space-between; gap:10px; padding: max(12px, env(safe-area-inset-top)) 16px 10px; background:rgba(11,16,32,.85); backdrop-filter: blur(12px); border-bottom:1px solid rgba(255,255,255,.08); }
+    .appbar-title{ font-weight:800; letter-spacing:.2px }
+    .appbar-cta{ padding:8px 12px; border-radius: 999px; border:1px solid rgba(255,255,255,.16) }
+    .appbar-logo{ width:24px; height:24px; border-radius:6px }
+    .screen{ height: calc(100dvh - 66px - 70px - env(safe-area-inset-top) - env(safe-area-inset-bottom)); overflow:auto; -webkit-overflow-scrolling:touch; }
+    .tabbar{ position:sticky; bottom:0; z-index:10; display:flex; justify-content:space-around; align-items:center; gap:8px; padding: 8px 10px calc(10px + env(safe-area-inset-bottom)); background:rgba(11,16,32,.85); backdrop-filter: blur(12px); border-top:1px solid rgba(255,255,255,.08); }
+    .tab{ display:flex; flex-direction:column; align-items:center; gap:2px; font-size:12px; color:var(--muted); text-decoration:none; }
+    .tab .ic{ font-size:20px; line-height:1 }
+    .tab.active{ color: var(--text); font-weight:700 }
+
+    .wrap{max-width:980px; margin-inline:auto; padding:20px;}
+    .hero{position:relative; overflow:hidden; background:var(--grad);}
+    .hero-inner{display:grid; gap:16px; padding:32px 20px 64px; text-align:center}
+    .brand{display:flex; flex-direction:column; align-items:center; gap:10px}
+    .logo{width:96px; height:96px; filter:drop-shadow(0 4px 14px rgba(0,0,0,.35))}
+    .title{font-weight:800; font-size:clamp(24px, 6vw, 42px); line-height:1.1; letter-spacing:.2px}
+    .subtitle{color:var(--muted); font-size:clamp(14px, 2.8vw, 18px)}
+    .cta-row{display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:8px}
+    .btn{display:inline-flex; align-items:center;justify-content:center; gap:10px; padding:14px 18px; border-radius:999px; background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#0b1020;font-weight:800;letter-spacing:.2px;box-shadow:var(--shadow);}
+    .btn:focus-visible{outline:none; box-shadow:var(--shadow), var(--ring)}
+    .btn.sec{background:transparent;border:1px solid rgba(255,255,255,.14);color:var(--text)}
+    .note{font-size:12px; color:var(--muted);margin-top:10px}
+
+    section{padding:32px 20px}
+    .h2{font-size:22px; font-weight:800; letter-spacing:.3px;margin:0 0 10px}
+    .p{margin:0; color:var(--muted)}
+
+    .cards{display:grid;grid-template-columns:1fr;gap:14px;margin-top:16px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.09)); border:1px solid rgba(255,255,255,.12); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow)}
+    .row{display:flex; align-items:flex-start;gap:12px}
+    .ico{flex:0 0 36px; width:36px; height:36px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(135deg, rgba(142,197,255,.2), rgba(179,139,255,.2)); border:1px solid rgba(255,255,255,.12)}
+    .card h3{margin:0 0 6px; font-size:16px}
+    .card p{margin:0; color:var(--muted); font-size:14px}
+
+    .list{display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0 0}
+    .chip{display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:12px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08)}
+
+    .video{position:relative; overflow:hidden; border-radius:18px; border:1px solid rgba(255,255,255,.12); box-shadow:var(--shadow); background:#000}
+    .video::before{content:""; display:block; padding-top:56.25%}
+    .video iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+
+    @media (min-width:768px){
+      .hero-inner{padding:64px 20px 96px}
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .list{grid-template-columns:repeat(2,1fr)}
+    }
+
+    .fade-up{opacity:0; transform: translateY(10px); transition:opacity .6s ease, transform .6s ease}
+    .fade-up.appear{opacity:1; transform:none}
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <div class="appbar">
+      <img src="Logo.png" alt="Deeply" class="appbar-logo" />
+      <div class="appbar-title">Deeply</div>
+      <a href="#cta" class="appbar-cta">Termin</a>
+    </div>
+
+    <div class="screen">
+      <header class="hero" id="home">
+        <div class="wrap hero-inner">
+          <div class="brand">
+            <img class="logo" src="Logo.png" alt="Deeply Logo" width="96" height="96" />
+            <div class="title">Tief reden. Echt fühlen. – Willkommen bei Deeply.</div>
+            <p class="subtitle">Die App, die dich mit Menschen verbindet, die wirklich zuhören.</p>
+          </div>
+          <div class="cta-row">
+            <a class="btn" href="#cta" aria-label="Termin buchen">👉🏼 Termin buchen</a>
+            <a class="btn sec" href="#video" aria-label="Pitch-Video ansehen">► Pitch-Video</a>
+          </div>
+          <p class="note">Kostenlos testen • Keine Likes, kein Filter, nur echte Gespräche</p>
+        </div>
+      </header>
+
+      <main>
+        <!-- Problem -->
+        <section class="wrap" id="problem">
+          <h2 class="h2">Wir reden viel, aber sagen wenig.</h2>
+          <p class="p">Gespräche bleiben oft oberflächlich. Viele fühlen sich trotz Social Media einsam oder missverstanden. Deeply setzt hier an.</p>
+          <div class="cards">
+            <article class="card fade-up">
+              <div class="row">
+                <div class="ico" aria-hidden="true">💬</div>
+                <div>
+                  <h3>Oberflächlicher Smalltalk</h3>
+                  <p>Wetter, Arbeit, Trends – aber selten echte Nähe. Wir schaffen Impulse, die Tiefe öffnen.</p>
+                </div>
+              </div>
+            </article>
+            <article class="card fade-up">
+              <div class="row">
+                <div class="ico" aria-hidden="true">🫶🏻</div>
+                <div>
+                  <h3>Einsam trotz Verbindung</h3>
+                  <p>Ohne Likes, Ranglisten oder Filter – Menschen, die wirklich zuhören, stehen im Fokus.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Lösung -->
+        <section class="wrap" id="solution">
+          <h2 class="h2">Echte Gespräche in der Hosentasche.</h2>
+          <p class="p">Deeply bringt dich mit Freunden oder neuen Menschen ins Gespräch – geführt, sicher und auf Augenhöhe.</p>
+          <div class="list">
+            <div class="chip fade-up">🧩 <strong style="margin-left:6px">Tagesfrage</strong> – Jeden Tag eine inspirierende Frage („Was bedeutet Vertrauen für dich?“)</div>
+            <div class="chip fade-up">💬 <strong style="margin-left:6px">DeepTalk mit Freunden</strong> – Lade Freunde ein und beantwortet Fragen gemeinsam.</div>
+            <div class="chip fade-up">💞 <strong style="margin-left:6px">Matching</strong> – Anonyme Gespräche mit Menschen mit ähnlichen Antworten.</div>
+            <div class="chip fade-up">🌙 <strong style="margin-left:6px">Reflektionsmodus</strong> – Dein persönliches Tagebuch nach jedem Gespräch.</div>
+          </div>
+        </section>
+
+        <!-- Vorteile -->
+        <section class="wrap" id="benefits">
+          <h2 class="h2">Vorteile</h2>
+          <div class="cards">
+            <article class="card fade-up">
+              <div class="row">
+                <div class="ico" aria-hidden="true">👥</div>
+                <div>
+                  <h3>Mehr Nähe</h3>
+                  <p>Vertiefe Beziehungen durch Fragen, die zählen.</p>
+                </div>
+              </div>
+            </article>
+            <article class="card fade-up">
+              <div class="row">
+                <div class="ico" aria-hidden="true">🧭</div>
+                <div>
+                  <h3>Besseres Selbstverständnis</h3>
+                  <p>Reflektiere Antworten und erkenne, was dir wichtig ist.</p>
+                </div>
+              </div>
+            </article>
+            <article class="card fade-up">
+              <div class="row">
+                <div class="ico" aria-hidden="true">⌛️</div>
+                <div>
+                  <h3>Sinnvolle Zeit</h3>
+                  <p>Weniger Scrollen, mehr Bedeutung – bewusst statt endlos.</p>
+                </div>
+              </div>
+            </article>
+            <article class="card fade-up">
+              <div class="row">
+                <div class="ico" aria-hidden="true">🔒</div>
+                <div>
+                  <h3>Sicherheit & Privatsphäre</h3>
+                  <p>Deine Gespräche bleiben bei dir. Anonymes Matching, klare Kontrolle.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Video -->
+        <section class="wrap" id="video">
+          <h2 class="h2">Pitch-Video</h2>
+          <div class="video fade-up" role="region" aria-label="Pitch-Video">
+            <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Deeply-Pitch Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="wrap" id="cta">
+          <h2 class="h2">Bereit für echte Gespräche?</h2>
+          <p class="p">Buche einen Termin für Demo & Fragen – wir freuen uns auf dich.</p>
+          <div class="cta-row" style="margin-top:14px">
+            <a class="btn" href="https://calendly.com/deinlink" target="_blank" rel="noopener" aria-label="Termin bei Calendly buchen">👉🏼 Buchen Sie einen Termin</a>
+            <a class="btn sec" href="#home" aria-label="Zurück nach oben">🔝 Nach oben</a>
+          </div>
+        </section>
+      </main>
+    </div><!-- /.screen -->
+
+    <nav class="tabbar" aria-label="Hauptnavigation">
+      <a class="tab active" href="#home"><span class="ic">🏠</span><span>Home</span></a>
+      <a class="tab" href="#solution"><span class="ic">✨</span><span>Features</span></a>
+      <a class="tab" href="#video"><span class="ic">🎬</span><span>Video</span></a>
+      <a class="tab" href="#cta"><span class="ic">📅</span><span>Termin</span></a>
+    </nav>
+  </div><!-- /.phone -->
+
+  <script>
+    const scroller = document.querySelector('.screen');
+
+    // Fade-in Animationen
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('appear'); });
+    }, {threshold: 0.15, root: scroller});
+    document.querySelectorAll('.fade-up').forEach(el=>io.observe(el));
+
+    // Smooth in-screen scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        if(id && id.length>1){
+          const el = document.querySelector(id);
+          if(el){ e.preventDefault(); scroller.scrollTo({top: el.offsetTop - 8, behavior: 'smooth'}); }
+        }
+      });
+    });
+
+    // Tabs aktivieren je nach sichtbarem Abschnitt
+    const tabs = Array.from(document.querySelectorAll('.tabbar .tab'));
+    const sections = ['home','solution','video','cta']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    const so = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const hash = '#' + entry.target.id;
+          tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === hash));
+        }
+      });
+    }, {threshold: 0.6, root: scroller});
+
+    sections.forEach(s=>so.observe(s));
+  </script>
+</body>
+</html>

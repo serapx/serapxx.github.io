@@ -105,14 +105,16 @@
     .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.10)); border:1px solid rgba(255,255,255,.12); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); position:relative; overflow:hidden; transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;}
     .card::before{content:""; position:absolute; inset:auto -40px -60px auto; width:120px; height:120px; border-radius:40%; background:radial-gradient(circle at 30% 30%, rgba(142,197,255,.25), transparent 70%); opacity:.55; pointer-events:none;}
     .card:hover{transform:translateY(-3px); box-shadow:0 16px 40px rgba(0,0,0,.7); border-color:rgba(255,255,255,.22);}
-    .row{display:flex; align-items:flex-start;gap:12px}
+    .row{display:flex; flex-direction:column; align-items:flex-start;gap:8px; position:relative; z-index:1;}
     .ico{flex:0 0 40px; width:40px; height:40px; display:grid; place-items:center; border-radius:14px; background:linear-gradient(135deg, rgba(142,197,255,.25), rgba(179,139,255,.25)); border:1px solid rgba(255,255,255,.16); font-size:20px;}
     .card h3{margin:0 0 6px; font-size:16px}
     .card p{margin:0; color:var(--muted); font-size:14px}
 
     .list{display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0 0}
-    .chip{display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.04); border:1px dashed rgba(255,255,255,.20); font-size:14px; transititon:background .18s ease, transform .18s ease, border-color .18s ease;}
-    .chip strong{font-weight:700;}
+    .chip{display:flex; flex-direction:column; align-items:flex-start; gap:4px; padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.04); border:1px dashed rgba(255,255,255,.20); font-size:14px; transititon:background .18s ease, transform .18s ease, border-color .18s ease;}
+    .chip-title{display:flex; align-items:center; gap:8px; font-eight:600;}
+    .chip-title strong{font-weight:700;}
+    -chip-body{dont-size:13px; color:var(--muted);}
     .chip:hover{background:rgba(15,23,42,.9); transform:translateY(-2px); border-color:rgba(255,255,255,.35);}
 
     .video{position:relative; overflow:hidden; border-radius:18px; border:1px solid rgba(255,255,255,.12); box-shadow:var(--shadow); background:#000}
@@ -120,6 +122,7 @@
     .video iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
 
     @media (min-width:768px){
+      .row{flex-direction:row; align-items:flex-start;}
       .hero-inner{padding:64px 20px 96px}
       .cards{grid-template-columns:repeat(2,1fr)}
       .list{grid-template-columns:repeat(2,1fr)}
@@ -196,10 +199,22 @@
             Deeply begleitet dich Schritt für Schritt in Gesprächen mit Freund:innen oder neuen Menschen, strukturiert, sicher und respektvoll auf Augenhöhe. So wird aus einem Chat ein echtes Gespräch, das in Erinnerung bleibt.
           </p>
           <div class="list">
-            <div class="chip fade-up">🧩 <strong style="margin-left:6px">Tagesfrage</strong> – Jeden Tag eine inspirierende Frage, die berührt und zum Nachdenken anregt („z.B. Was bedeutet Vertrauen für dich und wann hast du es zuletzt wirklich gespürt?“)</div>
-            <div class="chip fade-up">💬 <strong style="margin-left:6px">DeepTalk mit Freund:innen</strong> – Lade Menschen ein, die dir wichtig sind, beantwortet Fragwn gemeinsam und entdeckz Seiten aneinander, die im Alltag oft keinen Raum finden.</div>
-            <div class="chip fade-up">💞 <strong style="margin-left:6px">Matching</strong> - Führe anonyme Gespräche mit Menschen, die ähnlich denken und fühlen wie du, verbunden über Antworten, nicht über Fotos </div>
-            <div class="chip fade-up">🌙 <strong style="margin-left:6px">Reflektionsmodus</strong> – Dein persönliches Reflextions-Tagebuch nach jedem Gespräch: halte Gedanken fest, erkenne Muster und beobachte, wie du dich mit der Zeit entwickelst.</div>
+            
+            <div class="chip fade-up"> 
+              <div class="chip-title">🧩 <strong>Tagesfrage</strong></div>
+              <div class="chip-body"> – Jeden Tag eine inspirierende Frage, die berührt und zum Nachdenken anregt („z.B. Was bedeutet Vertrauen für dich und wann hast du es zuletzt wirklich gespürt?“) </div> </div>
+            
+            <div class="chip fade-up">
+              <div class="chip-title">💬 <strong>DeepTalk mit Freund:innen</strong></div>
+              <div class="chip-body"> – Lade Menschen ein, die dir wichtig sind, beantwortet Fragwn gemeinsam und entdeckz Seiten aneinander, die im Alltag oft keinen Raum finden.</div></div>
+            
+            <div class="chip fade-up">
+              <div class="chip-title">💞 <strong>Matching</strong></div>
+              <div class="chip-body"> - Führe anonyme Gespräche mit Menschen, die ähnlich denken und fühlen wie du, verbunden über Antworten, nicht über Fotos </div></div>
+           
+            <div class="chip fade-up">
+              <div class="chip-title">🌙 <strong>Reflektionsmodus</strong></div>
+              <div class="chip-body"> – Dein persönliches Reflextions-Tagebuch nach jedem Gespräch: halte Gedanken fest, erkenne Muster und beobachte, wie du dich mit der Zeit entwickelst.</div></div>
           </div>
         </section>
 

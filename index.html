@@ -74,7 +74,7 @@
     .phone{ width:min(420px, 100%); margin:12px auto; border-radius:32px; border:1px solid rgba(255,255,255,.14); box-shadow:0 24px 80px rgba(0,0,0,.7); overflow:hidden; background:radial-gradient(280px 280px at 0% 0%, rgba(142, 197,255,.10), transparent 60%), radial-gradient(260px 260px at 100% 100%, rgba(179,139,255,.12), transparent 65%), var(--bg); position:relative; }
     .appbar{ position:sticky; top:0; z-index:10; display:flex; align-items:center; justify-content:space-between; gap:10px; padding: max(12px, env(safe-area-inset-top)) 16px 10px; background:rgba(11,16,32,.85); backdrop-filter: blur(12px); border-bottom:1px solid rgba(255,255,255,.08); }
     .appbar-title{ font-weight:800; letter-spacing:.2px }
-    .appbar-cta{ padding:8px 14px; border-radius: 999px; border:1px solid rgba(255,255,255,.16); font-size:13px; background:rgba(15,23,42,.7); backdrop-filter:blur(10px);display:inline-flex; align-items:center; gap:6px; transistion:transform .15s ease, box-shadow .15s ease, background .15s ease;}
+    .appbar-cta{ padding:8px 14px; border-radius: 999px; border:1px solid rgba(255,255,255,.16); font-size:13px; background:rgba(15,23,42,.7); backdrop-filter:blur(10px);display:inline-flex; align-items:center; gap:6px; transition:transform .15s ease, box-shadow .15s ease, background .15s ease;}
     .appbar-cta::after{ content:"✨"; font-size:14px; }
     .appbar-cta:hover{ transform:translateY(-1px); box-shadow:0 12px 30px rgba(0,0,0,.06); background:rgba(15,23,42,.95);}
     .appbar-logo{ width:36px; height:36px; border-radius:12px; box-shadow:0 10px 26px rgba(0,0,0,.7); }
@@ -88,7 +88,7 @@
     .hero{position:relative; overflow:hidden; background:var(--grad);}
     .hero-inner{display:grid; gap:16px; padding:32px 20px 64px; text-align:center}
     .brand{display:flex; flex-direction:column; align-items:center; gap:10px}
-    .logo{width:auto; height:84px; filter:drop-shadow(0 10px 30px rgba(0,0,0,.7)) drop-shaodw(0 0 18px rgba(142,197,255,.55));}
+    .logo{width:auto; height:84px; filter:drop-shadow(0 10px 30px rgba(0,0,0,.7)) drop-shadow(0 0 18px rgba(142,197,255,.55));}
     .title{font-weight:800; font-size:clamp(24px, 6vw, 42px); line-height:1.1; letter-spacing:.2px}
     .subtitle{color:var(--muted); font-size:clamp(14px, 2.8vw, 18px)}
     .cta-row{display:flex; gap:12px; justify-content:center; align-items:center; flex-wrap:wrap; margin-top:8px}
@@ -111,10 +111,10 @@
     .card p{margin:0; color:var(--muted); font-size:14px}
 
     .list{display:grid; grid-template-columns:1fr; gap:10px; margin:12px 0 0}
-    .chip{display:flex; flex-direction:column; align-items:flex-start; gap:4px; padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.04); border:1px dashed rgba(255,255,255,.20); font-size:14px; transititon:background .18s ease, transform .18s ease, border-color .18s ease;}
-    .chip-title{display:flex; align-items:center; gap:8px; font-eight:600;}
+    .chip{display:flex; flex-direction:column; align-items:flex-start; gap:4px; padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.04); border:1px dashed rgba(255,255,255,.20); font-size:14px; transition:background .18s ease, transform .18s ease, border-color .18s ease;}
+    .chip-title{display:flex; align-items:center; gap:8px; font-weight:600;}
     .chip-title strong{font-weight:700;}
-    -chip-body{dont-size:13px; color:var(--muted);}
+    .chip-body{font-size:13px; color:var(--muted);}
     .chip:hover{background:rgba(15,23,42,.9); transform:translateY(-2px); border-color:rgba(255,255,255,.35);}
 
     .video{position:relative; overflow:hidden; border-radius:18px; border:1px solid rgba(255,255,255,.12); box-shadow:var(--shadow); background:#000}
@@ -199,7 +199,6 @@
             Deeply begleitet dich Schritt für Schritt in Gesprächen mit Freund:innen oder neuen Menschen, strukturiert, sicher und respektvoll auf Augenhöhe. So wird aus einem Chat ein echtes Gespräch, das in Erinnerung bleibt.
           </p>
           <div class="list">
-          
           <div class="chip fade-up">
               <div class="chip-title">
                 🧩 <strong>Tagesfrage</strong>

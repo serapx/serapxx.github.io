@@ -56,7 +56,6 @@
       z-index:0;
     }
 
-    /* FANCY HINTERGRUND-KLECKSE */
     .page::before,
     .page::after {
       content:"";
@@ -92,7 +91,7 @@
       100%{ transform:translateY(0);}
     }
 
-    /* HEADER / NAV */
+    /* HEADER */
 
     header {
       display:flex;
@@ -108,7 +107,6 @@
       gap:.8rem;
     }
 
-    /* Logo */
     .logo-circle {
       width:44px;
       height:44px;
@@ -488,7 +486,7 @@
       margin-top:.15rem;
     }
 
-    /* RIGHT: PHONE MOCKUP */
+    /* PHONE MOCKUP */
 
     .right {
       display:flex;
@@ -828,7 +826,7 @@
       color:var(--muted);
     }
 
-    /* SECTION GRIDS (VIDEO & CALENDLY) */
+    /* SECTION GRID (Video) */
 
     .section-grid {
       margin-top:1.2rem;
@@ -840,9 +838,6 @@
       .section-grid {
         grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr);
         align-items:center;
-      }
-      .section-grid--reverse {
-        grid-template-columns:minmax(0, 1fr) minmax(0, 1.2fr);
       }
     }
 
@@ -908,17 +903,22 @@
       color:var(--muted);
     }
 
-    /* TERMIN-BEREICH SPOTLIGHT */
+    /* TERMIN-SPOTLIGHT */
 
     .section-spotlight {
       position:relative;
       margin-top:1.2rem;
-      padding:1.4rem 1.2rem;
+      padding:1.8rem 1.4rem;
       border-radius:1.7rem;
       background:radial-gradient(circle at top left,#e0f2fe,#eef2ff 45%,#ffffff 100%);
       box-shadow:0 28px 70px rgba(15,23,42,0.25);
       overflow:hidden;
       z-index:2;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:1.4rem;
+      text-align:center;
     }
 
     .section-spotlight::before,
@@ -950,13 +950,7 @@
     .section-spotlight .section-title {
       position:relative;
       z-index:1;
-      margin-bottom:.6rem;
-    }
-
-    .section-spotlight .section-grid {
-      margin-top:.4rem;
-      position:relative;
-      z-index:1;
+      margin-bottom:.1rem;
     }
 
     /* CALENDLY CARD */
@@ -966,14 +960,16 @@
       border-radius:var(--radius-xl);
       border:1px solid rgba(203,213,225,0.9);
       box-shadow:var(--shadow-soft);
-      padding:1rem;
+      padding:1rem 1.1rem 1.3rem;
       min-height:210px;
       display:flex;
       flex-direction:column;
+      align-items:center;
       gap:.8rem;
       position:relative;
       overflow:hidden;
-      align-items:center;
+      max-width:460px;
+      width:100%;
     }
 
     .calendly-card::before{
@@ -990,7 +986,7 @@
     .calendly-img {
       display:block;
       width:100%;
-      max-width:360px;   /* mittelgroß */
+      max-width:360px;
       border-radius:1.2rem;
       margin:0 auto .9rem;
       box-shadow:0 14px 34px rgba(15,23,42,0.28);
@@ -1144,7 +1140,6 @@
     <main>
       <!-- HERO + PHONE -->
       <section class="hero-layout" id="top">
-        <!-- Hero left -->
         <div class="hero">
           <div class="hero-tagline">
             <span>Neue App</span>
@@ -1362,34 +1357,21 @@
         <div class="section-spotlight">
           <h2 class="section-title">Termin zum Kennenlernen</h2>
 
-          <div class="section-grid section-grid--reverse">
-            <div class="section-copy">
-              <p>
-                Du möchtest über Deeply sprechen, Feedback geben oder eine mögliche Zusammenarbeit besprechen?
-              </p>
-              <p>
-                Über Calendly kannst du dir ganz einfach einen passenden Slot aussuchen – das Gespräch findet entspannt per Video-Call statt.
-              </p>
-            </div>
+          <div class="calendly-card">
+            <img
+              src="calendly-visual.png"
+              alt="Klicke auf den Button, um direkt zu deinem Calendly-Kalender zu kommen."
+              class="calendly-img"
+            >
 
-            <div class="calendly-card">
-              <!-- Bild mit deinem Text -->
-              <img
-                src="calendly-visual.png"
-                alt="Klicke auf den Button, um direkt zu deinem Calendly-Kalender zu kommen und einen Termin zu buchen."
-                class="calendly-img"
-              >
-
-              <!-- Dein echter Calendly-Link -->
-              <a 
-                href="https://calendly.com/serap-aslan-2214/30min" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="btn-primary calendly-btn"
-              >
-                Termin auf Calendly buchen
-              </a>
-            </div>
+            <a 
+              href="https://calendly.com/serap-aslan-2214/30min" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="btn-primary calendly-btn"
+            >
+              Termin auf Calendly buchen
+            </a>
           </div>
         </div>
       </section>

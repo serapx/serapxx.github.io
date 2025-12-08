@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#e0f2fe" />
   <link rel="icon" href="Logo.png" sizes="96x96" />
 
-  <!-- Optional: Google Font -->
+  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -34,6 +34,10 @@
       box-sizing:border-box;
       margin:0;
       padding:0;
+    }
+
+    html, body {
+      scroll-behavior:smooth;
     }
 
     body {
@@ -104,33 +108,33 @@
       gap:.8rem;
     }
 
+    /* NEUES LOGO-DESIGN */
     .logo-circle {
       width:44px;
       height:44px;
-      border-radius:50%;
-      background:conic-gradient(from 180deg,#a855f7,#6366f1,#06b6d4,#f97316,#a855f7);
+      border-radius:16px;
+      padding:3px;
+      background:linear-gradient(135deg,#4f46e5,#a855f7,#f97316);
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 10px 25px rgba(79,70,229,0.55);
-      position:relative;
+      box-shadow:0 10px 25px rgba(79,70,229,0.35);
+    }
+
+    .logo-circle-inner {
+      width:100%;
+      height:100%;
+      border-radius:13px;
+      background:#ffffff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       overflow:hidden;
     }
 
-    .logo-circle::after{
-      content:"";
-      position:absolute;
-      inset:4px;
-      border-radius:inherit;
-      background:radial-gradient(circle at 30% 0%,#111827,#020617);
-      opacity:.96;
-    }
-
-    .logo-circle img{
-      position:relative;
-      z-index:1;
-      width:26px;
-      height:26px;
+    .logo-circle-inner img {
+      width:80%;
+      height:80%;
       object-fit:contain;
     }
 
@@ -1059,8 +1063,10 @@
     <header>
       <div class="brand">
         <div class="logo-circle">
-          <!-- Dein Logo – Datei "Logo.png" im gleichen Ordner -->
-          <img src="Logo.png" alt="Deeply Logo">
+          <div class="logo-circle-inner">
+            <!-- Dein Logo – Datei "Logo.png" im gleichen Ordner -->
+            <img src="Logo.png" alt="Deeply Logo">
+          </div>
         </div>
         <div class="brand-text">
           <div class="brand-title">Deeply</div>
@@ -1322,7 +1328,7 @@
               und einen Termin zu buchen.
             </div>
 
-            <!-- Direkter Calendly-Link -->
+            <!-- Dein echter Calendly-Link -->
             <a 
               href="https://calendly.com/serap-aslan-2214/30min" 
               target="_blank" 

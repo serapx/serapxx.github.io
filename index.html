@@ -6,6 +6,7 @@
   <title>Deeply – Die App für echte Gespräche</title>
   <meta name="description" content="Deeply – Tief reden. Echt fühlen. Die App für echte Gespräche mit Tagesfragen, DeepTalk, Matching und Reflexion." />
   <meta name="theme-color" content="#e0f2fe" />
+  <link rel="icon" href="Logo.png" sizes="96x96" />
 
   <!-- Optional: Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -112,9 +113,6 @@
       align-items:center;
       justify-content:center;
       box-shadow:0 10px 25px rgba(79,70,229,0.55);
-      font-weight:700;
-      font-size:1rem;
-      color:#f9fafb;
       position:relative;
       overflow:hidden;
     }
@@ -128,9 +126,12 @@
       opacity:.96;
     }
 
-    .logo-circle span{
+    .logo-circle img{
       position:relative;
       z-index:1;
+      width:26px;
+      height:26px;
+      object-fit:contain;
     }
 
     .brand-text {
@@ -278,16 +279,15 @@
       opacity:.7;
     }
 
-    .hero-tagline span {
-      font-weight:600;
-      color:var(--accent-strong);
+    .hero-tagline span,
+    .hero-tagline small{
       position:relative;
       z-index:1;
     }
 
-    .hero-tagline small{
-      position:relative;
-      z-index:1;
+    .hero-tagline span {
+      font-weight:600;
+      color:var(--accent-strong);
     }
 
     h1 {
@@ -1058,7 +1058,10 @@
   <div class="page">
     <header>
       <div class="brand">
-        <div class="logo-circle"><span>D</span></div>
+        <div class="logo-circle">
+          <!-- Dein Logo – Datei "Logo.png" im gleichen Ordner -->
+          <img src="Logo.png" alt="Deeply Logo">
+        </div>
         <div class="brand-text">
           <div class="brand-title">Deeply</div>
           <div class="brand-sub">Tief reden. Echt fühlen.</div>

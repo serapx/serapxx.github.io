@@ -887,7 +887,7 @@
       position:relative;
       border-radius:1.1rem;
       background:#000;
-      height:190px;
+      height:240px;
       overflow:hidden;
     }
 
@@ -1154,12 +1154,12 @@
           </p>
 
           <div class="hero-ctas">
-            <button class="btn-primary">
+            <a href="#warteliste" class="btn-primary">
               Jetzt auf die Warteliste
-            </button>
-            <button class="btn-secondary">
+            </a>
+            <a href="#how" class="btn-secondary">
               Wie funktioniert Deeply?
-            </button>
+            </a>
           </div>
 
           <div class="hero-meta">
@@ -1285,6 +1285,38 @@
         </section>
       </section>
 
+      <!-- PITCH VIDEO – direkt unter dem Hero -->
+      <section class="section" id="video">
+        <h2 class="section-title">Deeply in 90 Sekunden</h2>
+        <div class="section-grid">
+          <div class="section-copy">
+            <p>
+              Dein Pitch-Video zeigt, worum es bei Deeply geht: echte Gespräche, geführte Fragen und ein sicherer Raum, in dem du dich zeigen darfst.
+            </p>
+            <p>
+              Tausche einfach die Video-ID in der URL aus, sobald dein YouTube-Video online ist.
+            </p>
+          </div>
+
+          <div class="video-card">
+            <div class="video-inner">
+              <div class="video-thumb">
+                <!-- YouTube: DEIN_VIDEO_ID ersetzen. autoplay & mute aktiviert -->
+                <iframe 
+                  src="https://www.youtube.com/embed/DEIN_VIDEO_ID?autoplay=1&mute=1&rel=0"
+                  title="Deeply Pitch Video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+            <p class="video-note">
+              Ersetze <strong>DEIN_VIDEO_ID</strong> durch die ID deines YouTube-Videos.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <!-- SO FUNKTIONIERT'S -->
       <section class="section" id="how">
         <h2 class="section-title">So funktioniert Deeply</h2>
@@ -1314,39 +1346,6 @@
             <div class="step-title">Reflektieren</div>
             <p>
               Nach dem Gespräch hältst du fest, was dich berührt hat – nur für dich, ohne Bewertung von außen.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- PITCH VIDEO -->
-      <section class="section" id="video">
-        <h2 class="section-title">Dein kurzer Pitch</h2>
-        <div class="section-grid">
-          <div class="section-copy">
-            <p>
-              In deinem Pitch-Video erklärst du in ein paar Minuten, was Deeply ist, für wen die App gedacht ist
-              und warum echte Gespräche so wichtig sind.
-            </p>
-            <p>
-              Ersetze einfach die Video-ID im Link unten, sobald dein Video auf YouTube online ist.
-            </p>
-          </div>
-
-          <div class="video-card">
-            <div class="video-inner">
-              <div class="video-thumb">
-                <!-- YouTube Platzhalter – DEIN_VIDEO_ID ersetzen -->
-                <iframe 
-                  src="https://www.youtube.com/embed/DEIN_VIDEO_ID"
-                  title="Deeply Pitch Video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
-            <p class="video-note">
-              Platzhalter: Ersetze <strong>DEIN_VIDEO_ID</strong> in der YouTube-URL durch die ID deines Videos.
             </p>
           </div>
         </div>
@@ -1423,8 +1422,8 @@
         </div>
       </section>
 
-      <!-- Bottom CTA -->
-      <section class="bottom-cta">
+      <!-- Bottom CTA / Warteliste -->
+      <section class="bottom-cta" id="warteliste">
         <div class="bottom-cta-text">
           <div class="bottom-cta-title">Bereit für Gespräche, die bleiben?</div>
           <p class="bottom-cta-sub">

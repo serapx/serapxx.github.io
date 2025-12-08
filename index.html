@@ -228,101 +228,7 @@
       text-underline-offset:2px;
     }
 
-    /* LAYOUT */
-
-    main {
-      display:flex;
-      flex-direction:column;
-      gap:3rem;
-    }
-
-    .hero-layout {
-      display:grid;
-      gap:2rem;
-    }
-
-    @media (min-width: 768px) {
-      .hero-layout {
-        grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr);
-        align-items:center;
-        gap:2.2rem;
-      }
-    }
-
-    /* HERO LEFT */
-
-    .hero {
-      display:flex;
-      flex-direction:column;
-      gap:1.3rem;
-    }
-
-    .hero-tagline {
-      display:inline-flex;
-      align-items:center;
-      gap:.5rem;
-      padding:.35rem .9rem;
-      border-radius:var(--radius-pill);
-      font-size:.75rem;
-      background:#eef2ff;
-      border:1px solid rgba(129,140,248,0.6);
-      color:var(--muted);
-      width:fit-content;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero-tagline::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:linear-gradient(120deg,rgba(96,165,250,.3),rgba(244,114,182,.25));
-      mix-blend-mode:multiply;
-      opacity:.7;
-    }
-
-    .hero-tagline span,
-    .hero-tagline small{
-      position:relative;
-      z-index:1;
-    }
-
-    .hero-tagline span {
-      font-weight:600;
-      color:var(--accent-strong);
-    }
-
-    h1 {
-      font-size:2rem;
-      line-height:1.12;
-      letter-spacing:.01em;
-    }
-
-    @media (min-width: 640px) {
-      h1 { font-size:2.6rem; }
-    }
-
-    @media (min-width: 1024px) {
-      h1 { font-size:3.1rem; }
-    }
-
-    .hero-sub {
-      font-size:.98rem;
-      color:var(--muted);
-      max-width:34rem;
-    }
-
-    .hero-sub strong {
-      color:var(--text);
-      font-weight:500;
-    }
-
-    .hero-ctas {
-      display:flex;
-      flex-wrap:wrap;
-      gap:.75rem;
-      margin-top:.4rem;
-    }
+    /* BUTTONS */
 
     .btn-primary,
     .btn-secondary {
@@ -374,13 +280,144 @@
       background:#eef2ff;
     }
 
+    /* MAIN LAYOUT */
+
+    main {
+      display:flex;
+      flex-direction:column;
+      gap:3rem;
+    }
+
+    /* HERO SHELL MIT VIDEO-HINTERGRUND */
+
+    .hero-shell {
+      position:relative;
+      margin-bottom:3rem;
+      border-radius:1.9rem;
+      overflow:hidden;
+    }
+
+    .hero-video-bg {
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      overflow:hidden;
+      opacity:.55;
+    }
+
+    .hero-video-overlay {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(120deg,
+        rgba(15,23,42,0.8),
+        rgba(15,23,42,0.65) 40%,
+        rgba(15,23,42,0.3) 70%,
+        rgba(15,23,42,0.0) 100%);
+      z-index:1;
+    }
+
+    .hero-video-frame {
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:140%;
+      height:140%;
+    }
+
+    .hero-video-frame iframe {
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    .hero-layout {
+      position:relative;
+      z-index:2;
+      padding:1.8rem 1.6rem 2.1rem;
+      display:grid;
+      gap:2rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero-layout {
+        grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr);
+        align-items:center;
+        gap:2.2rem;
+      }
+    }
+
+    /* HERO LEFT */
+
+    .hero {
+      display:flex;
+      flex-direction:column;
+      gap:1.3rem;
+      color:#e5e7eb;
+    }
+
+    .hero-tagline {
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.35rem .9rem;
+      border-radius:var(--radius-pill);
+      font-size:.75rem;
+      background:rgba(15,23,42,0.8);
+      border:1px solid rgba(129,140,248,0.6);
+      color:#cbd5f5;
+      width:fit-content;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 10px 26px rgba(15,23,42,0.7);
+    }
+
+    .hero-tagline span {
+      font-weight:600;
+      color:#c7d2fe;
+    }
+
+    h1 {
+      font-size:2.1rem;
+      line-height:1.12;
+      letter-spacing:.01em;
+      color:#f9fafb;
+    }
+
+    @media (min-width: 640px) {
+      h1 { font-size:2.6rem; }
+    }
+
+    @media (min-width: 1024px) {
+      h1 { font-size:3.1rem; }
+    }
+
+    .hero-sub {
+      font-size:.98rem;
+      color:#e5e7eb;
+      max-width:34rem;
+    }
+
+    .hero-sub strong {
+      color:#fefce8;
+      font-weight:500;
+    }
+
+    .hero-ctas {
+      display:flex;
+      flex-wrap:wrap;
+      gap:.75rem;
+      margin-top:.4rem;
+    }
+
     .hero-meta {
       display:flex;
       flex-wrap:wrap;
       gap:1.1rem;
       margin-top:.4rem;
       font-size:.78rem;
-      color:var(--muted);
+      color:#cbd5f5;
     }
 
     .hero-meta-item {
@@ -393,21 +430,21 @@
       width:6px;
       height:6px;
       border-radius:999px;
-      background:var(--accent-strong);
+      background:#c4b5fd;
       opacity:.9;
     }
 
     /* FEATURES */
 
     .features-wrapper {
-      margin-top:1.5rem;
+      margin-top:1.3rem;
     }
 
     .section-label {
       font-size:.78rem;
       text-transform:uppercase;
       letter-spacing:.16em;
-      color:var(--muted);
+      color:#cbd5f5;
       margin-bottom:.35rem;
     }
 
@@ -424,11 +461,11 @@
     }
 
     .feature-card {
-      background:var(--card);
+      background:rgba(15,23,42,0.9);
       border-radius:var(--radius-lg);
       padding:.95rem 1rem;
-      border:1px solid rgba(203,213,225,0.9);
-      box-shadow:var(--shadow-soft);
+      border:1px solid rgba(148,163,184,0.6);
+      box-shadow:0 18px 40px rgba(15,23,42,0.8);
       display:flex;
       flex-direction:column;
       gap:.3rem;
@@ -443,15 +480,15 @@
       width:80px;
       height:80px;
       border-radius:50%;
-      background:radial-gradient(circle,#e0f2fe,transparent 60%);
+      background:radial-gradient(circle,rgba(96,165,250,0.8),transparent 60%);
       top:-30px;
       right:-20px;
-      opacity:.7;
+      opacity:.5;
     }
 
     .feature-card:hover{
       transform:translateY(-4px);
-      box-shadow:0 20px 40px rgba(15,23,42,0.18);
+      box-shadow:0 24px 48px rgba(15,23,42,0.95);
       border-color:#a5b4fc;
     }
 
@@ -465,7 +502,7 @@
       width:30px;
       height:30px;
       border-radius:999px;
-      background:var(--accent-soft);
+      background:rgba(148,163,184,0.18);
       display:flex;
       align-items:center;
       justify-content:center;
@@ -475,18 +512,18 @@
     .feature-label {
       font-size:.8rem;
       font-weight:600;
-      color:var(--accent-strong);
+      color:#e0e7ff;
       letter-spacing:.04em;
       text-transform:uppercase;
     }
 
     .feature-text {
       font-size:.86rem;
-      color:var(--muted);
+      color:#e5e7eb;
       margin-top:.15rem;
     }
 
-    /* PHONE MOCKUP */
+    /* RIGHT PHONE MOCKUP */
 
     .right {
       display:flex;
@@ -507,13 +544,13 @@
       top:18%;
       padding:.4rem .7rem;
       border-radius:var(--radius-pill);
-      background:rgba(255,255,255,0.95);
+      background:rgba(15,23,42,0.9);
       font-size:.7rem;
-      color:var(--muted);
+      color:#e5e7eb;
       display:flex;
       align-items:center;
       gap:.25rem;
-      box-shadow:0 12px 26px rgba(15,23,42,0.2);
+      box-shadow:0 12px 26px rgba(15,23,42,0.6);
       animation:float 14s ease-in-out infinite;
     }
 
@@ -527,7 +564,7 @@
     .glow {
       position:absolute;
       inset:10% -18%;
-      background:radial-gradient(circle at 40% 0%, rgba(129,140,248,0.6), transparent 55%);
+      background:radial-gradient(circle at 40% 0%, rgba(129,140,248,0.9), transparent 55%);
       opacity:.65;
       filter:blur(14px);
       z-index:0;
@@ -541,8 +578,8 @@
       border-radius:2.1rem;
       padding:.7rem;
       background:linear-gradient(145deg, #020617, #020617, #111827);
-      box-shadow:0 18px 40px rgba(15,23,42,0.55);
-      border:1px solid rgba(148,163,184,0.45);
+      box-shadow:0 18px 40px rgba(15,23,42,0.9);
+      border:1px solid rgba(148,163,184,0.6);
       display:flex;
       flex-direction:column;
       overflow:hidden;
@@ -578,7 +615,7 @@
       padding:.25rem .55rem;
       border-radius:var(--radius-pill);
       background:rgba(15,23,42,0.9);
-      border:1px solid rgba(148,163,184,0.35);
+      border:1px solid rgba(148,163,184,0.7);
       font-size:.7rem;
       display:flex;
       align-items:center;
@@ -590,16 +627,16 @@
       width:7px;
       height:7px;
       border-radius:999px;
-      background:var(--accent-strong);
-      box-shadow:0 0 0 3px rgba(129,140,248,0.65);
+      background:#a855f7;
+      box-shadow:0 0 0 3px rgba(129,140,248,0.9);
     }
 
     .phone-question-box {
       border-radius:1.2rem;
       padding:.85rem .9rem;
-      background:linear-gradient(135deg, rgba(129,140,248,0.14), rgba(15,23,42,0.98));
-      border:1px solid rgba(129,140,248,0.7);
-      box-shadow:0 14px 32px rgba(15,23,42,0.95);
+      background:linear-gradient(135deg, rgba(129,140,248,0.3), rgba(15,23,42,0.98));
+      border:1px solid rgba(129,140,248,0.9);
+      box-shadow:0 14px 32px rgba(15,23,42,1);
       display:flex;
       flex-direction:column;
       gap:.55rem;
@@ -707,6 +744,7 @@
     .section-title {
       font-size:1.4rem;
       margin-bottom:.3rem;
+      color:var(--text);
     }
 
     .section-sub {
@@ -826,83 +864,6 @@
       color:var(--muted);
     }
 
-    /* SECTION GRID (Video) */
-
-    .section-grid {
-      margin-top:1.2rem;
-      display:grid;
-      gap:1.4rem;
-    }
-
-    @media (min-width:768px) {
-      .section-grid {
-        grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr);
-        align-items:center;
-      }
-    }
-
-    .section-copy {
-      display:flex;
-      flex-direction:column;
-      gap:.6rem;
-    }
-
-    .section-copy p {
-      font-size:.9rem;
-      color:var(--muted);
-    }
-
-    /* VIDEO CARD */
-
-    .video-card {
-      background:var(--card);
-      border-radius:var(--radius-xl);
-      border:1px solid rgba(203,213,225,0.9);
-      box-shadow:var(--shadow-soft);
-      padding:1rem;
-      display:flex;
-      flex-direction:column;
-      gap:.6rem;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .video-card::before{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      border-radius:inherit;
-      background:conic-gradient(from 180deg,#4f46e5,#06b6d4,#f97316,#a855f7,#4f46e5);
-      opacity:.3;
-      z-index:-1;
-    }
-
-    .video-inner{
-      border-radius:calc(var(--radius-xl) - .5rem);
-      background:var(--card);
-      padding:.15rem;
-    }
-
-    .video-thumb {
-      position:relative;
-      border-radius:1.1rem;
-      background:#000;
-      height:240px;
-      overflow:hidden;
-    }
-
-    .video-thumb iframe {
-      width:100%;
-      height:100%;
-      border:0;
-      border-radius:1.1rem;
-    }
-
-    .video-note {
-      font-size:.8rem;
-      color:var(--muted);
-    }
-
     /* TERMIN-SPOTLIGHT */
 
     .section-spotlight {
@@ -952,8 +913,6 @@
       z-index:1;
       margin-bottom:.1rem;
     }
-
-    /* CALENDLY CARD */
 
     .calendly-card {
       background:var(--card);
@@ -1120,9 +1079,9 @@
 
       <div class="header-right">
         <nav class="nav">
+          <a href="#top">Pitch-Video</a>
           <a href="#features">Features</a>
           <a href="#how">So funktioniert’s</a>
-          <a href="#video">Video</a>
           <a href="#termin">Termin</a>
           <a href="#faq">FAQ</a>
         </nav>
@@ -1132,188 +1091,173 @@
             <span class="pill-dot"></span>
             <span>Beta in Vorbereitung</span>
           </div>
-          <button class="small-link">Ich will dabei sein</button>
+          <a href="#warteliste" class="small-link">Ich will dabei sein</a>
         </div>
       </div>
     </header>
 
     <main>
-      <!-- HERO + PHONE -->
-      <section class="hero-layout" id="top">
-        <div class="hero">
-          <div class="hero-tagline">
-            <span>Neue App</span>
-            <small>für echte Gespräche – kein Smalltalk, kein Swipen.</small>
+      <!-- HERO MIT VIDEO-HINTERGRUND -->
+      <section class="hero-shell" id="top">
+        <!-- Hintergrund-Video (YouTube, autoplay, mute, loop) -->
+        <div class="hero-video-bg">
+          <div class="hero-video-frame">
+            <!-- DEIN_VIDEO_ID ersetzen; Browser blocken Autoplay mit Ton, deshalb muted=1 -->
+            <iframe
+              src="https://www.youtube.com/embed/DEIN_VIDEO_ID?autoplay=1&mute=1&controls=0&loop=1&playlist=DEIN_VIDEO_ID&modestbranding=1&rel=0&showinfo=0"
+              title="Deeply Pitch Video"
+              allow="autoplay; encrypted-media; picture-in-picture"
+            ></iframe>
           </div>
-
-          <h1>Weniger Scrollen. Mehr Deep Talk.</h1>
-
-          <p class="hero-sub">
-            Deeply bringt dich mit Menschen zusammen, die <strong>wirklich zuhören</strong> – 
-            mit Fragen, die unter die Haut gehen, und Gesprächen, die nachfühlen statt bewerten.
-          </p>
-
-          <div class="hero-ctas">
-            <a href="#warteliste" class="btn-primary">
-              Jetzt auf die Warteliste
-            </a>
-            <a href="#how" class="btn-secondary">
-              Wie funktioniert Deeply?
-            </a>
-          </div>
-
-          <div class="hero-meta">
-            <div class="hero-meta-item">
-              <span class="meta-dot"></span>
-              Gespräche statt Profile
-            </div>
-            <div class="hero-meta-item">
-              <span class="meta-dot"></span>
-              Anonym & sicher
-            </div>
-            <div class="hero-meta-item">
-              <span class="meta-dot"></span>
-              Reflexion direkt nach jedem Gespräch
-            </div>
-          </div>
-
-          <div class="features-wrapper" id="features">
-            <div class="section-label">Was dich erwartet</div>
-            <div class="features">
-              <article class="feature-card">
-                <div class="feature-header">
-                  <div class="feature-icon">❓</div>
-                  <div class="feature-label">Tagesfragen</div>
-                </div>
-                <p class="feature-text">
-                  Eine Frage pro Tag, die dich wirklich berührt – perfekt, um mit Freund:innen oder neuen Menschen tiefer zu gehen.
-                </p>
-              </article>
-
-              <article class="feature-card">
-                <div class="feature-header">
-                  <div class="feature-icon">🧭</div>
-                  <div class="feature-label">Geführte Deep Talks</div>
-                </div>
-                <p class="feature-text">
-                  Gesprächsleitfäden geben dir Halt – Schritt für Schritt, damit du dich öffnen kannst, ohne dich zu verlieren.
-                </p>
-              </article>
-
-              <article class="feature-card">
-                <div class="feature-header">
-                  <div class="feature-icon">✨</div>
-                  <div class="feature-label">Matching nach Antworten</div>
-                </div>
-                <p class="feature-text">
-                  Finde Menschen, die ähnlich denken und fühlen wie du – verbunden über Antworten, nicht über Fotos.
-                </p>
-              </article>
-
-              <article class="feature-card">
-                <div class="feature-header">
-                  <div class="feature-icon">📝</div>
-                  <div class="feature-label">Reflexion nur für dich</div>
-                </div>
-                <p class="feature-text">
-                  Nach jedem Gespräch hältst du fest, was dich bewegt hat – so lernst du deine Werte, Grenzen und Wünsche besser kennen.
-                </p>
-              </article>
-            </div>
-          </div>
+          <div class="hero-video-overlay"></div>
         </div>
 
-        <!-- Right: Phone mockup -->
-        <section class="right" aria-label="Deeply App Vorschau">
-          <div class="phone-wrap">
-            <div class="phone-float">
-              <span class="phone-float-dot"></span>
-              <span>Neue Frage verfügbar ✨</span>
+        <!-- Inhalt über dem Video -->
+        <div class="hero-layout">
+          <div class="hero">
+            <div class="hero-tagline">
+              <span>Neue App</span>
+              <small>für echte Gespräche – kein Smalltalk, kein Swipen.</small>
             </div>
-            <div class="glow"></div>
-            <div class="phone">
-              <div class="phone-notch"></div>
-              <div class="phone-inner">
-                <div class="phone-header">
-                  <span>Deeply</span>
-                  <div class="phone-chip">
-                    <span class="phone-chip-dot"></span>
-                    <span>Safe Space aktiv</span>
-                  </div>
-                </div>
 
-                <div class="phone-question-box">
-                  <div class="phone-question-label">Tagesfrage</div>
-                  <div class="phone-question-text">
-                    Wann hast du dich das letzte Mal <span>wirklich gesehen</span> gefühlt – und warum?
-                  </div>
-                  <div class="phone-answers">
-                    <div class="answer-pill">
-                      <strong>Du</strong> notierst deine Gedanken in Ruhe.
-                    </div>
-                    <div class="answer-pill">
-                      Deeply verbindet dich mit jemandem, der Ähnliches teilt.
-                    </div>
-                    <div class="answer-pill">
-                      Ihr sprecht geführt & anonym – nur über das, was ihr wollt.
-                    </div>
-                  </div>
-                </div>
+            <h1>Weniger Scrollen. Mehr Deep Talk.</h1>
 
-                <div class="phone-footer">
-                  <div class="phone-footer-row">
+            <p class="hero-sub">
+              Deeply bringt dich mit Menschen zusammen, die <strong>wirklich zuhören</strong> – 
+              mit Fragen, die unter die Haut gehen, und Gesprächen, die nachfühlen statt bewerten.
+            </p>
+
+            <div class="hero-ctas">
+              <!-- Scrollt direkt zur Warteliste -->
+              <a href="#warteliste" class="btn-primary">
+                Jetzt auf die Warteliste
+              </a>
+              <a href="#how" class="btn-secondary">
+                Wie funktioniert Deeply?
+              </a>
+            </div>
+
+            <div class="hero-meta">
+              <div class="hero-meta-item">
+                <span class="meta-dot"></span>
+                Gespräche statt Profile
+              </div>
+              <div class="hero-meta-item">
+                <span class="meta-dot"></span>
+                Anonym & sicher
+              </div>
+              <div class="hero-meta-item">
+                <span class="meta-dot"></span>
+                Reflexion direkt nach jedem Gespräch
+              </div>
+            </div>
+
+            <div class="features-wrapper" id="features">
+              <div class="section-label">Was dich erwartet</div>
+              <div class="features">
+                <article class="feature-card">
+                  <div class="feature-header">
+                    <div class="feature-icon">❓</div>
+                    <div class="feature-label">Tagesfragen</div>
+                  </div>
+                  <p class="feature-text">
+                    Eine Frage pro Tag, die dich wirklich berührt – perfekt, um mit Freund:innen oder neuen Menschen tiefer zu gehen.
+                  </p>
+                </article>
+
+                <article class="feature-card">
+                  <div class="feature-header">
+                    <div class="feature-icon">🧭</div>
+                    <div class="feature-label">Geführte Deep Talks</div>
+                  </div>
+                  <p class="feature-text">
+                    Gesprächsleitfäden geben dir Halt – Schritt für Schritt, damit du dich öffnen kannst, ohne dich zu verlieren.
+                  </p>
+                </article>
+
+                <article class="feature-card">
+                  <div class="feature-header">
+                    <div class="feature-icon">✨</div>
+                    <div class="feature-label">Matching nach Antworten</div>
+                  </div>
+                  <p class="feature-text">
+                    Finde Menschen, die ähnlich denken und fühlen wie du – verbunden über Antworten, nicht über Fotos.
+                  </p>
+                </article>
+
+                <article class="feature-card">
+                  <div class="feature-header">
+                    <div class="feature-icon">📝</div>
+                    <div class="feature-label">Reflexion nur für dich</div>
+                  </div>
+                  <p class="feature-text">
+                    Nach jedem Gespräch hältst du fest, was dich bewegt hat – so lernst du deine Werte, Grenzen und Wünsche besser kennen.
+                  </p>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Phone mockup -->
+          <section class="right" aria-label="Deeply App Vorschau">
+            <div class="phone-wrap">
+              <div class="phone-float">
+                <span class="phone-float-dot"></span>
+                <span>Neue Frage verfügbar ✨</span>
+              </div>
+              <div class="glow"></div>
+              <div class="phone">
+                <div class="phone-notch"></div>
+                <div class="phone-inner">
+                  <div class="phone-header">
+                    <span>Deeply</span>
+                    <div class="phone-chip">
+                      <span class="phone-chip-dot"></span>
+                      <span>Safe Space aktiv</span>
+                    </div>
+                  </div>
+
+                  <div class="phone-question-box">
+                    <div class="phone-question-label">Tagesfrage</div>
+                    <div class="phone-question-text">
+                      Wann hast du dich das letzte Mal <span>wirklich gesehen</span> gefühlt – und warum?
+                    </div>
+                    <div class="phone-answers">
+                      <div class="answer-pill">
+                        <strong>Du</strong> notierst deine Gedanken in Ruhe.
+                      </div>
+                      <div class="answer-pill">
+                        Deeply verbindet dich mit jemandem, der Ähnliches teilt.
+                      </div>
+                      <div class="answer-pill">
+                        Ihr sprecht geführt & anonym – nur über das, was ihr wollt.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="phone-footer">
+                    <div class="phone-footer-row">
+                      <div class="footer-mini">
+                        <span class="step-dots">
+                          <span class="step-dot active"></span>
+                          <span class="step-dot"></span>
+                          <span class="step-dot"></span>
+                        </span>
+                        <span>Nächste Frage in 23 Std.</span>
+                      </div>
+                      <div class="phone-cta">
+                        Gespräch starten
+                        <span>›</span>
+                      </div>
+                    </div>
                     <div class="footer-mini">
-                      <span class="step-dots">
-                        <span class="step-dot active"></span>
-                        <span class="step-dot"></span>
-                        <span class="step-dot"></span>
-                      </span>
-                      <span>Nächste Frage in 23 Std.</span>
+                      <span>Kein Profil. Keine Likes. Nur ehrliche Gespräche.</span>
                     </div>
-                    <div class="phone-cta">
-                      Gespräch starten
-                      <span>›</span>
-                    </div>
-                  </div>
-                  <div class="footer-mini">
-                    <span>Kein Profil. Keine Likes. Nur ehrliche Gespräche.</span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      </section>
-
-      <!-- PITCH VIDEO – direkt unter dem Hero -->
-      <section class="section" id="video">
-        <h2 class="section-title">Deeply in 90 Sekunden</h2>
-        <div class="section-grid">
-          <div class="section-copy">
-            <p>
-              Dein Pitch-Video zeigt, worum es bei Deeply geht: echte Gespräche, geführte Fragen und ein sicherer Raum, in dem du dich zeigen darfst.
-            </p>
-            <p>
-              Tausche einfach die Video-ID in der URL aus, sobald dein YouTube-Video online ist.
-            </p>
-          </div>
-
-          <div class="video-card">
-            <div class="video-inner">
-              <div class="video-thumb">
-                <!-- YouTube: DEIN_VIDEO_ID ersetzen. autoplay & mute aktiviert -->
-                <iframe 
-                  src="https://www.youtube.com/embed/DEIN_VIDEO_ID?autoplay=1&mute=1&rel=0"
-                  title="Deeply Pitch Video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
-              </div>
-            </div>
-            <p class="video-note">
-              Ersetze <strong>DEIN_VIDEO_ID</strong> durch die ID deines YouTube-Videos.
-            </p>
-          </div>
+          </section>
         </div>
       </section>
 

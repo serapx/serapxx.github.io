@@ -108,7 +108,7 @@
       gap:.8rem;
     }
 
-    /* NEUES LOGO-DESIGN */
+    /* Logo */
     .logo-circle {
       width:44px;
       height:44px;
@@ -908,6 +908,57 @@
       color:var(--muted);
     }
 
+    /* TERMIN-BEREICH SPOTLIGHT */
+
+    .section-spotlight {
+      position:relative;
+      margin-top:1.2rem;
+      padding:1.4rem 1.2rem;
+      border-radius:1.7rem;
+      background:radial-gradient(circle at top left,#e0f2fe,#eef2ff 45%,#ffffff 100%);
+      box-shadow:0 28px 70px rgba(15,23,42,0.25);
+      overflow:hidden;
+      z-index:2;
+    }
+
+    .section-spotlight::before,
+    .section-spotlight::after {
+      content:"";
+      position:absolute;
+      border-radius:999px;
+      filter:blur(20px);
+      opacity:.8;
+      pointer-events:none;
+    }
+
+    .section-spotlight::before {
+      width:260px;
+      height:260px;
+      top:-130px;
+      right:-90px;
+      background:radial-gradient(circle,#a855f7,transparent 60%);
+    }
+
+    .section-spotlight::after {
+      width:220px;
+      height:220px;
+      bottom:-130px;
+      left:-80px;
+      background:radial-gradient(circle,#06b6d4,transparent 60%);
+    }
+
+    .section-spotlight .section-title {
+      position:relative;
+      z-index:1;
+      margin-bottom:.6rem;
+    }
+
+    .section-spotlight .section-grid {
+      margin-top:.4rem;
+      position:relative;
+      z-index:1;
+    }
+
     /* CALENDLY CARD */
 
     .calendly-card {
@@ -933,6 +984,17 @@
       background:radial-gradient(circle,#dbeafe,transparent 60%);
       top:-60px;
       right:-40px;
+    }
+
+    .calendly-img {
+      display:block;
+      width:100%;
+      max-width:360px;   /* mittelgroß */
+      border-radius:1.2rem;
+      margin:0 auto .9rem;
+      box-shadow:0 14px 34px rgba(15,23,42,0.28);
+      position:relative;
+      z-index:1;
     }
 
     .calendly-placeholder {
@@ -1064,7 +1126,6 @@
       <div class="brand">
         <div class="logo-circle">
           <div class="logo-circle-inner">
-            <!-- Dein Logo – Datei "Logo.png" im gleichen Ordner -->
             <img src="Logo.png" alt="Deeply Logo">
           </div>
         </div>
@@ -1311,33 +1372,43 @@
 
       <!-- TERMIN / CALENDLY -->
       <section class="section" id="termin">
-        <h2 class="section-title">Termin zum Kennenlernen</h2>
-        <div class="section-grid section-grid--reverse">
-          <div class="section-copy">
-            <p>
-              Du möchtest über Deeply sprechen, Feedback geben oder eine mögliche Zusammenarbeit besprechen?
-            </p>
-            <p>
-              Über Calendly kannst du dir ganz einfach einen passenden Slot aussuchen – das Gespräch findet entspannt per Video-Call statt.
-            </p>
-          </div>
+        <div class="section-spotlight">
+          <h2 class="section-title">Termin zum Kennenlernen</h2>
 
-          <div class="calendly-card">
-            <div class="calendly-placeholder">
-              Klicke auf den Button, um direkt zu deinem Calendly-Kalender zu kommen
-              und einen Termin zu buchen.
+          <div class="section-grid section-grid--reverse">
+            <div class="section-copy">
+              <p>
+                Du möchtest über Deeply sprechen, Feedback geben oder eine mögliche Zusammenarbeit besprechen?
+              </p>
+              <p>
+                Über Calendly kannst du dir ganz einfach einen passenden Slot aussuchen – das Gespräch findet entspannt per Video-Call statt.
+              </p>
             </div>
 
-            <!-- Dein echter Calendly-Link -->
-            <a 
-              href="https://calendly.com/serap-aslan-2214/30min" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="btn-primary"
-              style="align-self:flex-start; position:relative; z-index:1;"
-            >
-              Termin auf Calendly buchen
-            </a>
+            <div class="calendly-card">
+              <!-- Bild mit deinem Text -->
+              <img
+                src="calendly-visual.png"
+                alt="Klicke auf den Button, um direkt zu deinem Calendly-Kalender zu kommen und einen Termin zu buchen."
+                class="calendly-img"
+              >
+
+              <div class="calendly-placeholder">
+                Klicke auf den Button, um direkt zu deinem Calendly-Kalender zu kommen
+                und einen Termin zu buchen.
+              </div>
+
+              <!-- Dein echter Calendly-Link -->
+              <a 
+                href="https://calendly.com/serap-aslan-2214/30min" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn-primary"
+                style="align-self:flex-start; position:relative; z-index:1;"
+              >
+                Termin auf Calendly buchen
+              </a>
+            </div>
           </div>
         </div>
       </section>

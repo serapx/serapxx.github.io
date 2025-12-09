@@ -4,541 +4,716 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Deeply – Die App für echte Gespräche</title>
-  <meta name="description" content="Deeply – Weniger Oberflächlichkeit. Mehr echte Connection. Die App für authentische Gespräche ohne Swipen." />
-  <meta name="theme-color" content="#e0f2fe" />
-  <link rel="icon" href="Logo.png" sizes="96x96" />
+  <meta name="description" content="Deeply – Tief reden. Echt fühlen. Die App für echte Gespräche mit Tagesfragen, DeepTalk, Matching und Reflexion." />
+  <meta name="theme-color" content="#0b1020" />
 
+  <!-- Optional: Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      /* Farbpalette: Energetisches Lila für Zielgruppe 18-30 */
-      --bg:#e0f2fe;
-      --card:#ffffff;
-      --soft:#f1f5f9;
-      --text:#0f172a; 
-      --muted:#64748b;
-      --accent:#7c3aed; /* Intensives Lila */
-      --accent-soft:rgba(124,58,237,0.18); 
-      --accent-strong:#6d28d9; 
+      --bg:#0b1020;
+      --card:#121a33;
+      --soft:#1b2750;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --accent:#7c3aed;
+      --accent-soft:rgba(124,58,237,0.2);
+      --accent-strong:#a855f7;
+      --danger:#f97373;
       --radius-xl:1.5rem;
       --radius-lg:1.1rem;
       --radius-pill:999px;
-      --shadow-soft:0 10px 30px rgba(15,23,42,0.1); 
-      --shadow-strong:0 20px 50px rgba(124,58,237,0.35); 
+      --shadow-soft:0 22px 45px rgba(15,23,42,0.75);
     }
 
-    * { box-sizing:border-box; margin:0; padding:0; }
-    html, body { scroll-behavior:smooth; }
+    * {
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
 
     body {
-      font-family:"Inter",system-ui,-apple-system,sans-serif;
-      background:linear-gradient(180deg,#e0f2fe 0,#eff6ff 40%,#f9fafb 100%);
+      font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
       color:var(--text);
       min-height:100vh;
       -webkit-font-smoothing:antialiased;
     }
 
     .page {
-      max-width:1120px; margin:0 auto; padding:1.75rem 1.25rem 3.5rem; position:relative; z-index:0;
+      max-width:1120px;
+      margin:0 auto;
+      padding:1.75rem 1.25rem 3.5rem;
     }
 
-    /* Hintergrund-Blobs Animation */
-    .page::before, .page::after {
-      content:""; position:absolute; z-index:-1; border-radius:999px; filter:blur(14px); opacity:0.7; pointer-events:none; animation:float 18s ease-in-out infinite;
-    }
-    .page::before {
-      width:320px; height:320px; top:-120px; right:-110px;
-      background:radial-gradient(circle at 30% 0%, #a855f7 0, var(--accent) 40%, #7dd3fc 100%);
-    }
-    .page::after {
-      width:260px; height:260px; bottom:-120px; left:-90px;
-      background:radial-gradient(circle at 30% 0%, #f97316 0, #facc15 40%, #a855f7 100%);
-      animation-delay:-8s; 
-    }
-    @keyframes float {
-      0% { transform:translateY(0);} 50%{ transform:translateY(16px);} 100%{ transform:translateY(0);}
+    header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1.25rem;
+      margin-bottom:2.25rem;
     }
 
-    /* HEADER */
-    header { display:flex; align-items:center; justify-content:space-between; gap:1.25rem; margin-bottom:2.25rem; }
-    .brand { display:flex; align-items:center; gap:.8rem; }
+    .brand {
+      display:flex;
+      align-items:center;
+      gap:.8rem;
+    }
+
     .logo-circle {
-      width:44px; height:44px; border-radius:16px; padding:3px;
-      background:linear-gradient(135deg,var(--accent-strong),#a855f7,#f97316);
-      display:flex; align-items:center; justify-content:center;
-      box-shadow:0 10px 25px rgba(79,70,229,0.35);
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:radial-gradient(circle at 25% 0%, var(--accent-strong) 0, var(--accent) 40%, #0f172a 100%);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 12px 30px rgba(124,58,237,0.65);
+      font-weight:700;
+      font-size:1rem;
     }
-    .logo-circle-inner { width:100%; height:100%; border-radius:13px; background:#ffffff; display:flex; align-items:center; justify-content:center; overflow:hidden; }
-    .logo-circle-inner img { width:80%; height:80%; object-fit:contain; }
-    .brand-text { display:flex; flex-direction:column; gap:0.15rem; }
-    .brand-title { font-weight:700; letter-spacing:.06em; font-size:1.1rem; text-transform:uppercase; }
-    .brand-sub { font-size:.8rem; color:var(--muted); }
 
-    .header-right { display:flex; align-items:center; gap:1.25rem; }
-    .nav {
-      display:none; gap:1rem; font-size:.8rem; padding:.4rem .8rem; border-radius:var(--radius-pill);
-      background:rgba(255,255,255,0.65); backdrop-filter:blur(6px); box-shadow:0 10px 26px rgba(15,23,42,0.12);
+    .brand-text {
+      display:flex;
+      flex-direction:column;
+      gap:0.15rem;
     }
-    .nav a { color:var(--muted); text-decoration:none; padding:.1rem 0; transition:color .15s ease; }
-    .nav a:hover { color:var(--accent-strong); }
-    @media (min-width:768px) { .nav { display:flex; } }
 
-    .header-cta { display:flex; align-items:center; gap:.6rem; }
+    .brand-title {
+      font-weight:600;
+      letter-spacing:.03em;
+      font-size:1.1rem;
+    }
+
+    .brand-sub {
+      font-size:.8rem;
+      color:var(--muted);
+    }
+
+    .header-cta {
+      display:flex;
+      align-items:center;
+      gap:.6rem;
+    }
+
     .pill {
-      border-radius:var(--radius-pill); padding:.35rem .8rem; font-size:.75rem;
-      border:1px solid rgba(148,163,184,0.45); background:rgba(255,255,255,0.9);
-      display:flex; align-items:center; gap:.45rem; color:var(--muted);
-      box-shadow:0 8px 20px rgba(148,163,184,0.35);
+      border-radius:var(--radius-pill);
+      padding:.35rem .8rem;
+      font-size:.75rem;
+      border:1px solid rgba(148,163,184,0.35);
+      background:rgba(15,23,42,0.7);
+      display:flex;
+      align-items:center;
+      gap:.45rem;
+      color:var(--muted);
     }
+
     .pill-dot {
-      width:8px; height:8px; border-radius:999px;
+      width:8px;
+      height:8px;
+      border-radius:999px;
       background:radial-gradient(circle at 30% 0%, #4ade80 0, #22c55e 40%, #15803d 100%);
-      box-shadow:0 0 0 3px rgba(34,197,94,0.18); animation:pulse 2.2s ease-in-out infinite;
+      box-shadow:0 0 0 4px rgba(34,197,94,0.2);
     }
-    @keyframes pulse { 0%,100%{ transform:scale(1); opacity:1;} 50%{ transform:scale(1.25); opacity:.7;} }
-    .small-link { border:none; background:transparent; color:var(--accent-strong); font-size:.78rem; cursor:pointer; text-decoration:underline; text-underline-offset:2px; }
 
-    /* BUTTONS */
-    .btn-primary, .btn-secondary {
-      border-radius:var(--radius-pill); padding:.8rem 1.4rem; font-size:.9rem; font-weight:500;
-      border:none; cursor:pointer; display:inline-flex; align-items:center; justify-content:center;
-      gap:.45rem; white-space:nowrap; transition:all .2s ease; text-decoration:none;
+    .small-link {
+      border:none;
+      background:transparent;
+      color:var(--muted);
+      font-size:.78rem;
+      cursor:pointer;
+      text-decoration:underline;
+      text-underline-offset:2px;
+      opacity:.85;
     }
-    .btn-primary {
-      background:linear-gradient(135deg, var(--accent-strong), var(--accent)); color:white;
-      box-shadow:var(--shadow-strong);
+
+    main {
+      display:grid;
+      gap:2rem;
     }
-    .btn-primary:hover { filter:brightness(1.1); transform:translateY(-2px) scale(1.02); box-shadow:0 18px 36px rgba(124,58,237,0.5); }
-    .btn-primary::after{ content:"›"; font-size:1rem; margin-left:.1rem; transition:transform .2s ease; }
-    .btn-primary:hover::after{ transform:translateX(2px); }
-    .btn-secondary { background:white; color:var(--accent-strong); border:1px solid var(--accent); }
-    .btn-secondary:hover { background:var(--accent-soft); }
 
-    main { display:flex; flex-direction:column; gap:3rem; }
-
-    /* GENERISCHE SECTION HEADINGS */
-    .section-label { font-size:.78rem; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); margin-bottom:.35rem; }
-    .section-title { font-size:1.4rem; margin-bottom:.3rem; color:var(--text); }
-    .section-sub { font-size:.9rem; color:var(--muted); max-width:36rem; }
-
-    /* PITCH VIDEO – GANZ OBEN, VOLLE BREITE */
-    .video-section { margin-bottom:2.75rem; }
-    .video-shell {
-      border-radius:2rem; padding:1.3rem 1.3rem 1.5rem;
-      background:radial-gradient(circle at top left,#dbeafe,#e0f2fe 40%,#ffffff 100%);
-      box-shadow:0 26px 60px rgba(15,23,42,0.25); display:flex; flex-direction:column; gap:.75rem;
+    @media (min-width: 768px) {
+      main {
+        grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr);
+        align-items:center;
+        gap:2.5rem;
+      }
     }
-    .video-banner { border-radius:1.6rem; overflow:hidden; background:#000; box-shadow:0 20px 50px rgba(15,23,42,0.35); }
-    .video-frame { width:100%; aspect-ratio:16/9; }
-    .video-frame iframe { width:100%; height:100%; border:0; display:block; }
-    .video-text-under { display:flex; flex-direction:column; gap:.25rem; margin-top:.4rem; }
-    .video-label { font-size:.78rem; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); }
-    .video-title { font-size:1.6rem; font-weight:700; color:var(--text); }
-    .video-sub { font-size:.9rem; color:var(--muted); max-width:32rem; }
-    .video-note { font-size:.78rem; color:var(--muted); margin-top:.25rem; }
 
-    /* HERO */
-    .hero-layout { display:grid; gap:2rem; }
-    @media (min-width: 768px) { .hero-layout { grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr); align-items:center; gap:2.2rem; } }
-    .hero { display:flex; flex-direction:column; gap:1.3rem; }
+    /* Hero left */
+    .hero {
+      display:flex;
+      flex-direction:column;
+      gap:1.3rem;
+    }
+
     .hero-tagline {
-      display:inline-flex; align-items:center; gap:.5rem; padding:.35rem .9rem; border-radius:var(--radius-pill);
-      font-size:.75rem; background:#eef2ff; border:1px solid rgba(129,140,248,0.6); color:var(--muted);
-      width:fit-content; position:relative; overflow:hidden;
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      padding:.35rem .8rem;
+      border-radius:var(--radius-pill);
+      font-size:.75rem;
+      background:rgba(15,23,42,0.9);
+      border:1px solid rgba(124,58,237,0.4);
+      color:var(--muted);
+      width:fit-content;
+      box-shadow:0 14px 40px rgba(15,23,42,0.9);
     }
-    .hero-tagline span { font-weight:700; color:var(--accent-strong); position:relative; z-index:1; }
-    h1 { font-size:2.1rem; line-height:1.12; letter-spacing:-.02em; font-weight:800; color:var(--text); }
-    @media (min-width: 640px) { h1 { font-size:2.6rem; } }
-    @media (min-width: 1024px) { h1 { font-size:3.1rem; } }
-    .hero-sub { font-size:.98rem; color:var(--muted); max-width:34rem; }
-    .hero-sub strong { color:var(--text); font-weight:500; }
 
-    .hero-ctas { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:.4rem; }
+    .hero-tagline span {
+      font-weight:500;
+      color:var(--accent-strong);
+    }
 
-    .hero-meta { display:flex; flex-wrap:wrap; gap:1.1rem; margin-top:.4rem; font-size:.78rem; color:var(--muted); }
-    .hero-meta-item { display:flex; align-items:center; }
-    .meta-dot { width:6px; height:6px; border-radius:999px; background:var(--accent-strong); opacity:.9; margin-right:.4rem; display:inline-block; }
+    h1 {
+      font-size:2rem;
+      line-height:1.12;
+      letter-spacing:.01em;
+    }
 
-    /* FEATURES */
-    .features-wrapper { margin-top:1.3rem; }
-    .features { margin-top:.6rem; display:grid; gap:.9rem; }
-    @media (min-width:640px) { .features { grid-template-columns:repeat(2, minmax(0,1fr)); } }
+    @media (min-width: 640px) {
+      h1 { font-size:2.5rem; }
+    }
+
+    @media (min-width: 1024px) {
+      h1 { font-size:3rem; }
+    }
+
+    .hero-sub {
+      font-size:.98rem;
+      color:var(--muted);
+      max-width:34rem;
+    }
+
+    .hero-sub strong {
+      color:var(--text);
+      font-weight:500;
+    }
+
+    .hero-ctas {
+      display:flex;
+      flex-wrap:wrap;
+      gap:.75rem;
+      margin-top:.4rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      border-radius:var(--radius-pill);
+      padding:.75rem 1.3rem;
+      font-size:.9rem;
+      font-weight:500;
+      border:none;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.45rem;
+      white-space:nowrap;
+    }
+
+    .btn-primary {
+      background:linear-gradient(135deg, var(--accent-strong), var(--accent));
+      color:white;
+      box-shadow:0 16px 40px rgba(124,58,237,0.85);
+    }
+
+    .btn-primary:hover {
+      filter:brightness(1.04);
+      transform:translateY(-1px);
+    }
+
+    .btn-secondary {
+      background:rgba(15,23,42,0.9);
+      color:var(--muted);
+      border:1px solid rgba(148,163,184,0.45);
+    }
+
+    .btn-secondary:hover {
+      background:rgba(31,41,55,0.9);
+    }
+
+    .hero-meta {
+      display:flex;
+      flex-wrap:wrap;
+      gap:1.1rem;
+      margin-top:.4rem;
+      font-size:.78rem;
+      color:var(--muted);
+    }
+
+    .hero-meta-item {
+      display:flex;
+      align-items:center;
+      gap:.4rem;
+    }
+
+    .meta-dot {
+      width:6px;
+      height:6px;
+      border-radius:999px;
+      background:var(--accent-strong);
+      opacity:.8;
+    }
+
+    /* Features */
+    .features {
+      margin-top:1.2rem;
+      display:grid;
+      gap:.8rem;
+    }
+
+    @media (min-width:640px) {
+      .features {
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+    }
+
     .feature-card {
-      background:var(--card); border-radius:var(--radius-lg); padding:.95rem 1rem; border:1px solid rgba(203,213,225,0.9);
-      box-shadow:0 10px 20px rgba(15,23,42,0.08); display:flex; flex-direction:column; gap:.3rem; position:relative;
-      overflow:hidden; transition:all .2s ease;
+      background:linear-gradient(145deg, rgba(15,23,42,0.8), rgba(15,23,42,0.95));
+      border-radius:var(--radius-lg);
+      padding:.85rem .9rem;
+      border:1px solid rgba(31,41,55,0.95);
+      box-shadow:0 18px 40px rgba(15,23,42,0.85);
+      display:flex;
+      flex-direction:column;
+      gap:.25rem;
     }
-    .feature-card:hover { transform:translateY(-6px); box-shadow:0 24px 48px rgba(15,23,42,0.18); border-color:var(--accent); }
-    .feature-header { display:flex; align-items:center; gap:.5rem; }
-    .feature-icon { width:30px; height:30px; border-radius:999px; background:var(--accent-soft); display:flex; align-items:center; justify-content:center; font-size:1.1rem; }
-    .feature-label { font-size:.8rem; font-weight:600; color:var(--accent-strong); letter-spacing:.04em; text-transform:uppercase; }
-    .feature-text { font-size:.86rem; color:var(--muted); margin-top:.15rem; }
 
-    /* PHONE MOCKUP */
-    .right { display:flex; align-items:center; justify-content:center; }
-    .phone-wrap { position:relative; width:100%; max-width:320px; aspect-ratio:9/18; }
-    .phone-float {
-      position:absolute; left:-24px; top:18%; padding:.4rem .7rem; border-radius:var(--radius-pill);
-      background:rgba(255,255,255,0.95); font-size:.7rem; color:var(--muted); display:flex; align-items:center;
-      gap:.25rem; box-shadow:0 12px 26px rgba(15,23,42,0.2); animation:float 14s ease-in-out infinite;
+    .feature-label {
+      font-size:.78rem;
+      font-weight:500;
+      color:var(--accent-strong);
+      letter-spacing:.04em;
+      text-transform:uppercase;
     }
-    .phone-float-dot { width:6px; height:6px; border-radius:50%; background:#22c55e; }
+
+    .feature-text {
+      font-size:.86rem;
+      color:var(--muted);
+    }
+
+    /* Right side: phone mockup */
+    .right {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .phone-wrap {
+      position:relative;
+      width:100%;
+      max-width:310px;
+      aspect-ratio:9/18;
+    }
+
+    .glow {
+      position:absolute;
+      inset:12% -20%;
+      background:radial-gradient(circle at 50% 0%, rgba(124,58,237,0.6), transparent 55%);
+      opacity:.55;
+      filter:blur(22px);
+      z-index:0;
+    }
+
     .phone {
-      position:relative; z-index:1; width:100%; height:100%; border-radius:2.1rem; padding:.7rem;
-      background:linear-gradient(145deg, #020617, #020617, #111827); box-shadow:0 18px 40px rgba(15,23,42,0.55);
-      border:1px solid rgba(148,163,184,0.45); display:flex; flex-direction:column; overflow:hidden;
+      position:relative;
+      z-index:1;
+      width:100%;
+      height:100%;
+      border-radius:2.2rem;
+      padding:.7rem;
+      background:linear-gradient(145deg, #020617, #020617, #111827);
+      box-shadow:var(--shadow-soft);
+      border:1px solid rgba(148,163,184,0.3);
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
     }
-    .phone-inner { flex:1; border-radius:1.6rem; background:radial-gradient(circle at top, #1f2937 0, #020617 55%); padding:1rem .9rem 1.1rem; display:flex; flex-direction:column; gap:.9rem; color:#e5e7eb; }
-    .phone-notch { width:45%; height:16px; background:#020617; border-radius:0 0 1rem 1rem; margin:0.1rem auto .35rem; }
-    .phone-header { display:flex; align-items:center; justify-content:space-between; font-size:.78rem; }
-    .phone-chip { padding:.25rem .55rem; border-radius:var(--radius-pill); background:rgba(15,23,42,0.9); border:1px solid rgba(148,163,184,0.7); font-size:.7rem; display:flex; align-items:center; gap:.35rem; }
-    .phone-chip-dot { width:7px; height:7px; border-radius:999px; background:#a855f7; box-shadow:0 0 0 3px rgba(129,140,248,0.9); }
+
+    .phone-notch {
+      width:45%;
+      height:16px;
+      background:#020617;
+      border-radius:0 0 1rem 1rem;
+      margin:0.1rem auto .35rem;
+    }
+
+    .phone-inner {
+      flex:1;
+      border-radius:1.6rem;
+      background:radial-gradient(circle at top, #1f2937 0, #020617 55%);
+      padding:1rem .9rem 1.1rem;
+      display:flex;
+      flex-direction:column;
+      gap:.9rem;
+    }
+
+    .phone-header {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:.78rem;
+      color:var(--muted);
+    }
+
+    .phone-chip {
+      padding:.25rem .55rem;
+      border-radius:var(--radius-pill);
+      background:rgba(15,23,42,0.8);
+      border:1px solid rgba(148,163,184,0.25);
+      font-size:.7rem;
+      display:flex;
+      align-items:center;
+      gap:.35rem;
+    }
+
+    .phone-chip-dot {
+      width:7px;
+      height:7px;
+      border-radius:999px;
+      background:var(--accent-strong);
+      box-shadow:0 0 0 3px rgba(124,58,237,0.4);
+    }
+
     .phone-question-box {
-      border-radius:1.2rem; padding:.85rem .9rem;
-      background:linear-gradient(135deg, rgba(124,58,237,0.3), rgba(15,23,42,0.98));
-      border:1px solid rgba(124,58,237,0.9); box-shadow:0 14px 32px rgba(15,23,42,1);
-      display:flex; flex-direction:column; gap:.55rem;
+      border-radius:1.2rem;
+      padding:.85rem .9rem;
+      background:linear-gradient(135deg, rgba(124,58,237,0.14), rgba(15,23,42,0.95));
+      border:1px solid rgba(124,58,237,0.5);
+      box-shadow:0 14px 32px rgba(15,23,42,0.95);
+      display:flex;
+      flex-direction:column;
+      gap:.55rem;
     }
-    .phone-question-text { font-size:.9rem; line-height:1.35; font-weight:500; }
-    .phone-question-text span { color:#c4b5fd; }
-    .phone-answers { display:flex; flex-direction:column; gap:.45rem; }
-    .answer-pill { padding:.5rem .65rem; border-radius:1rem; background:rgba(15,23,42,0.92); border:1px solid rgba(31,41,55,0.9); font-size:.78rem; color:#cbd5f5; }
-    .phone-cta { border-radius:var(--radius-pill); padding:.5rem .9rem; background:linear-gradient(135deg, #a855f7, var(--accent)); display:inline-flex; align-items:center; justify-content:center; gap:.3rem; color:white; font-size:.78rem; font-weight:500; }
-    .phone-footer { margin-top:auto; display:flex; flex-direction:column; gap:.4rem; align-items:center; font-size:.7rem; opacity:.8; }
 
-    /* HOW IT WORKS */
-    .steps { margin-top:1rem; display:grid; gap:.9rem; }
-    @media (min-width: 640px) { .steps { grid-template-columns:repeat(3, minmax(0,1fr)); } }
-    .step-card {
-      background:var(--card); border-radius:var(--radius-lg); padding:.9rem .95rem; border:1px solid rgba(203,213,225,0.9);
-      font-size:.86rem; color:var(--muted); box-shadow:var(--shadow-soft); position:relative; overflow:hidden; transition:all .2s ease;
+    .phone-question-label {
+      font-size:.7rem;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      color:var(--muted);
     }
-    .step-card:hover { transform:translateY(-3px); border-color:var(--accent); }
-    .step-number { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:999px; background:var(--accent-soft); color:var(--accent-strong); font-size:.78rem; font-weight:600; margin-bottom:.4rem; }
-    .step-title { font-size:.9rem; color:var(--text); font-weight:500; margin-bottom:.15rem; }
 
-    /* TERMIN – BILD VOLLE BREITE + BUTTON UNTEN */
-    .termin-banner { margin-top:1.2rem; border-radius:1.7rem; overflow:hidden; box-shadow:0 24px 60px rgba(15,23,42,0.25); background:#000; }
-    .termin-banner img { width:100%; display:block; }
-    .termin-cta { margin-top:.9rem; display:flex; justify-content:center; }
+    .phone-question-text {
+      font-size:.9rem;
+      line-height:1.35;
+      font-weight:500;
+    }
 
-    /* PILLS */
-    .section-pills { margin-top:1rem; display:flex; flex-wrap:wrap; gap:.5rem; }
-    .pill-tag { padding:.4rem .75rem; border-radius:var(--radius-pill); border:1px solid rgba(148,163,184,0.6); font-size:.8rem; color:var(--muted); background:var(--card); box-shadow:0 6px 14px rgba(15,23,42,0.06); }
+    .phone-question-text span {
+      color:var(--accent-strong);
+    }
 
-    /* FAQ */
-    .faq-list { margin-top:1rem; display:grid; gap:.6rem; }
-    .faq-item { background:var(--card); border-radius:.9rem; border:1px solid rgba(203,213,225,0.9); padding:.75rem .9rem; font-size:.86rem; box-shadow:0 8px 16px rgba(15,23,42,0.06); }
-    .faq-question { font-weight:500; margin-bottom:.2rem; }
+    .phone-answers {
+      margin-top:.15rem;
+      display:flex;
+      flex-direction:column;
+      gap:.45rem;
+    }
 
-    /* BOTTOM CTA */
+    .answer-pill {
+      padding:.5rem .65rem;
+      border-radius:1rem;
+      background:rgba(15,23,42,0.9);
+      border:1px solid rgba(31,41,55,0.9);
+      font-size:.78rem;
+      color:var(--muted);
+    }
+
+    .answer-pill strong {
+      color:var(--text);
+      font-weight:500;
+    }
+
+    .phone-footer {
+      margin-top:auto;
+      display:flex;
+      flex-direction:column;
+      gap:.5rem;
+      font-size:.75rem;
+      color:var(--muted);
+    }
+
+    .phone-footer-row {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:.5rem;
+    }
+
+    .footer-mini {
+      display:flex;
+      align-items:center;
+      gap:.35rem;
+    }
+
+    .step-dots {
+      display:flex;
+      gap:.25rem;
+    }
+
+    .step-dot {
+      width:5px;
+      height:5px;
+      border-radius:999px;
+      background:rgba(148,163,184,0.6);
+    }
+
+    .step-dot.active {
+      width:10px;
+      border-radius:var(--radius-pill);
+      background:var(--accent-strong);
+    }
+
+    .phone-cta {
+      border-radius:var(--radius-pill);
+      padding:.5rem .9rem;
+      background:linear-gradient(135deg, var(--accent-strong), var(--accent));
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.3rem;
+      color:white;
+      font-size:.78rem;
+      font-weight:500;
+    }
+
+    /* Bottom CTA section */
     .bottom-cta {
-      margin-top:1.5rem; padding:1.2rem 1rem; border-radius:var(--radius-xl);
-      background:linear-gradient(135deg, var(--accent-strong), #06b6d4); border:1px solid rgba(15,23,42,0.08);
-      display:flex; flex-direction:column; gap:.7rem; color:#e0f2fe; box-shadow:0 18px 40px rgba(15,23,42,0.38);
+      margin-top:2.75rem;
+      padding:1.2rem 1rem;
+      border-radius:var(--radius-xl);
+      background:radial-gradient(circle at top left, rgba(124,58,237,0.45), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(15,23,42,0.95), #020617 70%);
+      border:1px solid rgba(148,163,184,0.4);
+      display:flex;
+      flex-direction:column;
+      gap:.7rem;
     }
-    @media (min-width:768px) { .bottom-cta { flex-direction:row; align-items:center; justify-content:space-between; } }
-    .bottom-cta-text { max-width:26rem; }
-    .bottom-cta-title { font-size:1rem; font-weight:600; margin-bottom:.2rem; }
-    .bottom-cta-sub { font-size:.86rem; color:#e5e7eb; }
-    .bottom-cta-form { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:.1rem; }
-    .bottom-cta-form input[type="email"] { padding:.65rem .8rem; border-radius:var(--radius-pill); border:none; background:rgba(15,23,42,0.16); color:#e5e7eb; font-size:.85rem; min-width:210px; outline:none; }
-    .bottom-cta-form input::placeholder { color:rgba(226,232,240,0.9); }
-    .bottom-cta-form .btn-primary { background:white; color:var(--accent-strong); box-shadow:none; }
-    .bottom-cta-form .btn-primary:hover { background:#e0f2fe; }
 
-    /* FOOTER */
-    footer { margin-top:2rem; font-size:.75rem; color:var(--muted); display:flex; flex-wrap:wrap; align-items:center; gap:.8rem; justify-content:space-between; border-top:1px solid rgba(203,213,225,0.9); padding-top:1rem; }
-    .footer-links { display:flex; gap:.9rem; }
-    .footer-links a { color:var(--muted); text-decoration:none; }
-    .footer-links a:hover { text-decoration:underline; text-underline-offset:2px; }
+    @media (min-width:768px) {
+      .bottom-cta {
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+      }
+    }
+
+    .bottom-cta-text {
+      max-width:26rem;
+    }
+
+    .bottom-cta-title {
+      font-size:1rem;
+      font-weight:600;
+      margin-bottom:.2rem;
+    }
+
+    .bottom-cta-sub {
+      font-size:.86rem;
+      color:var(--muted);
+    }
+
+    footer {
+      margin-top:2rem;
+      font-size:.75rem;
+      color:var(--muted);
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:.8rem;
+      justify-content:space-between;
+      border-top:1px solid rgba(31,41,55,0.9);
+      padding-top:1rem;
+    }
+
+    .footer-links {
+      display:flex;
+      gap:.9rem;
+    }
+
+    .footer-links a {
+      color:var(--muted);
+      text-decoration:none;
+    }
+
+    .footer-links a:hover {
+      text-decoration:underline;
+      text-underline-offset:2px;
+    }
   </style>
 </head>
 <body>
   <div class="page">
     <header>
       <div class="brand">
-        <div class="logo-circle">
-          <div class="logo-circle-inner">
-            <img src="Logo.png" alt="Deeply Logo">
-          </div>
-        </div>
+        <div class="logo-circle">D</div>
         <div class="brand-text">
           <div class="brand-title">Deeply</div>
           <div class="brand-sub">Tief reden. Echt fühlen.</div>
         </div>
       </div>
 
-      <div class="header-right">
-        <nav class="nav">
-          <a href="#video">Pitch-Video</a>
-          <a href="#features">Features</a>
-          <a href="#how">So funktioniert’s</a>
-          <a href="#termin">Termin</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-        <div class="header-cta">
-          <div class="pill">
-            <span class="pill-dot"></span>
-            <span>Beta in Vorbereitung</span>
-          </div>
-          <a href="#warteliste" class="small-link">Ich will dabei sein</a>
+      <div class="header-cta">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>Beta in Vorbereitung</span>
         </div>
+        <button class="small-link">Ich will dabei sein</button>
       </div>
     </header>
 
     <main>
-      <!-- PITCH-VIDEO GANZ OBEN, VOLLE BREITE -->
-      <section class="video-section" id="video">
-        <div class="video-shell">
-          <div class="video-banner">
-            <div class="video-frame">
-              <!-- DEIN_VIDEO_ID durch deine echte YouTube-ID ersetzen -->
-              <iframe
-                src="https://www.youtube.com/embed/DEIN_VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=DEIN_VIDEO_ID&rel=0&modestbranding=1"
-                title="Deeply Pitch Video"
-                allow="autoplay; encrypted-media; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </div>
+      <!-- Hero left -->
+      <section class="hero">
+        <div class="hero-tagline">
+          <span>Neue App</span> für echte Gespräche – kein Smalltalk, kein Swipen.
+        </div>
+
+        <h1>Weniger Scrollen. Mehr Deep Talk.</h1>
+
+        <p class="hero-sub">
+          Deeply bringt dich mit Menschen zusammen, die <strong>wirklich zuhören</strong> – 
+          mit Fragen, die unter die Haut gehen, und Gesprächen, die nachfühlen statt bewerten.
+        </p>
+
+        <div class="hero-ctas">
+          <button class="btn-primary">
+            Jetzt auf die Warteliste
+          </button>
+          <button class="btn-secondary">
+            Wie funktioniert Deeply?
+          </button>
+        </div>
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="meta-dot"></span>
+            Gespräche statt Profile
           </div>
-          <div class="video-text-under">
-            <div class="video-label">Pitch-Video</div>
-            <h2 class="video-title">
-              Sei ehrlich: Schau dir <strong>Deeply in 90&nbsp;Sekunden</strong> an.
-            </h2>
-            <p class="video-sub">
-              Dein kurzer Überblick: Warum es Deeply gibt und für wen die App gedacht ist.
-            </p>
-            <p class="video-note">
-              Hinweis: Ersetze <strong>DEIN_VIDEO_ID</strong> oben in der URL durch die ID deines YouTube-Videos.
-            </p>
+          <div class="hero-meta-item">
+            <span class="meta-dot"></span>
+            Anonym & sicher
           </div>
+          <div class="hero-meta-item">
+            <span class="meta-dot"></span>
+            Reflexion direkt nach jedem Gespräch
+          </div>
+        </div>
+
+        <div class="features">
+          <article class="feature-card">
+            <div class="feature-label">Tagesfragen</div>
+            <p class="feature-text">
+              Eine Frage pro Tag, die dich wirklich berührt – perfekt, um mit Freund:innen oder neuen Menschen tiefer zu gehen.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-label">Geführte Deep Talks</div>
+            <p class="feature-text">
+              Gesprächsleitfäden geben dir Halt – Schritt für Schritt, damit du dich öffnen kannst, ohne dich zu verlieren.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-label">Matching nach Antworten</div>
+            <p class="feature-text">
+              Finde Menschen, die ähnlich denken und fühlen wie du – verbunden über Antworten, nicht über Fotos.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-label">Reflexion nur für dich</div>
+            <p class="feature-text">
+              Nach jedem Gespräch hältst du fest, was dich bewegt hat – so lernst du deine Werte, Grenzen und Wünsche besser kennen.
+            </p>
+          </article>
         </div>
       </section>
 
-      <!-- HERO -->
-      <section class="hero-layout">
-        <div class="hero">
-          <div class="hero-tagline">
-            <span>Neue App</span> <small>für echte Gespräche.</small>
-          </div>
-
-          <h1>Weniger Oberflächlichkeit. Mehr echte Connection.</h1>
-
-          <p class="hero-sub">
-            Finde deinen <strong>Safe Space</strong> für Gespräche. Deeply verbindet dich anonym mit Menschen, die 
-            <strong>wirklich zuhören</strong> und dich sehen.
-          </p>
-
-          <div class="hero-ctas">
-            <a href="#warteliste" class="btn-primary">Jetzt auf die Warteliste</a>
-            <a href="#how" class="btn-secondary">Wie funktioniert Deeply?</a>
-          </div>
-
-          <div class="hero-meta">
-            <div class="hero-meta-item">
-              <span class="meta-dot"></span>Gespräche statt Profile
-            </div>
-            <div class="hero-meta-item">
-              <span class="meta-dot"></span>Anonym & sicher
-            </div>
-            <div class="hero-meta-item">
-              <span class="meta-dot"></span>Self-Care nach jedem Talk
-            </div>
-          </div>
-
-          <div class="features-wrapper" id="features">
-            <div class="section-label">Was dich erwartet</div>
-            <div class="features">
-              <article class="feature-card">
-                <div class="feature-header">
-                  <div class="feature-icon">❓</div>
-                  <div class="feature-label">Tagesfragen</div>
+      <!-- Right: Phone mockup -->
+      <section class="right" aria-label="Deeply App Vorschau">
+        <div class="phone-wrap">
+          <div class="glow"></div>
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-inner">
+              <div class="phone-header">
+                <span>Deeply</span>
+                <div class="phone-chip">
+                  <span class="phone-chip-dot"></span>
+                  <span>Safe Space aktiv</span>
                 </div>
-                <p class="feature-text">
-                  Eine Frage pro Tag, die dich <strong>triggert</strong>: Nimm sie als Deep Dive mit Freund:innen oder neuen Matches.
-                </p>
-              </article>
-              <article class="feature-card">
-                <div class="feature-header">
-                  <div class="feature-icon">🧭</div>
-                  <div class="feature-label">Geführte Deep Talks</div>
-                </div>
-                <p class="feature-text">
-                  Dein <strong>Guide für schwierige Themen</strong>. Geführte Leitfäden geben dir Halt, ohne dich zu überfordern.
-                </p>
-              </article>
-              <article class="feature-card">
-                <div class="feature-header">
-                  <div class="feature-icon">✨</div>
-                  <div class="feature-label">Matching nach Antworten</div>
-                </div>
-                <p class="feature-text">
-                  <strong>Endlich Matching mit Substanz.</strong> Finde Menschen, die auf deiner Wellenlänge sind.
-                </p>
-              </article>
-              <article class="feature-card">
-                <div class="feature-header">
-                  <div class="feature-icon">📝</div>
-                  <div class="feature-label">Reflexion</div>
-                </div>
-                <p class="feature-text">
-                  <strong>Self-Care nach dem Talk.</strong> Halte fest, was dich bewegt hat. 
-                  Lerne deine Grenzen & Wünsche privat kennen.
-                </p>
-              </article>
-            </div>
-          </div>
-        </div>
+              </div>
 
-        <!-- PHONE MOCKUP -->
-        <section class="right" aria-label="Deeply App Vorschau">
-          <div class="phone-wrap">
-            <div class="phone-float">
-              <span class="phone-float-dot"></span>
-              <span>Neue Frage verfügbar ✨</span>
-            </div>
-            <div class="phone">
-              <div class="phone-notch"></div>
-              <div class="phone-inner">
-                <div class="phone-header">
-                  <span>Deeply</span>
-                  <div class="phone-chip">
-                    <span class="phone-chip-dot"></span>
-                    <span>Safe Space aktiv</span>
+              <div class="phone-question-box">
+                <div class="phone-question-label">Tagesfrage</div>
+                <div class="phone-question-text">
+                  Wann hast du dich das letzte Mal <span>wirklich gesehen</span> gefühlt – und warum?
+                </div>
+                <div class="phone-answers">
+                  <div class="answer-pill">
+                    <strong>Du</strong> notierst deine Gedanken in Ruhe.
+                  </div>
+                  <div class="answer-pill">
+                    Deeply verbindet dich mit jemandem, der Ähnliches teilt.
+                  </div>
+                  <div class="answer-pill">
+                    Ihr sprecht geführt & anonym – nur über das, was ihr wollt.
                   </div>
                 </div>
+              </div>
 
-                <div class="phone-question-box">
-                  <div class="phone-question-text">
-                    Wann hast du dich das letzte Mal <span>wirklich gesehen</span> gefühlt?
+              <div class="phone-footer">
+                <div class="phone-footer-row">
+                  <div class="footer-mini">
+                    <span class="step-dots">
+                      <span class="step-dot active"></span>
+                      <span class="step-dot"></span>
+                      <span class="step-dot"></span>
+                    </span>
+                    <span>Nächste Frage in 23 Std.</span>
                   </div>
-                  <div class="phone-answers">
-                    <div class="answer-pill">
-                      <strong>Du</strong> notierst deine Gedanken in Ruhe.
-                    </div>
-                    <div class="answer-pill">
-                      Deeply verbindet dich mit Gleichgesinnten.
-                    </div>
-                  </div>
-                </div>
-
-                <div class="phone-footer">
                   <div class="phone-cta">
-                    Gespräch starten <span>›</span>
+                    Gespräch starten
+                    <span>›</span>
                   </div>
-                  <div>Kein Profil. Keine Likes.</div>
+                </div>
+                <div class="footer-mini">
+                  <span>Kein Profil. Keine Likes. Nur ehrliche Gespräche.</span>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-      </section>
-
-      <!-- SO FUNKTIONIERT'S -->
-      <section class="section" id="how">
-        <h2 class="section-title">So funktioniert Deeply</h2>
-        <div class="steps">
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <div class="step-title">Frage wählen</div>
-            <p>Wähle ein Thema oder nutze die <strong>gefühlvolle Frage des Tages</strong>.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <div class="step-title">Match & Gespräch</div>
-            <p>Deeply verbindet dich anonym mit Gleichgesinnten. Kein Smalltalk.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <div class="step-title">Reflektieren</div>
-            <p>Nach dem Gespräch: Halte deine Gedanken fest. <strong>Nur für dich.</strong></p>
-          </div>
         </div>
-      </section>
-
-      <!-- TERMIN / CALENDLY – BILD VOLLE BREITE + BUTTON UNTEN -->
-      <section class="section" id="termin">
-        <h2 class="section-title">Termin zum Kennenlernen</h2>
-        <p class="section-sub">
-          Du möchtest über Deeply sprechen? Buch dir einfach einen Slot.
-        </p>
-        <div class="termin-banner">
-          <img src="calendly-visual.png" alt="Klicke auf den Button, um direkt zu deinem Calendly-Kalender zu kommen und einen Termin zu buchen.">
-        </div>
-        <div class="termin-cta">
-          <a 
-            href="https://calendly.com/serap-aslan-2214/30min" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="btn-primary"
-          >
-            Termin auf Calendly buchen
-          </a>
-        </div>
-      </section>
-
-      <!-- FÜR WEN IST DEEPLY? -->
-      <section class="section">
-        <h2 class="section-title">Für wen ist Deeply?</h2>
-        <div class="section-pills">
-          <span class="pill-tag">Für sensible & nachdenkliche Menschen</span>
-          <span class="pill-tag">Für alle, die sich einsam fühlen</span>
-          <span class="pill-tag">Gegen Performance-Druck & Swipen</span>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section class="section" id="faq">
-        <h2 class="section-title">Häufige Fragen</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <div class="faq-question">Ist Deeply eine Dating-App?</div>
-            <div class="faq-answer">
-              Nein. Wir matchen nach Authentizität, nicht nach Fotos.
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">Wie anonym sind die Gespräche?</div>
-            <div class="faq-answer">
-              Komplett anonym. Kein öffentliches Profil, keine Fotos.
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">Kostet die App etwas?</div>
-            <div class="faq-answer">
-              Die Beta ist <strong>kostenlos</strong>.
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Bottom CTA / Warteliste -->
-      <section class="bottom-cta" id="warteliste">
-        <div class="bottom-cta-text">
-          <div class="bottom-cta-title">
-            <strong>Ready für den Deep Dive?</strong> Werde Teil der Community!
-          </div>
-          <p class="bottom-cta-sub">
-            Sicher dir deinen Platz auf der Warteliste. <strong>Kein Spam.</strong>
-          </p>
-        </div>
-
-        <form class="bottom-cta-form">
-          <input type="email" placeholder="Deine E-Mail-Adresse" required />
-          <button type="submit" class="btn-primary">
-            Auf die Warteliste
-          </button>
-        </form>
       </section>
     </main>
 
+    <!-- Bottom CTA -->
+    <section class="bottom-cta">
+      <div class="bottom-cta-text">
+        <div class="bottom-cta-title">Bereit für Gespräche, die bleiben?</div>
+        <p class="bottom-cta-sub">
+          Trage dich ein und erfahre zuerst, wenn die Beta startet. Keine Newsletter-Flut – nur ein kurzes Update, wenn es wirklich losgeht.
+        </p>
+      </div>
+      <div class="hero-ctas">
+        <button class="btn-primary">
+          Auf die Warteliste eintragen
+        </button>
+        <button class="btn-secondary">
+          Später erinnern
+        </button>
+      </div>
+    </section>
+
     <footer>
-      <span>© <span id="year"></span> Deeply &bull; Für Menschen, die tiefer fühlen.</span>
+      <span>© <span id="year"></span> Deeply. Für Menschen, die tiefer fühlen.</span>
       <div class="footer-links">
         <a href="#">Kontakt</a>
         <a href="#">Datenschutz</a>
@@ -548,7 +723,7 @@
   </div>
 
   <script>
-    // Automatisches Jahr im Footer
+    // setzt automatisch das aktuelle Jahr
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>

@@ -32,7 +32,12 @@
     }
 
     * { box-sizing:border-box; margin:0; padding:0; }
-    html, body { scroll-behavior:smooth; }
+
+    html, body {
+      scroll-behavior:smooth;
+      overflow-x:hidden;   /* verhindert horizontales Scrollen */
+      width:100%;
+    }
 
     body {
       font-family:"Inter",system-ui,-apple-system,sans-serif;
@@ -46,16 +51,16 @@
       max-width:1120px; margin:0 auto; padding:1.75rem 1.25rem 3.5rem; position:relative; z-index:0;
     }
 
-    /* Hintergrund-Blobs Animation */
+    /* Hintergrund-Blobs Animation – etwas näher an den Rand gesetzt */
     .page::before, .page::after {
       content:""; position:absolute; z-index:-1; border-radius:999px; filter:blur(18px); opacity:0.65; pointer-events:none; animation:float 18s ease-in-out infinite;
     }
     .page::before {
-      width:320px; height:320px; top:-120px; right:-110px;
+      width:320px; height:320px; top:-120px; right:-40px;
       background:radial-gradient(circle at 30% 0%, #a855f7 0, var(--accent) 40%, #7dd3fc 100%);
     }
     .page::after {
-      width:260px; height:260px; bottom:-120px; left:-90px;
+      width:260px; height:260px; bottom:-120px; left:-40px;
       background:radial-gradient(circle at 30% 0%, #818cf8 0, #a855f7 40%, #38bdf8 100%);
       animation-delay:-8s; 
     }
@@ -188,7 +193,7 @@
     .right { display:flex; align-items:center; justify-content:center; }
     .phone-wrap { position:relative; width:100%; max-width:320px; aspect-ratio:9/18; }
     .phone-float {
-      position:absolute; left:-24px; top:18%; padding:.4rem .7rem; border-radius:var(--radius-pill);
+      position:absolute; left:-16px; top:18%; padding:.4rem .7rem; border-radius:var(--radius-pill);
       background:rgba(255,255,255,0.96); font-size:.7rem; color:var(--muted); display:flex; align-items:center;
       gap:.25rem; box-shadow:0 12px 26px rgba(15,23,42,0.18); animation:float 14s ease-in-out infinite;
     }
@@ -208,10 +213,10 @@
       border-radius:1.2rem;
       padding:.9rem .95rem;
       background:linear-gradient(135deg, rgba(168,85,247,0.38), rgba(15,23,42,0.98));
-      border:1px solid rgba(199,120,255,0.96);               /* heller, leuchtender Rahmen */
+      border:1px solid rgba(199,120,255,0.96);
       box-shadow:
         0 14px 32px rgba(15,23,42,1),
-        0 0 26px rgba(168,85,247,0.45);                      /* leichtes Lila-Glow */
+        0 0 26px rgba(168,85,247,0.45);
       display:flex;
       flex-direction:column;
       gap:.45rem;
@@ -228,7 +233,7 @@
       display:flex;
       flex-direction:column;
       gap:.45rem;
-      margin-top:.30rem;                                     /* mehr Abstand zur Frage */
+      margin-top:.30rem;
     }
 
     .answer-pill {
@@ -242,7 +247,7 @@
 
     .phone-cta {
       border-radius:var(--radius-pill);
-      padding:.65rem 1.25rem;                               /* etwas höher & breiter */
+      padding:.65rem 1.25rem;
       background:linear-gradient(135deg, #a855f7, var(--accent));
       display:inline-flex;
       align-items:center;
@@ -383,6 +388,10 @@
       .bottom-cta-form input[type="email"],
       .bottom-cta-form .btn-primary {
         width:100%;
+      }
+
+      .phone-float {
+        left:-8px;   /* auf Mobile weniger weit nach links */
       }
     }
   </style>

@@ -23,6 +23,7 @@
       --accent:#6366f1;
       --accent-soft:rgba(99,102,241,0.18);
       --accent-strong:#4f46e5;
+      --danger:#f97373;
       --radius-xl:1.5rem;
       --radius-lg:1.1rem;
       --radius-pill:999px;
@@ -64,6 +65,7 @@
       filter:blur(14px);
       opacity:0.7;
       pointer-events:none;
+      animation:float 22s ease-in-out infinite;
     }
 
     .page::before {
@@ -80,6 +82,13 @@
       bottom:-120px;
       left:-90px;
       background:radial-gradient(circle at 30% 0%, #f97316 0, #facc15 40%, #a855f7 100%);
+      animation-delay:-10s;
+    }
+
+    @keyframes float {
+      0% { transform:translateY(0);}
+      50%{ transform:translateY(18px);}
+      100%{ transform:translateY(0);}
     }
 
     /* HEADER */
@@ -89,7 +98,7 @@
       align-items:center;
       justify-content:space-between;
       gap:1.25rem;
-      margin-bottom:2rem;
+      margin-bottom:2.25rem;
     }
 
     .brand {
@@ -130,7 +139,7 @@
     .brand-text {
       display:flex;
       flex-direction:column;
-      gap:0.1rem;
+      gap:0.15rem;
     }
 
     .brand-title {
@@ -148,7 +157,7 @@
     .header-right {
       display:flex;
       align-items:center;
-      gap:1rem;
+      gap:1.25rem;
     }
 
     .nav {
@@ -157,7 +166,7 @@
       font-size:.8rem;
       padding:.4rem .8rem;
       border-radius:var(--radius-pill);
-      background:rgba(255,255,255,0.7);
+      background:rgba(255,255,255,0.65);
       backdrop-filter:blur(6px);
       box-shadow:0 10px 26px rgba(15,23,42,0.12);
     }
@@ -165,6 +174,7 @@
     .nav a {
       color:var(--muted);
       text-decoration:none;
+      padding:.1rem 0;
     }
 
     .nav a:hover {
@@ -200,6 +210,12 @@
       border-radius:999px;
       background:radial-gradient(circle at 30% 0%, #4ade80 0, #22c55e 40%, #15803d 100%);
       box-shadow:0 0 0 3px rgba(34,197,94,0.18);
+      animation:pulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100%{ transform:scale(1); opacity:1;}
+      50%{ transform:scale(1.25); opacity:.7;}
     }
 
     .small-link {
@@ -227,8 +243,8 @@
       justify-content:center;
       gap:.45rem;
       white-space:nowrap;
-      text-decoration:none;
       transition:transform .12s ease, box-shadow .12s ease, filter .12s ease, background .12s ease;
+      text-decoration:none;
     }
 
     .btn-primary {
@@ -264,86 +280,103 @@
       background:#eef2ff;
     }
 
-    /* PITCH VIDEO SECTION (GANZ OBEN) */
-
-    .pitch-section {
-      margin-bottom:2.3rem;
-    }
-
-    .pitch-card {
-      background:var(--card);
-      border-radius:var(--radius-xl);
-      border:1px solid rgba(203,213,225,0.9);
-      box-shadow:var(--shadow-soft);
-      padding:1rem 1.2rem 1.3rem;
-      display:grid;
-      gap:1.1rem;
-    }
-
-    @media (min-width:768px) {
-      .pitch-card {
-        grid-template-columns:minmax(0, 1.5fr) minmax(0, 1fr);
-        align-items:center;
-      }
-    }
-
-    .pitch-video {
-      border-radius:1.2rem;
-      overflow:hidden;
-      background:#000;
-      aspect-ratio:16/9;
-    }
-
-    .pitch-video iframe {
-      width:100%;
-      height:100%;
-      border:0;
-    }
-
-    .pitch-copy-title {
-      font-size:1.2rem;
-      font-weight:600;
-      margin-bottom:.4rem;
-    }
-
-    .pitch-copy-text {
-      font-size:.9rem;
-      color:var(--muted);
-      margin-bottom:.8rem;
-    }
-
-    .pitch-tags {
-      display:flex;
-      flex-wrap:wrap;
-      gap:.4rem;
-      font-size:.78rem;
-    }
-
-    .pitch-tag {
-      padding:.35rem .7rem;
-      border-radius:var(--radius-pill);
-      background:var(--soft);
-      color:var(--muted);
-    }
-
-    /* HERO */
-
     main {
       display:flex;
       flex-direction:column;
       gap:3rem;
     }
 
+    /* PITCH VIDEO SECTION (OBEN) */
+
+    .video-section {
+      margin-bottom:2.75rem;
+    }
+
+    .video-shell {
+      border-radius:2rem;
+      padding:1.4rem 1.4rem 1.6rem;
+      background:radial-gradient(circle at top left,#dbeafe,#e0f2fe 40%,#ffffff 100%);
+      box-shadow:0 26px 60px rgba(15,23,42,0.25);
+      display:grid;
+      gap:1.2rem;
+    }
+
+    @media (min-width:768px){
+      .video-shell{
+        grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
+        align-items:center;
+      }
+    }
+
+    .video-text {
+      display:flex;
+      flex-direction:column;
+      gap:.5rem;
+    }
+
+    .video-label {
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:var(--muted);
+    }
+
+    .video-title {
+      font-size:1.6rem;
+      font-weight:600;
+      color:var(--text);
+    }
+
+    .video-sub {
+      font-size:.9rem;
+      color:var(--muted);
+      max-width:22rem;
+    }
+
+    .video-frame-wrap {
+      border-radius:1.4rem;
+      background:var(--card);
+      padding:.18rem;
+      box-shadow:0 20px 50px rgba(15,23,42,0.35);
+    }
+
+    .video-frame {
+      position:relative;
+      border-radius:1.2rem;
+      overflow:hidden;
+      background:#000;
+      height:230px;
+    }
+
+    @media (min-width:768px){
+      .video-frame { height:260px; }
+    }
+
+    .video-frame iframe {
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    .video-note {
+      margin-top:.4rem;
+      font-size:.78rem;
+      color:var(--muted);
+      text-align:right;
+    }
+
+    /* HERO BEREICH UNTER DEM VIDEO */
+
     .hero-layout {
       display:grid;
       gap:2rem;
     }
 
-    @media (min-width:768px) {
+    @media (min-width: 768px) {
       .hero-layout {
         grid-template-columns:minmax(0, 1.2fr) minmax(0, 1fr);
         align-items:center;
-        gap:2.5rem;
+        gap:2.2rem;
       }
     }
 
@@ -368,22 +401,38 @@
       overflow:hidden;
     }
 
+    .hero-tagline::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(120deg,rgba(96,165,250,.3),rgba(244,114,182,.25));
+      mix-blend-mode:multiply;
+      opacity:.7;
+    }
+
+    .hero-tagline span,
+    .hero-tagline small{
+      position:relative;
+      z-index:1;
+    }
+
     .hero-tagline span {
       font-weight:600;
       color:var(--accent-strong);
     }
 
     h1 {
-      font-size:2rem;
+      font-size:2.1rem;
       line-height:1.12;
       letter-spacing:.01em;
+      color:var(--text);
     }
 
-    @media (min-width:640px) {
+    @media (min-width: 640px) {
       h1 { font-size:2.6rem; }
     }
 
-    @media (min-width:1024px) {
+    @media (min-width: 1024px) {
       h1 { font-size:3.1rem; }
     }
 
@@ -402,7 +451,7 @@
       display:flex;
       flex-wrap:wrap;
       gap:.75rem;
-      margin-top:.3rem;
+      margin-top:.4rem;
     }
 
     .hero-meta {
@@ -427,8 +476,6 @@
       background:var(--accent-strong);
       opacity:.9;
     }
-
-    /* FEATURES */
 
     .features-wrapper {
       margin-top:1.3rem;
@@ -517,7 +564,7 @@
       margin-top:.15rem;
     }
 
-    /* PHONE MOCKUP (rechts) */
+    /* PHONE MOCKUP */
 
     .right {
       display:flex;
@@ -545,6 +592,7 @@
       align-items:center;
       gap:.25rem;
       box-shadow:0 12px 26px rgba(15,23,42,0.2);
+      animation:float 14s ease-in-out infinite;
     }
 
     .phone-float-dot{
@@ -737,6 +785,7 @@
     .section-title {
       font-size:1.4rem;
       margin-bottom:.3rem;
+      color:var(--text);
     }
 
     .section-sub {
@@ -753,7 +802,7 @@
       gap:.9rem;
     }
 
-    @media (min-width:640px) {
+    @media (min-width: 640px) {
       .steps {
         grid-template-columns:repeat(3, minmax(0,1fr));
       }
@@ -1018,9 +1067,9 @@
     }
 
     .bottom-cta-form .btn-primary:hover {
-      background:#e0f2fe;
-      transform:none;
       filter:none;
+      transform:none;
+      background:#e0f2fe;
     }
 
     /* FOOTER */
@@ -1083,46 +1132,47 @@
             <span class="pill-dot"></span>
             <span>Beta in Vorbereitung</span>
           </div>
-          <!-- scrollt zur Warteliste -->
           <a href="#warteliste" class="small-link">Ich will dabei sein</a>
         </div>
       </div>
     </header>
 
     <main>
-      <!-- 1. PITCH-VIDEO GANZ OBEN -->
-      <section class="pitch-section" id="video">
-        <div class="pitch-card">
-          <div class="pitch-video">
-            <!-- DEIN_VIDEO_ID ersetzen; autoplay & mute an -->
-            <iframe
-              src="https://www.youtube.com/embed/DEIN_VIDEO_ID?autoplay=1&mute=1&rel=0&modestbranding=1"
-              title="Deeply Pitch Video"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
+      <!-- PITCH VIDEO GANZ OBEN -->
+      <section class="video-section" id="video">
+        <div class="video-shell">
+          <div class="video-text">
+            <div class="video-label">Pitch-Video</div>
+            <h2 class="video-title">Deeply in 90&nbsp;Sekunden</h2>
+            <p class="video-sub">
+              Dein kurzer Überblick: Warum es Deeply gibt, wie echte Gespräche aussehen 
+              und für wen die App gedacht ist – alles in einem Video.
+            </p>
           </div>
 
-          <div>
-            <h2 class="pitch-copy-title">Deeply in 90 Sekunden</h2>
-            <p class="pitch-copy-text">
-              Dein Pitch-Video zeigt, worum es bei Deeply geht: echte Gespräche, geführte Fragen und ein sicherer Raum,
-              in dem du dich zeigen darfst – ohne Likes, Swipes oder Profile.
-            </p>
-            <div class="pitch-tags">
-              <span class="pitch-tag">Echte Gespräche</span>
-              <span class="pitch-tag">Geführte Fragen</span>
-              <span class="pitch-tag">Anonym & sicher</span>
+          <div class="video-frame-wrap">
+            <div class="video-frame">
+              <!-- DEIN_VIDEO_ID durch die echte YouTube-ID ersetzen -->
+              <iframe
+                src="https://www.youtube.com/embed/DEIN_VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=DEIN_VIDEO_ID&rel=0&modestbranding=1"
+                title="Deeply Pitch Video"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen
+              ></iframe>
             </div>
+            <p class="video-note">
+              Tipp: Ersetze <strong>DEIN_VIDEO_ID</strong> in der URL durch die ID deines YouTube-Videos.
+            </p>
           </div>
         </div>
       </section>
 
-      <!-- 2. HERO / CLAIMS -->
-      <section class="hero-layout" id="top">
+      <!-- HERO UNTER DEM VIDEO -->
+      <section class="hero-layout">
         <div class="hero">
           <div class="hero-tagline">
-            <span>Neue App</span> für echte Gespräche – kein Smalltalk, kein Swipen.
+            <span>Neue App</span>
+            <small>für echte Gespräche – kein Smalltalk, kein Swipen.</small>
           </div>
 
           <h1>Weniger Scrollen. Mehr Deep Talk.</h1>
@@ -1133,7 +1183,7 @@
           </p>
 
           <div class="hero-ctas">
-            <!-- scrollt direkt zur Warteliste -->
+            <!-- führt direkt zur Warteliste -->
             <a href="#warteliste" class="btn-primary">
               Jetzt auf die Warteliste
             </a>
@@ -1203,7 +1253,7 @@
           </div>
         </div>
 
-        <!-- Phone Mockup rechts -->
+        <!-- Right: Phone mockup -->
         <section class="right" aria-label="Deeply App Vorschau">
           <div class="phone-wrap">
             <div class="phone-float">
@@ -1301,9 +1351,12 @@
 
       <!-- TERMIN / CALENDLY -->
       <section class="section" id="termin">
-        <div class="section-spotlight">
-          <h2 class="section-title">Termin zum Kennenlernen</h2>
+        <h2 class="section-title">Termin zum Kennenlernen</h2>
+        <p class="section-sub">
+          Du möchtest über Deeply sprechen, Feedback geben oder eine mögliche Zusammenarbeit besprechen?
+        </p>
 
+        <div class="section-spotlight">
           <div class="calendly-card">
             <img
               src="calendly-visual.png"
@@ -1370,7 +1423,7 @@
         </div>
       </section>
 
-      <!-- WARTELISTE / E-MAIL -->
+      <!-- Bottom CTA / Warteliste -->
       <section class="bottom-cta" id="warteliste">
         <div class="bottom-cta-text">
           <div class="bottom-cta-title">Bereit für Gespräche, die bleiben?</div>

@@ -45,7 +45,7 @@
       max-width:1120px; margin:0 auto; padding:1.75rem 1.25rem 3.5rem; position:relative; z-index:0;
     }
 
-    /* Hintergrunde-Blobs Animation */
+    /* Hintergrund-Blobs Animation */
     .page::before, .page::after {
       content:""; position:absolute; z-index:-1; border-radius:999px; filter:blur(14px); opacity:0.7; pointer-events:none; animation:float 18s ease-in-out infinite;
     }
@@ -119,12 +119,13 @@
 
     main { display:flex; flex-direction:column; gap:3rem; }
 
-    /* SECTIONS */
+    /* GENERISCHE SECTION HEADINGS */
     .section-label { font-size:.78rem; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); margin-bottom:.35rem; }
     .section-title { font-size:1.4rem; margin-bottom:.3rem; color:var(--text); }
     .section-sub { font-size:.9rem; color:var(--muted); max-width:36rem; }
 
-    /* PITCH VIDEO */
+    /* PITCH VIDEO – GANZ OBEN, VOLLE BREITE */
+    .video-section { margin-bottom:2.75rem; }
     .video-shell {
       border-radius:2rem; padding:1.3rem 1.3rem 1.5rem;
       background:radial-gradient(circle at top left,#dbeafe,#e0f2fe 40%,#ffffff 100%);
@@ -133,8 +134,11 @@
     .video-banner { border-radius:1.6rem; overflow:hidden; background:#000; box-shadow:0 20px 50px rgba(15,23,42,0.35); }
     .video-frame { width:100%; aspect-ratio:16/9; }
     .video-frame iframe { width:100%; height:100%; border:0; display:block; }
+    .video-text-under { display:flex; flex-direction:column; gap:.25rem; margin-top:.4rem; }
+    .video-label { font-size:.78rem; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); }
     .video-title { font-size:1.6rem; font-weight:700; color:var(--text); }
     .video-sub { font-size:.9rem; color:var(--muted); max-width:32rem; }
+    .video-note { font-size:.78rem; color:var(--muted); margin-top:.25rem; }
 
     /* HERO */
     .hero-layout { display:grid; gap:2rem; }
@@ -151,10 +155,15 @@
     @media (min-width: 1024px) { h1 { font-size:3.1rem; } }
     .hero-sub { font-size:.98rem; color:var(--muted); max-width:34rem; }
     .hero-sub strong { color:var(--text); font-weight:500; }
+
+    .hero-ctas { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:.4rem; }
+
     .hero-meta { display:flex; flex-wrap:wrap; gap:1.1rem; margin-top:.4rem; font-size:.78rem; color:var(--muted); }
+    .hero-meta-item { display:flex; align-items:center; }
     .meta-dot { width:6px; height:6px; border-radius:999px; background:var(--accent-strong); opacity:.9; margin-right:.4rem; display:inline-block; }
 
     /* FEATURES */
+    .features-wrapper { margin-top:1.3rem; }
     .features { margin-top:.6rem; display:grid; gap:.9rem; }
     @media (min-width:640px) { .features { grid-template-columns:repeat(2, minmax(0,1fr)); } }
     .feature-card {
@@ -182,7 +191,7 @@
       background:linear-gradient(145deg, #020617, #020617, #111827); box-shadow:0 18px 40px rgba(15,23,42,0.55);
       border:1px solid rgba(148,163,184,0.45); display:flex; flex-direction:column; overflow:hidden;
     }
-    .phone-inner { flex:1; border-radius:1.6rem; background:radial-gradient(circle at top, #1f2937 0, #020617 55%); padding:1rem .9rem 1.1rem; display:flex; flex-direction:column; gap:.9rem; color: #e5e7eb; }
+    .phone-inner { flex:1; border-radius:1.6rem; background:radial-gradient(circle at top, #1f2937 0, #020617 55%); padding:1rem .9rem 1.1rem; display:flex; flex-direction:column; gap:.9rem; color:#e5e7eb; }
     .phone-notch { width:45%; height:16px; background:#020617; border-radius:0 0 1rem 1rem; margin:0.1rem auto .35rem; }
     .phone-header { display:flex; align-items:center; justify-content:space-between; font-size:.78rem; }
     .phone-chip { padding:.25rem .55rem; border-radius:var(--radius-pill); background:rgba(15,23,42,0.9); border:1px solid rgba(148,163,184,0.7); font-size:.7rem; display:flex; align-items:center; gap:.35rem; }
@@ -195,8 +204,10 @@
     }
     .phone-question-text { font-size:.9rem; line-height:1.35; font-weight:500; }
     .phone-question-text span { color:#c4b5fd; }
+    .phone-answers { display:flex; flex-direction:column; gap:.45rem; }
     .answer-pill { padding:.5rem .65rem; border-radius:1rem; background:rgba(15,23,42,0.92); border:1px solid rgba(31,41,55,0.9); font-size:.78rem; color:#cbd5f5; }
     .phone-cta { border-radius:var(--radius-pill); padding:.5rem .9rem; background:linear-gradient(135deg, #a855f7, var(--accent)); display:inline-flex; align-items:center; justify-content:center; gap:.3rem; color:white; font-size:.78rem; font-weight:500; }
+    .phone-footer { margin-top:auto; display:flex; flex-direction:column; gap:.4rem; align-items:center; font-size:.7rem; opacity:.8; }
 
     /* HOW IT WORKS */
     .steps { margin-top:1rem; display:grid; gap:.9rem; }
@@ -209,7 +220,7 @@
     .step-number { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:999px; background:var(--accent-soft); color:var(--accent-strong); font-size:.78rem; font-weight:600; margin-bottom:.4rem; }
     .step-title { font-size:.9rem; color:var(--text); font-weight:500; margin-bottom:.15rem; }
 
-    /* TERMIN */
+    /* TERMIN – BILD VOLLE BREITE + BUTTON UNTEN */
     .termin-banner { margin-top:1.2rem; border-radius:1.7rem; overflow:hidden; box-shadow:0 24px 60px rgba(15,23,42,0.25); background:#000; }
     .termin-banner img { width:100%; display:block; }
     .termin-cta { margin-top:.9rem; display:flex; justify-content:center; }
@@ -280,10 +291,12 @@
     </header>
 
     <main>
+      <!-- PITCH-VIDEO GANZ OBEN, VOLLE BREITE -->
       <section class="video-section" id="video">
         <div class="video-shell">
           <div class="video-banner">
             <div class="video-frame">
+              <!-- DEIN_VIDEO_ID durch deine echte YouTube-ID ersetzen -->
               <iframe
                 src="https://www.youtube.com/embed/DEIN_VIDEO_ID?autoplay=1&mute=1&loop=1&playlist=DEIN_VIDEO_ID&rel=0&modestbranding=1"
                 title="Deeply Pitch Video"
@@ -294,12 +307,20 @@
           </div>
           <div class="video-text-under">
             <div class="video-label">Pitch-Video</div>
-            <h2 class="video-title">Sei ehrlich: Schau dir **Deeply in 90&nbsp;Sekunden** an.</h2>
-            <p class="video-sub">Dein kurzer Überblick: Warum es Deeply gibt und für wen die App gedacht ist.</p>
+            <h2 class="video-title">
+              Sei ehrlich: Schau dir <strong>Deeply in 90&nbsp;Sekunden</strong> an.
+            </h2>
+            <p class="video-sub">
+              Dein kurzer Überblick: Warum es Deeply gibt und für wen die App gedacht ist.
+            </p>
+            <p class="video-note">
+              Hinweis: Ersetze <strong>DEIN_VIDEO_ID</strong> oben in der URL durch die ID deines YouTube-Videos.
+            </p>
           </div>
         </div>
       </section>
 
+      <!-- HERO -->
       <section class="hero-layout">
         <div class="hero">
           <div class="hero-tagline">
@@ -309,7 +330,8 @@
           <h1>Weniger Oberflächlichkeit. Mehr echte Connection.</h1>
 
           <p class="hero-sub">
-            Finde deinen **Safe Space** für Gespräche. Deeply verbindet dich anonym mit Menschen, die **wirklich zuhören** und dich sehen.
+            Finde deinen <strong>Safe Space</strong> für Gespräche. Deeply verbindet dich anonym mit Menschen, die 
+            <strong>wirklich zuhören</strong> und dich sehen.
           </p>
 
           <div class="hero-ctas">
@@ -318,51 +340,98 @@
           </div>
 
           <div class="hero-meta">
-            <div class="hero-meta-item"><span class="meta-dot"></span>Gespräche statt Profile</div>
-            <div class="hero-meta-item"><span class="meta-dot"></span>Anonym & sicher</div>
-            <div class="hero-meta-item"><span class="meta-dot"></span>Self-Care nach jedem Talk</div>
+            <div class="hero-meta-item">
+              <span class="meta-dot"></span>Gespräche statt Profile
+            </div>
+            <div class="hero-meta-item">
+              <span class="meta-dot"></span>Anonym & sicher
+            </div>
+            <div class="hero-meta-item">
+              <span class="meta-dot"></span>Self-Care nach jedem Talk
+            </div>
           </div>
 
           <div class="features-wrapper" id="features">
             <div class="section-label">Was dich erwartet</div>
             <div class="features">
               <article class="feature-card">
-                <div class="feature-header"><div class="feature-icon">❓</div><div class="feature-label">Tagesfragen</div></div>
-                <p class="feature-text">Eine Frage pro Tag, die dich **triggert**: Nimm sie als Deep Dive mit Freund:innen oder neuen Matches.</p>
+                <div class="feature-header">
+                  <div class="feature-icon">❓</div>
+                  <div class="feature-label">Tagesfragen</div>
+                </div>
+                <p class="feature-text">
+                  Eine Frage pro Tag, die dich <strong>triggert</strong>: Nimm sie als Deep Dive mit Freund:innen oder neuen Matches.
+                </p>
               </article>
               <article class="feature-card">
-                <div class="feature-header"><div class="feature-icon">🧭</div><div class="feature-label">Geführte Deep Talks</div></div>
-                <p class="feature-text">Dein **Guide für schwierige Themen**. Geführte Leitfäden geben dir Halt, ohne dich zu überfordern.</p>
+                <div class="feature-header">
+                  <div class="feature-icon">🧭</div>
+                  <div class="feature-label">Geführte Deep Talks</div>
+                </div>
+                <p class="feature-text">
+                  Dein <strong>Guide für schwierige Themen</strong>. Geführte Leitfäden geben dir Halt, ohne dich zu überfordern.
+                </p>
               </article>
               <article class="feature-card">
-                <div class="feature-header"><div class="feature-icon">✨</div><div class="feature-label">Matching nach Antworten</div></div>
-                <p class="feature-text">**Endlich Matching mit Substanz.** Finde Menschen, die auf deiner Wellenlänge sind.</p>
+                <div class="feature-header">
+                  <div class="feature-icon">✨</div>
+                  <div class="feature-label">Matching nach Antworten</div>
+                </div>
+                <p class="feature-text">
+                  <strong>Endlich Matching mit Substanz.</strong> Finde Menschen, die auf deiner Wellenlänge sind.
+                </p>
               </article>
               <article class="feature-card">
-                <div class="feature-header"><div class="feature-icon">📝</div><div class="feature-label">Reflexion</div></div>
-                <p class="feature-text">**Self-Care nach dem Talk.** Halte fest, was dich bewegt hat. Lerne deine Grenzen & Wünsche privat kennen.</p>
+                <div class="feature-header">
+                  <div class="feature-icon">📝</div>
+                  <div class="feature-label">Reflexion</div>
+                </div>
+                <p class="feature-text">
+                  <strong>Self-Care nach dem Talk.</strong> Halte fest, was dich bewegt hat. 
+                  Lerne deine Grenzen & Wünsche privat kennen.
+                </p>
               </article>
             </div>
           </div>
         </div>
 
-        <section class="right">
+        <!-- PHONE MOCKUP -->
+        <section class="right" aria-label="Deeply App Vorschau">
           <div class="phone-wrap">
-            <div class="phone-float"><span class="phone-float-dot"></span><span>Neue Frage verfügbar ✨</span></div>
+            <div class="phone-float">
+              <span class="phone-float-dot"></span>
+              <span>Neue Frage verfügbar ✨</span>
+            </div>
             <div class="phone">
               <div class="phone-notch"></div>
               <div class="phone-inner">
-                <div class="phone-header"><span>Deeply</span><div class="phone-chip"><span class="phone-chip-dot"></span><span>Safe Space aktiv</span></div></div>
-                <div class="phone-question-box">
-                  <div class="phone-question-text">Wann hast du dich das letzte Mal <span>wirklich gesehen</span> gefühlt?</div>
-                  <div class="phone-answers">
-                    <div class="answer-pill"><strong>Du</strong> notierst deine Gedanken in Ruhe.</div>
-                    <div class="answer-pill">Deeply verbindet dich mit Gleichgesinnten.</div>
+                <div class="phone-header">
+                  <span>Deeply</span>
+                  <div class="phone-chip">
+                    <span class="phone-chip-dot"></span>
+                    <span>Safe Space aktiv</span>
                   </div>
                 </div>
+
+                <div class="phone-question-box">
+                  <div class="phone-question-text">
+                    Wann hast du dich das letzte Mal <span>wirklich gesehen</span> gefühlt?
+                  </div>
+                  <div class="phone-answers">
+                    <div class="answer-pill">
+                      <strong>Du</strong> notierst deine Gedanken in Ruhe.
+                    </div>
+                    <div class="answer-pill">
+                      Deeply verbindet dich mit Gleichgesinnten.
+                    </div>
+                  </div>
+                </div>
+
                 <div class="phone-footer">
-                   <div class="phone-cta">Gespräch starten <span>›</span></div>
-                   <div style="text-align:center; font-size:0.65rem; opacity:0.7">Kein Profil. Keine Likes.</div>
+                  <div class="phone-cta">
+                    Gespräch starten <span>›</span>
+                  </div>
+                  <div>Kein Profil. Keine Likes.</div>
                 </div>
               </div>
             </div>
@@ -370,35 +439,50 @@
         </section>
       </section>
 
+      <!-- SO FUNKTIONIERT'S -->
       <section class="section" id="how">
         <h2 class="section-title">So funktioniert Deeply</h2>
         <div class="steps">
           <div class="step-card">
-            <div class="step-number">1</div><div class="step-title">Frage wählen</div>
-            <p>Wähle ein Thema oder nutze die **gefühlvolle Frage des Tages**.</p>
+            <div class="step-number">1</div>
+            <div class="step-title">Frage wählen</div>
+            <p>Wähle ein Thema oder nutze die <strong>gefühlvolle Frage des Tages</strong>.</p>
           </div>
           <div class="step-card">
-            <div class="step-number">2</div><div class="step-title">Match & Gespräch</div>
+            <div class="step-number">2</div>
+            <div class="step-title">Match & Gespräch</div>
             <p>Deeply verbindet dich anonym mit Gleichgesinnten. Kein Smalltalk.</p>
           </div>
           <div class="step-card">
-            <div class="step-number">3</div><div class="step-title">Reflektieren</div>
-            <p>Nach dem Gespräch: Halte deine Gedanken fest. **Nur für dich.**</p>
+            <div class="step-number">3</div>
+            <div class="step-title">Reflektieren</div>
+            <p>Nach dem Gespräch: Halte deine Gedanken fest. <strong>Nur für dich.</strong></p>
           </div>
         </div>
       </section>
 
+      <!-- TERMIN / CALENDLY – BILD VOLLE BREITE + BUTTON UNTEN -->
       <section class="section" id="termin">
         <h2 class="section-title">Termin zum Kennenlernen</h2>
-        <p class="section-sub">Du möchtest über Deeply sprechen? Buch dir einfach einen Slot.</p>
+        <p class="section-sub">
+          Du möchtest über Deeply sprechen? Buch dir einfach einen Slot.
+        </p>
         <div class="termin-banner">
-          <img src="calendly-visual.png" alt="Termin buchen Visual">
+          <img src="calendly-visual.png" alt="Klicke auf den Button, um direkt zu deinem Calendly-Kalender zu kommen und einen Termin zu buchen.">
         </div>
         <div class="termin-cta">
-          <a href="https://calendly.com/serap-aslan-2214/30min" target="_blank" class="btn-primary">Termin auf Calendly buchen</a>
+          <a 
+            href="https://calendly.com/serap-aslan-2214/30min" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="btn-primary"
+          >
+            Termin auf Calendly buchen
+          </a>
         </div>
       </section>
 
+      <!-- FÜR WEN IST DEEPLY? -->
       <section class="section">
         <h2 class="section-title">Für wen ist Deeply?</h2>
         <div class="section-pills">
@@ -408,32 +492,47 @@
         </div>
       </section>
 
+      <!-- FAQ -->
       <section class="section" id="faq">
         <h2 class="section-title">Häufige Fragen</h2>
         <div class="faq-list">
           <div class="faq-item">
             <div class="faq-question">Ist Deeply eine Dating-App?</div>
-            <div class="faq-answer">Nein. Wir matchen nach Authentizität, nicht nach Fotos.</div>
+            <div class="faq-answer">
+              Nein. Wir matchen nach Authentizität, nicht nach Fotos.
+            </div>
           </div>
           <div class="faq-item">
             <div class="faq-question">Wie anonym sind die Gespräche?</div>
-            <div class="faq-answer">Komplett anonym. Kein öffentliches Profil, keine Fotos.</div>
+            <div class="faq-answer">
+              Komplett anonym. Kein öffentliches Profil, keine Fotos.
+            </div>
           </div>
           <div class="faq-item">
             <div class="faq-question">Kostet die App etwas?</div>
-            <div class="faq-answer">Die Beta ist **kostenlos**.</div>
+            <div class="faq-answer">
+              Die Beta ist <strong>kostenlos</strong>.
+            </div>
           </div>
         </div>
       </section>
 
+      <!-- Bottom CTA / Warteliste -->
       <section class="bottom-cta" id="warteliste">
         <div class="bottom-cta-text">
-          <div class="bottom-cta-title">**Ready für den Deep Dive?** Werde Teil der Community!</div>
-          <p class="bottom-cta-sub">Sicher dir deinen Platz auf der Warteliste. **Kein Spam.**</p>
+          <div class="bottom-cta-title">
+            <strong>Ready für den Deep Dive?</strong> Werde Teil der Community!
+          </div>
+          <p class="bottom-cta-sub">
+            Sicher dir deinen Platz auf der Warteliste. <strong>Kein Spam.</strong>
+          </p>
         </div>
+
         <form class="bottom-cta-form">
           <input type="email" placeholder="Deine E-Mail-Adresse" required />
-          <button type="submit" class="btn-primary">Auf die Warteliste</button>
+          <button type="submit" class="btn-primary">
+            Auf die Warteliste
+          </button>
         </form>
       </section>
     </main>

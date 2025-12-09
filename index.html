@@ -286,7 +286,7 @@
       gap:3rem;
     }
 
-    /* PITCH VIDEO SECTION (OBEN) */
+    /* PITCH VIDEO OBEN – VOLLE BREITE */
 
     .video-section {
       margin-bottom:2.75rem;
@@ -294,24 +294,24 @@
 
     .video-shell {
       border-radius:2rem;
-      padding:1.4rem 1.4rem 1.6rem;
+      padding:1.3rem 1.3rem 1.6rem;
       background:radial-gradient(circle at top left,#dbeafe,#e0f2fe 40%,#ffffff 100%);
       box-shadow:0 26px 60px rgba(15,23,42,0.25);
-      display:grid;
-      gap:1.2rem;
+      display:flex;
+      flex-direction:column;
+      gap:.9rem;
     }
 
     @media (min-width:768px){
       .video-shell{
-        grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
-        align-items:center;
+        padding:1.5rem 1.8rem 1.8rem;
       }
     }
 
     .video-text {
       display:flex;
       flex-direction:column;
-      gap:.5rem;
+      gap:.35rem;
     }
 
     .video-label {
@@ -330,7 +330,7 @@
     .video-sub {
       font-size:.9rem;
       color:var(--muted);
-      max-width:22rem;
+      max-width:32rem;
     }
 
     .video-frame-wrap {
@@ -342,14 +342,11 @@
 
     .video-frame {
       position:relative;
+      width:100%;
+      aspect-ratio:16/9;
       border-radius:1.2rem;
       overflow:hidden;
       background:#000;
-      height:230px;
-    }
-
-    @media (min-width:768px){
-      .video-frame { height:260px; }
     }
 
     .video-frame iframe {
@@ -365,7 +362,7 @@
       text-align:right;
     }
 
-    /* HERO BEREICH UNTER DEM VIDEO */
+    /* HERO UNTER DEM VIDEO */
 
     .hero-layout {
       display:grid;
@@ -656,7 +653,7 @@
       padding:.25rem .55rem;
       border-radius:var(--radius-pill);
       background:rgba(15,23,42,0.9);
-      border:1px solid rgba(148,163,184,0.35);
+      border:1px solid rgba(148,163,184,0.7);
       font-size:.7rem;
       display:flex;
       align-items:center;
@@ -668,16 +665,16 @@
       width:7px;
       height:7px;
       border-radius:999px;
-      background:var(--accent-strong);
-      box-shadow:0 0 0 3px rgba(129,140,248,0.65);
+      background:#a855f7;
+      box-shadow:0 0 0 3px rgba(129,140,248,0.9);
     }
 
     .phone-question-box {
       border-radius:1.2rem;
       padding:.85rem .9rem;
-      background:linear-gradient(135deg, rgba(129,140,248,0.14), rgba(15,23,42,0.98));
-      border:1px solid rgba(129,140,248,0.7);
-      box-shadow:0 14px 32px rgba(15,23,42,0.95);
+      background:linear-gradient(135deg, rgba(129,140,248,0.3), rgba(15,23,42,0.98));
+      border:1px solid rgba(129,140,248,0.9);
+      box-shadow:0 14px 32px rgba(15,23,42,1);
       display:flex;
       flex-direction:column;
       gap:.55rem;
@@ -905,12 +902,12 @@
       color:var(--muted);
     }
 
-    /* TERMIN-SPOTLIGHT */
+    /* TERMIN-SPOTLIGHT – BILD QUER ÜBER DIE SEITE */
 
     .section-spotlight {
       position:relative;
       margin-top:1.2rem;
-      padding:1.8rem 1.4rem;
+      padding:1.8rem 0 0;
       border-radius:1.7rem;
       background:radial-gradient(circle at top left,#e0f2fe,#eef2ff 45%,#ffffff 100%);
       box-shadow:0 28px 70px rgba(15,23,42,0.25);
@@ -918,9 +915,8 @@
       z-index:2;
       display:flex;
       flex-direction:column;
-      align-items:center;
-      gap:1.4rem;
-      text-align:center;
+      align-items:stretch;
+      text-align:left;
     }
 
     .section-spotlight::before,
@@ -929,7 +925,7 @@
       position:absolute;
       border-radius:999px;
       filter:blur(20px);
-      opacity:.8;
+      opacity:.7;
       pointer-events:none;
     }
 
@@ -949,46 +945,20 @@
       background:radial-gradient(circle,#06b6d4,transparent 60%);
     }
 
-    .section-spotlight .section-title {
-      position:relative;
-      z-index:1;
-      margin-bottom:.1rem;
-    }
-
     .calendly-card {
-      background:var(--card);
-      border-radius:var(--radius-xl);
-      border:1px solid rgba(203,213,225,0.9);
-      box-shadow:var(--shadow-soft);
-      padding:1rem 1.1rem 1.3rem;
-      min-height:210px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:.8rem;
-      position:relative;
-      overflow:hidden;
-      max-width:460px;
+      background:transparent;
+      border-radius:0 0 1.7rem 1.7rem;
+      border:none;
+      box-shadow:none;
+      padding:0 1.6rem 1.5rem;
       width:100%;
-    }
-
-    .calendly-card::before{
-      content:"";
-      position:absolute;
-      width:180px;
-      height:180px;
-      border-radius:50%;
-      background:radial-gradient(circle,#dbeafe,transparent 60%);
-      top:-60px;
-      right:-40px;
     }
 
     .calendly-img {
       display:block;
       width:100%;
-      max-width:360px;
-      border-radius:1.2rem;
-      margin:0 auto .9rem;
+      border-radius:1.7rem 1.7rem 0 0;
+      margin:0 auto 1rem;
       box-shadow:0 14px 34px rgba(15,23,42,0.28);
       position:relative;
       z-index:1;
@@ -997,7 +967,8 @@
     .calendly-btn {
       position:relative;
       z-index:1;
-      margin-top:.1rem;
+      margin-top:.2rem;
+      display:inline-flex;
     }
 
     /* BOTTOM CTA */
@@ -1138,7 +1109,7 @@
     </header>
 
     <main>
-      <!-- PITCH VIDEO GANZ OBEN -->
+      <!-- PITCH VIDEO GANZ OBEN, VOLLE BREITE -->
       <section class="video-section" id="video">
         <div class="video-shell">
           <div class="video-text">
@@ -1349,21 +1320,22 @@
         </div>
       </section>
 
-      <!-- TERMIN / CALENDLY -->
+      <!-- TERMIN / CALENDLY – BILD VOLLE BREITE -->
       <section class="section" id="termin">
         <h2 class="section-title">Termin zum Kennenlernen</h2>
         <p class="section-sub">
           Du möchtest über Deeply sprechen, Feedback geben oder eine mögliche Zusammenarbeit besprechen?
+          Über Calendly kannst du dir ganz einfach einen passenden Slot aussuchen – das Gespräch findet entspannt per Video-Call statt.
         </p>
 
         <div class="section-spotlight">
-          <div class="calendly-card">
-            <img
-              src="calendly-visual.png"
-              alt="Klicke auf den Button, um direkt zu deinem Calendly-Kalender zu kommen."
-              class="calendly-img"
-            >
+          <img
+            src="calendly-visual.png"
+            alt="Klicke auf den Button, um direkt zu deinem Calendly-Kalender zu kommen und einen Termin zu buchen."
+            class="calendly-img"
+          >
 
+          <div class="calendly-card">
             <a 
               href="https://calendly.com/serap-aslan-2214/30min" 
               target="_blank" 

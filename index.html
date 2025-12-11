@@ -148,11 +148,7 @@
     .hero-layout {display:grid; gap:1.8rem;}
 
     @media (min-width:768px) {
-      .hero-layout {
-        grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
-        align-items:center;
-        gap:2.1rem;
-      }
+      .hero-layout {grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:center; gap:2.1rem;}
     }
 
     .hero {display:flex; flex-direction:column; gap:1.3rem;}
@@ -182,42 +178,14 @@
     .hero-sub {font-size:.98rem; color:var(--muted); max-width:32rem;}
     .hero-sub strong {color:var(--text); font-weight:500;}
     .hero-ctas {display:flex; flex-wrap:wrap; gap:.75rem; margin-top:.4rem;}
-
-    .hero-meta {
-      display:flex;
-      flex-wrap:wrap;
-      gap:1.1rem;
-      margin-top:.4rem;
-      font-size:.78rem;
-      color:var(--muted);
-    }
-
-    .hero-meta-item {
-      display:flex;
-      align-items:center;
-    }
-
-    .meta-dot {
-      width:6px;
-      height:6px;
-      border-radius:999px;
-      background:var(--accent-strong);
-      opacity:.9;
-      margin-right:.4rem;
-      display:inline-block;
-    }
+    .hero-meta {display:flex; flex-wrap:wrap; gap:1.1rem; margin-top:.4rem; font-size:.78rem; color:var(--muted);}
+    .hero-meta-item {display:flex; align-items:center;}
+    .meta-dot {width:6px; height:6px; border-radius:999px; background:var(--accent-strong); opacity:.9; margin-right:.4rem; display:inline-block;}
 
     /* FEATURES */
 
-    .features-wrapper {
-      margin-top:1.3rem;
-    }
-
-    .features {
-      margin-top:.6rem;
-      display:grid;
-      gap:.9rem;
-    }
+    .features-wrapper {margin-top:1.3rem;}
+    .features {margin-top:.6rem; display:grid; gap:.9rem;}
 
     @media (min-width:640px) {
       .features {
@@ -225,87 +193,18 @@
       }
     }
 
-    .feature-card {
-      background:var(--card);
-      border-radius:var(--radius-lg);
-      padding:.95rem 1rem;
-      border:1px solid rgba(203,213,225,0.9);
-      box-shadow:var(--shadow-soft);
-      display:flex;
-      flex-direction:column;
-      gap:.3rem;
-      position:relative;
-      overflow:hidden;
-      transition:all .2s ease;
-    }
-
-    .feature-card:hover {
-      transform:translateY(-4px);
-      box-shadow:0 20px 42px rgba(15,23,42,0.16);
-      border-color:var(--accent);
-    }
-
-    .feature-header {
-      display:flex;
-      align-items:center;
-      gap:.5rem;
-    }
-
-    .feature-icon {
-      width:30px;
-      height:30px;
-      border-radius:999px;
-      background:var(--accent-soft);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:1.1rem;
-    }
-
-    .feature-label {
-      font-size:.8rem;
-      font-weight:600;
-      color:var(--accent-strong);
-      letter-spacing:.04em;
-      text-transform:uppercase;
-    }
-
-    .feature-text {
-      font-size:.86rem;
-      color:var(--muted);
-      margin-top:.15rem;
-    }
+    .feature-card {background:var(--card); border-radius:var(--radius-lg); padding:.95rem 1rem; border:1px solid rgba(203,213,225,0.9); box-shadow:var(--shadow-soft); display:flex; flex-direction:column; gap:.3rem; position:relative; overflow:hidden; transition:all .2s ease;}
+    .feature-card:hover {transform:translateY(-4px); box-shadow:0 20px 42px rgba(15,23,42,0.16); border-color:var(--accent);}
+    .feature-header {display:flex; align-items:center; gap:.5rem;}
+    .feature-icon {width:30px; height:30px; border-radius:999px; background:var(--accent-soft); display:flex; align-items:center; justify-content:center; font-size:1.1rem;}
+    .feature-label {ont-size:.8rem; font-weight:600; color:var(--accent-strong); letter-spacing:.04em; text-transform:uppercase;}
+    .feature-text {font-size:.86rem; color:var(--muted); margin-top:.15rem;}
 
     /* PHONE MOCKUP – iPhone 15 Style */
 
-    .right {
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    .phone-wrap {
-      position:relative;
-      width:100%;
-      max-width:340px;
-      aspect-ratio:9/19;
-    }
-
-    .phone-float {
-      position:absolute;
-      left:-16px;
-      top:18%;
-      padding:.4rem .7rem;
-      border-radius:var(--radius-pill);
-      background:rgba(255,255,255,0.96);
-      font-size:.7rem;
-      color:var(--muted);
-      display:flex;
-      align-items:center;
-      gap:.25rem;
-      box-shadow:0 12px 26px rgba(15,23,42,0.18);
-      animation:float 14s ease-in-out infinite;
-    }
+    .right {display:flex; align-items:center; justify-content:center;}
+    .phone-wrap {position:relative; width:100%; max-width:340px; aspect-ratio:9/19;}
+    .phone-float {position:absolute; left:-16px; top:18%; padding:.4rem .7rem; border-radius:var(--radius-pill); background:rgba(255,255,255,0.96); font-size:.7rem; color:var(--muted); display:flex; align-items:center; gap:.25rem; box-shadow:0 12px 26px rgba(15,23,42,0.18); animation:float 14s ease-in-out infinite;}
 
     .phone-float-dot {
       width:6px;

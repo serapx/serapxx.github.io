@@ -204,10 +204,12 @@
       animation:pulse 2.2s ease-in-out infinite;
     }
 
-    @keyframes pulse {
-      0%,100% { transform:scale(1); opacity:1; }
-      50% { transform:scale(1.25); opacity:.7; }
+    @keyframes softPulse {
+      0%,100% { transform:scale(1); }
+      50% { transform:scale(1.03); }
     }
+
+    .phone-float{ animation:softPulse 6s ease-in-out infinite;}
 
     .small-link {
       border:none;

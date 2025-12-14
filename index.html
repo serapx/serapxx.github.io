@@ -30,8 +30,15 @@
       -webkit-font-smoothing:antialiased;
     }
 
-    .page{max-width:1120px;margin:0 auto;padding:1.75rem 1.25rem 1rem;position:relative;z-index:0;min-height:100vh;display:flex;flex-direction:column;}
-    .page::before,.page::after{content:"";position:absolute;z-index:-1;border-radius:999px;filter:blur(18px);opacity:.65;pointer-events:none;animation:float 18s ease-in-out infinite;}
+    .page{
+      max-width:1120px;margin:0 auto;padding:1.75rem 1.25rem 1rem;
+      position:relative;z-index:0;min-height:100vh;display:flex;flex-direction:column;
+    }
+
+    .page::before,.page::after{
+      content:"";position:absolute;z-index:-1;border-radius:999px;filter:blur(18px);opacity:.65;pointer-events:none;
+      animation:float 18s ease-in-out infinite;
+    }
     .page::before{width:320px;height:320px;top:-120px;right:-40px;background:radial-gradient(circle at 30% 0%, #a855f7 0, var(--accent) 40%, #7dd3fc 100%);}
     .page::after{width:260px;height:260px;bottom:-120px;left:-40px;background:radial-gradient(circle at 30% 0%, #818cf8 0, #a855f7 40%, #38bdf8 100%);animation-delay:-8s;}
     @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(16px);}100%{transform:translateY(0);} }
@@ -49,8 +56,6 @@
     .nav{display:none;gap:.5rem;font-size:.8rem;padding:.35rem .45rem;border-radius:var(--radius-pill);background:rgba(255,255,255,.85);backdrop-filter:blur(6px);box-shadow:0 10px 26px rgba(15,23,42,0.10);}
     .nav a{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .9rem;border-radius:var(--radius-pill);border:1px solid rgba(148,163,184,0.55);background:rgba(255,255,255,0.98);box-shadow:0 6px 14px rgba(148,163,184,0.25);font-size:.78rem;font-weight:500;color:var(--muted);text-decoration:none;transition:all .18s ease;}
     .nav a:hover{border-color:var(--accent-strong);color:var(--accent-strong);background:#fff;box-shadow:0 12px 26px rgba(124,58,237,.35);transform:translateY(-1px);}
-    .nav-icon{font-size:.9rem;opacity:.9;}
-    .nav-label{letter-spacing:.03em;}
     @media (min-width:768px){.nav{display:flex;}}
 
     .header-cta{display:flex;align-items:center;gap:.6rem;}
@@ -102,7 +107,7 @@
     .features-wrapper{margin-top:1.3rem;}
     .features{margin-top:.6rem;display:grid;gap:.9rem;}
     @media (min-width:640px){.features{grid-template-columns:repeat(2,minmax(0,1fr));}}
-    .feature-card{background:var(--card);border-radius:var(--radius-lg);padding:.95rem 1rem;border:1px solid rgba(203,213,225,0.9);box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:.3rem;position:relative;overflow:hidden;transition:all .2s ease;}
+    .feature-card{background:var(--card);border-radius:var(--radius-lg);padding:.95rem 1rem;border:1px solid rgba(203,213,225,0.9);box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:.3rem;transition:all .2s ease;}
     .feature-card:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(15,23,42,0.16);border-color:var(--accent);}
     .feature-header{display:flex;align-items:center;gap:.5rem;}
     .feature-icon{width:30px;height:30px;border-radius:999px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
@@ -111,41 +116,155 @@
 
     .right{display:flex;align-items:center;justify-content:center;}
 
-    /* ====== PHONE – MINI-HOMEPAGE (SCROLLABLE) ====== */
-    .deeply-phone{position:relative;width:100%;max-width:340px;aspect-ratio:9/19;border-radius:2.4rem;background:linear-gradient(180deg,#0d0f16 0%, #11131b 40%, #0b0d14 100%);box-shadow:0 22px 48px rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.05);padding:.8rem;display:flex;flex-direction:column;overflow:hidden;}
-    .deeply-inner{flex:1;border-radius:2rem;background:radial-gradient(circle at top,#141623 0%, #090a11 60%);overflow:hidden;display:flex;flex-direction:column;}
-    .deeply-top{padding:1.05rem 1rem .65rem;color:#e2e8f0;position:relative;}
-    .deeply-island{width:42%;height:18px;border-radius:999px;background:#000;margin:0 auto .75rem;opacity:.85;}
-    .deeply-header{display:flex;align-items:center;justify-content:space-between;font-size:.85rem;color:#cbd5e1;}
-    .deeply-badge{padding:.28rem .65rem;border-radius:999px;background:rgba(124,58,237,0.20);border:1px solid rgba(168,85,247,0.40);display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:#e9d5ff;}
-    .deeply-badge-dot{width:7px;height:7px;border-radius:50%;background:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.22);}
+    /* ===== PHONE: ONE DEVICE, ONE SCROLLABLE HOMEPAGE SCREEN ===== */
+    .deeply-phone{
+      position:relative;width:100%;max-width:360px;aspect-ratio:9/19;border-radius:2.6rem;
+      background:linear-gradient(180deg,#0c0e15 0%, #0b0d14 100%);
+      box-shadow:0 26px 60px rgba(0,0,0,0.58);
+      border:1px solid rgba(255,255,255,0.06);
+      padding:.85rem; overflow:hidden;
+    }
 
-    /* Das grüne Badge: FIX weiter unten + KEINE Animation */
-    .deeply-float{position:absolute;left:14px;top:92px;padding:.42rem .7rem;border-radius:999px;background:rgba(34,197,94,0.14);border:1px solid rgba(34,197,94,0.35);color:#d1fae5;font-size:.72rem;display:flex;align-items:center;gap:.35rem;backdrop-filter:blur(8px);box-shadow:0 10px 24px rgba(0,0,0,0.35);animation:none;transform:none;pointer-events:none;}
-    .deeply-float-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;}
+    .deeply-bezel{
+      height:100%;
+      border-radius:2.15rem;
+      background:radial-gradient(circle at top, #141623 0%, #090a11 62%);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
 
-    /* Scrollbarer Screen */
-    .deeply-screen{flex:1;overflow-y:auto;padding:0 1rem 1rem;color:#e2e8f0;scrollbar-width:none;}
-    .deeply-screen::-webkit-scrollbar{width:0;height:0;}
+    /* Statusbar + Dynamic Island */
+    .deeply-statusbar{
+      padding:.7rem 1rem .55rem;
+      position:sticky; top:0;
+      z-index:5;
+      background:linear-gradient(180deg, rgba(9,10,17,0.92) 0%, rgba(9,10,17,0.65) 65%, rgba(9,10,17,0) 100%);
+      backdrop-filter:blur(10px);
+    }
 
-    .d-card{border-radius:1.2rem;padding:.95rem;background:linear-gradient(135deg, rgba(168,85,247,0.16), rgba(15,23,42,0.92));border:1px solid rgba(168,85,247,0.18);box-shadow:0 14px 28px rgba(0,0,0,0.45);margin:.65rem 0;}
+    .deeply-island{
+      width:44%;
+      height:18px;
+      border-radius:999px;
+      background:#000;
+      margin:0 auto .65rem;
+      opacity:.86;
+      box-shadow:0 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    .deeply-statusrow{
+      display:flex; align-items:center; justify-content:space-between;
+      color:#cbd5e1; font-size:.78rem;
+    }
+
+    .deeply-time{font-weight:600; letter-spacing:.02em;}
+    .deeply-icons{display:flex; gap:.5rem; align-items:center; opacity:.95;}
+    .sig{width:16px;height:10px;border-radius:3px;border:1px solid rgba(255,255,255,0.15);position:relative;}
+    .sig:before{content:"";position:absolute;left:2px;bottom:2px;width:3px;height:4px;background:rgba(255,255,255,0.35);border-radius:1px;box-shadow:4px 0 0 rgba(255,255,255,0.45),8px 0 0 rgba(255,255,255,0.6),12px 0 0 rgba(255,255,255,0.75);}
+    .wifi{width:14px;height:10px;border:1px solid rgba(255,255,255,0.18);border-top:none;border-left:none;border-right:none;border-radius:999px;transform:translateY(1px);}
+    .bat{width:20px;height:10px;border-radius:3px;border:1px solid rgba(255,255,255,0.18);position:relative;}
+    .bat:before{content:"";position:absolute;right:-3px;top:3px;width:2px;height:4px;border-radius:1px;background:rgba(255,255,255,0.22);}
+    .bat:after{content:"";position:absolute;left:2px;top:2px;width:13px;height:6px;border-radius:2px;background:rgba(168,85,247,0.65);}
+
+    /* App Header (sticky) */
+    .deeply-appbar{
+      padding:.7rem 1rem .85rem;
+      position:sticky; top:64px; /* unter statusbar */
+      z-index:4;
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      background:linear-gradient(180deg, rgba(9,10,17,0.85) 0%, rgba(9,10,17,0.55) 70%, rgba(9,10,17,0) 100%);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+
+    .deeply-appname{color:#e2e8f0;font-size:.9rem;font-weight:700;letter-spacing:.02em;}
+    .deeply-safe{
+      padding:.28rem .65rem;border-radius:999px;
+      background:rgba(124,58,237,0.20);
+      border:1px solid rgba(168,85,247,0.40);
+      color:#f3e8ff;
+      font-size:.72rem;
+      display:flex; align-items:center; gap:.35rem;
+    }
+    .deeply-safe-dot{width:7px;height:7px;border-radius:50%;background:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.22);}
+
+    /* Green badge: weiter unten, nie im Weg */
+    .deeply-badge-green{
+      margin:.55rem 1rem .1rem;
+      padding:.44rem .75rem;border-radius:999px;
+      background:rgba(34,197,94,0.14);
+      border:1px solid rgba(34,197,94,0.35);
+      color:#d1fae5;font-size:.72rem;
+      display:flex; align-items:center; gap:.35rem;
+      width:max-content;
+      box-shadow:0 10px 22px rgba(0,0,0,0.32);
+      backdrop-filter:blur(8px);
+    }
+    .deeply-badge-green .dot{width:6px;height:6px;border-radius:50%;background:#22c55e;}
+
+    /* Scroll container inside phone */
+    .deeply-scroll{
+      flex:1;
+      overflow-y:auto;
+      padding:0 1rem 1.1rem;
+      scrollbar-width:none;
+      scroll-snap-type:y mandatory;
+      scroll-padding-top:140px; /* sticky header offset */
+      overscroll-behavior:contain;
+      -webkit-overflow-scrolling:touch;
+    }
+    .deeply-scroll::-webkit-scrollbar{width:0;height:0;}
+
+    .d-panel{
+      scroll-snap-align:start;
+      scroll-snap-stop:always;
+      margin:.85rem 0;
+      border-radius:1.25rem;
+      border:1px solid rgba(255,255,255,0.07);
+      background:linear-gradient(135deg, rgba(168,85,247,0.14), rgba(15,23,42,0.92));
+      box-shadow:0 14px 28px rgba(0,0,0,0.48);
+      padding:1rem;
+      color:#e2e8f0;
+    }
+
     .d-kicker{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#a5b4fc;opacity:.95;}
-    .d-title{margin-top:.35rem;font-weight:800;line-height:1.15;font-size:1.1rem;color:#f1f5f9;}
-    .d-sub{margin-top:.35rem;font-size:.85rem;line-height:1.45;color:#cbd5e1;opacity:.95;}
-    .d-sub strong{color:#f8fafc;font-weight:600;}
-    .d-chiprow{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem;}
-    .d-chip{font-size:.72rem;color:#dbeafe;background:rgba(59,130,246,0.14);border:1px solid rgba(59,130,246,0.22);padding:.32rem .55rem;border-radius:999px;}
+    .d-title{margin-top:.35rem;font-weight:850;line-height:1.12;font-size:1.12rem;color:#f1f5f9;}
+    .d-sub{margin-top:.42rem;font-size:.85rem;line-height:1.48;color:#cbd5e1;opacity:.95;}
+    .d-sub strong{color:#f8fafc;font-weight:650;}
+
+    .d-chiprow{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:.8rem;}
+    .d-chip{font-size:.72rem;color:#dbeafe;background:rgba(59,130,246,0.14);border:1px solid rgba(59,130,246,0.22);padding:.33rem .6rem;border-radius:999px;}
     .d-chip.p{background:rgba(168,85,247,0.14);border-color:rgba(168,85,247,0.25);color:#f3e8ff;}
 
-    .d-section{margin-top:.85rem;}
-    .d-section-title{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;margin:.65rem 0 .35rem;}
-    .d-item{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:.75rem .85rem;margin:.45rem 0;}
-    .d-item h4{font-size:.85rem;color:#f1f5f9;margin-bottom:.2rem;}
-    .d-item p{font-size:.78rem;color:#cbd5e1;line-height:1.4;opacity:.95;}
+    .d-section-title{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;margin:.75rem 0 .45rem;}
+    .d-item{
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:1rem;
+      padding:.78rem .9rem;
+      margin:.48rem 0;
+    }
+    .d-item h4{font-size:.86rem;color:#f1f5f9;margin-bottom:.22rem;}
+    .d-item p{font-size:.78rem;color:#cbd5e1;line-height:1.42;opacity:.95;}
 
-    .d-cta{margin-top:1rem;border-radius:999px;padding:.78rem 1.1rem;background:linear-gradient(135deg,#a855f7,#7c3aed);text-align:center;color:#fff;font-size:.86rem;font-weight:700;box-shadow:0 14px 34px rgba(124,58,237,0.45);}
-    .d-foot{margin-top:.6rem;text-align:center;font-size:.74rem;color:#94a3b8;opacity:.9;padding-bottom:.4rem;}
+    .d-cta{
+      scroll-snap-align:start;
+      scroll-snap-stop:always;
+      margin:.95rem 0 .6rem;
+      border-radius:999px;
+      padding:.82rem 1.15rem;
+      background:linear-gradient(135deg,#a855f7,#7c3aed);
+      text-align:center;color:#fff;font-size:.87rem;font-weight:800;
+      box-shadow:0 14px 34px rgba(124,58,237,0.45);
+      cursor:pointer;
+      user-select:none;
+      transition:transform .15s ease, filter .15s ease;
+    }
+    .d-cta:active{transform:translateY(1px);filter:brightness(0.95);}
+    .d-foot{text-align:center;font-size:.74rem;color:#94a3b8;opacity:.9;padding-bottom:.35rem;}
 
+    /* HOW IT WORKS */
     .steps{margin-top:1rem;display:grid;gap:.9rem;}
     @media (min-width:640px){.steps{grid-template-columns:repeat(3,minmax(0,1fr));}}
     .step-card{background:var(--card);border-radius:var(--radius-lg);padding:.9rem .95rem;border:1px solid rgba(203,213,225,0.9);font-size:.86rem;color:var(--muted);box-shadow:var(--shadow-soft);transition:all .2s ease;}
@@ -154,7 +273,7 @@
     .step-title{font-size:.9rem;color:var(--text);font-weight:500;margin-bottom:.15rem;}
 
     /* Termin Bild größer */
-    .termin-banner{margin-top:1.2rem;border-radius:1.4rem;overflow:hidden;box-shadow:0 18px 40px rgba(15,23,42,0.22);background:#000;width:min(480px,100%);margin-left:auto;margin-right:auto;}
+    .termin-banner{margin-top:1.2rem;border-radius:1.4rem;overflow:hidden;box-shadow:0 18px 40px rgba(15,23,42,0.22);background:#000;width:min(520px,100%);margin-left:auto;margin-right:auto;}
     .termin-banner img{width:100%;height:auto;display:block;}
     .termin-cta{margin-top:.9rem;display:flex;justify-content:center;}
 
@@ -199,7 +318,7 @@
       .hero-sub{font-size:.94rem;}
       .hero-ctas{flex-direction:column;align-items:stretch;margin-top:.35rem;}
       .hero-ctas .btn-primary,.hero-ctas .btn-secondary{width:100%;justify-content:center;}
-      .deeply-phone{max-width:270px;margin-top:.3rem;}
+      .deeply-phone{max-width:290px;}
       .steps{grid-template-columns:1fr;}
       .bottom-cta{padding:1rem .9rem;}
       .bottom-cta-form{flex-direction:column;align-items:stretch;}
@@ -228,11 +347,11 @@
 
       <div class="header-right">
         <nav class="nav">
-          <a href="#video"><span class="nav-icon">▶</span><span class="nav-label">Pitch-Video</span></a>
-          <a href="#features"><span class="nav-icon">✨</span><span class="nav-label">Features</span></a>
-          <a href="#how"><span class="nav-icon">⚙</span><span class="nav-label">So funktioniert’s</span></a>
-          <a href="#termin"><span class="nav-icon">📅</span><span class="nav-label">Termin</span></a>
-          <a href="#faq"><span class="nav-icon">❓</span><span class="nav-label">FAQ</span></a>
+          <a href="#video"><span>▶</span><span>Pitch-Video</span></a>
+          <a href="#features"><span>✨</span><span>Features</span></a>
+          <a href="#how"><span>⚙</span><span>So funktioniert’s</span></a>
+          <a href="#termin"><span>📅</span><span>Termin</span></a>
+          <a href="#faq"><span>❓</span><span>FAQ</span></a>
         </nav>
 
         <div class="header-cta">
@@ -243,6 +362,7 @@
     </header>
 
     <main>
+      <!-- PITCH-VIDEO -->
       <section class="video-section section" id="video">
         <div class="video-shell">
           <div class="video-banner">
@@ -263,10 +383,12 @@
         </div>
       </section>
 
+      <!-- HERO -->
       <section class="hero-layout section">
         <div class="hero">
           <div class="hero-tagline"><span>Neue App</span><small>für echte Gespräche.</small></div>
           <h1>Weniger Oberflächlichkeit. Mehr echte Connection.</h1>
+
           <p class="hero-sub">
             Finde deinen <strong>Safe Space</strong> für Gespräche. Deeply verbindet dich anonym mit Menschen,
             die <strong>wirklich zuhören</strong> und dich sehen.
@@ -309,31 +431,36 @@
           </div>
         </div>
 
-        <!-- PHONE MOCKUP: MINI-HOMEPAGE (SCROLLABLE) -->
+        <!-- ONE PHONE: statusbar + sticky header + scroll-snap homepage -->
         <section class="right" aria-label="Deeply App Vorschau">
           <div class="deeply-phone">
-            <div class="deeply-inner">
+            <div class="deeply-bezel">
 
-              <div class="deeply-top">
+              <div class="deeply-statusbar">
                 <div class="deeply-island"></div>
-
-                <div class="deeply-header">
-                  <span>Deeply</span>
-                  <div class="deeply-badge">
-                    <span class="deeply-badge-dot"></span>
-                    Safe Space aktiv
+                <div class="deeply-statusrow">
+                  <span class="deeply-time" id="phoneTime">19:41</span>
+                  <div class="deeply-icons">
+                    <span class="sig" aria-hidden="true"></span>
+                    <span class="wifi" aria-hidden="true"></span>
+                    <span class="bat" aria-hidden="true"></span>
                   </div>
-                </div>
-
-                <!-- FIX: weiter unten -->
-                <div class="deeply-float">
-                  <span class="deeply-float-dot"></span>
-                  Neue Frage verfügbar ✨
                 </div>
               </div>
 
-              <div class="deeply-screen">
-                <div class="d-card">
+              <div class="deeply-appbar">
+                <div class="deeply-appname">Deeply</div>
+                <div class="deeply-safe"><span class="deeply-safe-dot"></span>Safe Space aktiv</div>
+              </div>
+
+              <!-- FIX: Grün-Badge sitzt tiefer und überdeckt nichts -->
+              <div class="deeply-badge-green">
+                <span class="dot"></span>
+                Neue Frage verfügbar ✨
+              </div>
+
+              <div class="deeply-scroll" aria-label="Deeply App Inhalt">
+                <div class="d-panel">
                   <div class="d-kicker">Heute</div>
                   <div class="d-title">Weniger Oberflächlichkeit.<br/>Mehr echte Connection.</div>
                   <div class="d-sub">Ein Ort für Gespräche, die nicht nach <strong>Smalltalk</strong> schmecken.</div>
@@ -345,27 +472,26 @@
                   </div>
                 </div>
 
-                <div class="d-section">
+                <div class="d-panel">
                   <div class="d-section-title">Frage des Tages</div>
                   <div class="d-item">
                     <h4>Wann hast du dich zuletzt wirklich verstanden gefühlt?</h4>
                     <p>Wähle eine Richtung – Deeply führt dich sanft rein.</p>
                   </div>
-
                   <div class="d-item">
                     <h4>Antworten</h4>
                     <p>• Ich teile meine Gedanken in Ruhe.<br/>• Deeply matched mich mit Gleichgesinnten.</p>
                   </div>
                 </div>
 
-                <div class="d-section">
+                <div class="d-panel">
                   <div class="d-section-title">Features</div>
                   <div class="d-item"><h4>Geführte Deep Talks</h4><p>Leitfäden geben Halt – ohne Druck.</p></div>
                   <div class="d-item"><h4>Matching nach Antworten</h4><p>Mehr Substanz. Weniger Oberfläche.</p></div>
                   <div class="d-item"><h4>Reflexion</h4><p>Nach dem Talk: Gedanken festhalten. Nur für dich.</p></div>
                 </div>
 
-                <div class="d-section">
+                <div class="d-panel">
                   <div class="d-section-title">So funktioniert’s</div>
                   <div class="d-item"><h4>1) Frage wählen</h4><p>Eine Frage pro Tag – oder ein Thema.</p></div>
                   <div class="d-item"><h4>2) Match & Gespräch</h4><p>Anonym verbunden. Kein Smalltalk.</p></div>
@@ -381,6 +507,7 @@
         </section>
       </section>
 
+      <!-- HOW -->
       <section class="section" id="how">
         <h2 class="section-title">So funktioniert Deeply</h2>
         <div class="steps">
@@ -390,6 +517,7 @@
         </div>
       </section>
 
+      <!-- TERMIN -->
       <section class="section" id="termin">
         <h2 class="section-title">Termin zum Kennenlernen</h2>
         <p class="section-sub">Du möchtest über Deeply sprechen? Buch dir einfach einen Slot.</p>
@@ -403,6 +531,7 @@
         </div>
       </section>
 
+      <!-- FÜR WEN -->
       <section class="section">
         <div class="for-whom-layout">
           <div class="for-whom-text">
@@ -424,6 +553,7 @@
         </div>
       </section>
 
+      <!-- FAQ -->
       <section class="section" id="faq">
         <h2 class="section-title">Häufige Fragen</h2>
         <div class="faq-list">
@@ -433,6 +563,7 @@
         </div>
       </section>
 
+      <!-- WARTELISTE -->
       <section class="bottom-cta section" id="warteliste">
         <div class="bottom-cta-text">
           <div class="bottom-cta-title"><strong>Ready für den Deep Dive?</strong> Werde Teil der Community!</div>
@@ -457,8 +588,18 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      // Footer year
       var yearEl = document.getElementById("year");
       if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // iOS-like time in phone (simple)
+      var t = document.getElementById("phoneTime");
+      if (t) {
+        var d = new Date();
+        var hh = String(d.getHours()).padStart(2,"0");
+        var mm = String(d.getMinutes()).padStart(2,"0");
+        t.textContent = hh + ":" + mm;
+      }
     });
   </script>
 </body>

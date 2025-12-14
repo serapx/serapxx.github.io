@@ -1,285 +1,770 @@
 <!doctype html>
 <html lang="de">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Deeply – Die App für echte Gespräche</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Deeply – Die App für echte Gespräche</title>
+  <meta name="description" content="Deeply – Weniger Oberflächlichkeit. Mehr echte Connection. Die App für authentische Gespräche ohne Swipen." />
+  <meta name="theme-color" content="#e0f2fe" />
+  <link rel="icon" href="Logo.png" sizes="96x96" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-<style>
-:root{
-  --bg:#e0f2fe;
-  --card:#ffffff;
-  --text:#0f172a;
-  --muted:#64748b;
-  --accent:#7c3aed;
-  --accent-soft:rgba(124,58,237,.15);
-  --radius-lg:1.2rem;
-  --radius-xl:1.8rem;
-}
+  <style>
+    :root{
+      --bg:#e0f2fe; --card:#ffffff; --soft:#f1f5f9; --text:#0f172a; --muted:#64748b;
+      --accent:#7c3aed; --accent-soft:rgba(124,58,237,0.14); --accent-strong:#6d28d9; --accent-alt:#38bdf8;
+      --radius-xl:1.5rem; --radius-lg:1.1rem; --radius-pill:999px;
+      --shadow-soft:0 10px 26px rgba(15,23,42,0.10); --shadow-strong:0 18px 46px rgba(124,58,237,0.32);
+    }
 
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{scroll-behavior:smooth}
-body{
-  font-family:Inter,system-ui,sans-serif;
-  background:linear-gradient(180deg,#e0f2fe,#f9fafb);
-  color:var(--text);
-}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html,body{scroll-behavior:smooth;overflow-x:hidden;width:100%;}
+    body{
+      font-family:"Inter",system-ui,-apple-system,sans-serif;
+      background:linear-gradient(180deg,#e0f2fe 0,#eff6ff 40%,#f9fafb 100%);
+      color:var(--text);
+      min-height:100vh;
+      -webkit-font-smoothing:antialiased;
+    }
 
-.page{
-  max-width:1120px;
-  margin:auto;
-  padding:2rem 1.25rem;
-}
+    .page{max-width:1120px;margin:0 auto;padding:1.75rem 1.25rem 1rem;position:relative;z-index:0;min-height:100vh;display:flex;flex-direction:column;}
+    .page::before,.page::after{content:"";position:absolute;z-index:-1;border-radius:999px;filter:blur(18px);opacity:.65;pointer-events:none;animation:float 18s ease-in-out infinite;}
+    .page::before{width:320px;height:320px;top:-120px;right:-40px;background:radial-gradient(circle at 30% 0%, #a855f7 0, var(--accent) 40%, #7dd3fc 100%);}
+    .page::after{width:260px;height:260px;bottom:-120px;left:-40px;background:radial-gradient(circle at 30% 0%, #818cf8 0, #a855f7 40%, #38bdf8 100%);animation-delay:-8s;}
+    @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(16px);}100%{transform:translateY(0);} }
 
-/* HEADER */
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:3rem;
-}
-.brand{
-  display:flex;
-  align-items:center;
-  gap:.7rem;
-}
-.logo{
-  width:42px;height:42px;
-  border-radius:14px;
-  background:linear-gradient(135deg,#7c3aed,#38bdf8);
-}
-.brand h1{
-  font-size:1rem;
-  letter-spacing:.08em;
-}
-nav{
-  display:flex;
-  gap:.6rem;
-}
-nav a{
-  text-decoration:none;
-  font-size:.8rem;
-  color:var(--muted);
-  padding:.45rem .9rem;
-  border-radius:999px;
-  border:1px solid rgba(100,116,139,.3);
-}
-nav a:hover{
-  border-color:var(--accent);
-  color:var(--accent);
-}
+    header{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;margin-bottom:2.25rem;}
+    .brand{display:flex;align-items:center;gap:.8rem;}
+    .logo-circle{width:44px;height:44px;border-radius:16px;padding:3px;background:linear-gradient(135deg,var(--accent-strong),var(--accent),var(--accent-alt));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 25px rgba(79,70,229,0.35);}
+    .logo-circle-inner{width:100%;height:100%;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .logo-circle-inner img{width:80%;height:80%;object-fit:contain;}
+    .brand-text{display:flex;flex-direction:column;gap:.15rem;}
+    .brand-title{font-weight:700;letter-spacing:.06em;font-size:1.1rem;text-transform:uppercase;}
+    .brand-sub{font-size:.8rem;color:var(--muted);}
 
-/* HERO */
-.hero{
-  display:grid;
-  gap:2rem;
-}
-@media(min-width:900px){
-  .hero{
-    grid-template-columns:1.2fr 1fr;
-    align-items:center;
-  }
-}
-.hero h2{
-  font-size:2.4rem;
-  line-height:1.1;
-}
-.hero p{
-  margin-top:.6rem;
-  max-width:36ch;
-  color:var(--muted);
-}
-.hero-actions{
-  display:flex;
-  gap:.7rem;
-  margin-top:1.2rem;
-}
-.btn-primary,.btn-secondary{
-  padding:.75rem 1.4rem;
-  border-radius:999px;
-  border:none;
-  font-size:.9rem;
-  cursor:pointer;
-  text-decoration:none;
-}
-.btn-primary{
-  background:linear-gradient(135deg,#7c3aed,#6d28d9);
-  color:white;
-}
-.btn-secondary{
-  background:white;
-  border:1px solid var(--accent);
-  color:var(--accent);
-}
+    .header-right{display:flex;align-items:center;gap:1.25rem;}
+    .nav{display:none;gap:.5rem;font-size:.8rem;padding:.35rem .45rem;border-radius:var(--radius-pill);background:rgba(255,255,255,0.85);backdrop-filter:blur(6px);box-shadow:0 10px 26px rgba(15,23,42,0.10);}
+    .nav a{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .9rem;border-radius:var(--radius-pill);border:1px solid rgba(148,163,184,0.55);background:rgba(255,255,255,0.98);box-shadow:0 6px 14px rgba(148,163,184,0.25);font-size:.78rem;font-weight:500;color:var(--muted);text-decoration:none;transition:all .18s ease;}
+    .nav a:hover{border-color:var(--accent-strong);color:var(--accent-strong);background:#fff;box-shadow:0 12px 26px rgba(124,58,237,0.35);transform:translateY(-1px);}
+    @media (min-width:768px){.nav{display:flex;}}
 
-/* PHONE MOCKUP (NUR VISUELL) */
-.phone{
-  max-width:340px;
-  margin:auto;
-  aspect-ratio:9/19;
-  border-radius:2.4rem;
-  background:linear-gradient(180deg,#0d0f16,#11131b,#0b0d14);
-  padding:.7rem;
-  box-shadow:0 22px 48px rgba(0,0,0,.45);
-}
-.phone-inner{
-  height:100%;
-  border-radius:2rem;
-  background:radial-gradient(circle at top,#111827,#020617);
-  padding:1rem;
-  color:#e5e7eb;
-  display:flex;
-  flex-direction:column;
-}
-.phone-header{
-  font-size:.75rem;
-  display:flex;
-  justify-content:space-between;
-  margin-bottom:.7rem;
-}
-.phone-card{
-  background:rgba(168,85,247,.18);
-  border:1px solid rgba(168,85,247,.6);
-  border-radius:1.1rem;
-  padding:.9rem;
-  font-size:.9rem;
-  margin-bottom:auto;
-}
-.phone-footer{
-  margin-top:auto;
-  text-align:center;
-  font-size:.7rem;
-  opacity:.7;
-}
+    .header-cta{display:flex;align-items:center;gap:.6rem;}
+    .pill{border-radius:var(--radius-pill);padding:.35rem .8rem;font-size:.75rem;border:1px solid rgba(148,163,184,0.40);background:rgba(255,255,255,0.95);display:flex;align-items:center;gap:.45rem;color:var(--muted);box-shadow:0 8px 18px rgba(148,163,184,0.30);}
+    .pill-dot{width:8px;height:8px;border-radius:999px;background:radial-gradient(circle at 30% 0%, #4ade80 0, #22c55e 40%, #15803d 100%);box-shadow:0 0 0 3px rgba(34,197,94,0.18);animation:pulse 2.2s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.25);opacity:.7;}}
+    .small-link{border:none;background:transparent;color:var(--accent-strong);font-size:.78rem;cursor:pointer;text-decoration:underline;text-underline-offset:2px;}
 
-/* VIDEO */
-.video{
-  margin-top:4rem;
-}
-.video-frame{
-  border-radius:1.6rem;
-  overflow:hidden;
-  box-shadow:0 18px 40px rgba(15,23,42,.25);
-}
-.video-frame iframe{
-  width:100%;
-  aspect-ratio:16/9;
-  border:0;
-}
+    .btn-primary,.btn-secondary{border-radius:var(--radius-pill);padding:.8rem 1.4rem;font-size:.9rem;font-weight:500;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:.45rem;white-space:nowrap;transition:all .2s ease;text-decoration:none;}
+    .btn-primary{background:linear-gradient(135deg,var(--accent-strong),var(--accent));color:#fff;box-shadow:var(--shadow-strong);}
+    .btn-primary:hover{filter:brightness(1.06);transform:translateY(-2px);box-shadow:0 20px 40px rgba(124,58,237,0.45);}
+    .btn-primary::after{content:"›";font-size:1rem;margin-left:.1rem;transition:transform .2s ease;}
+    .btn-primary:hover::after{transform:translateX(2px);}
+    .btn-secondary{background:#fff;color:var(--accent-strong);border:1px solid var(--accent);box-shadow:0 8px 18px rgba(15,23,42,0.06);}
+    .btn-secondary:hover{background:var(--accent-soft);}
 
-/* HOW IT WORKS */
-#how{
-  margin-top:4rem;
-}
-.steps{
-  display:grid;
-  gap:1rem;
-}
-@media(min-width:700px){
-  .steps{grid-template-columns:repeat(3,1fr)}
-}
-.step{
-  background:var(--card);
-  padding:1.1rem;
-  border-radius:var(--radius-lg);
-}
-.step strong{
-  color:var(--accent);
-}
+    main{display:flex;flex-direction:column;gap:3rem;flex:1;}
+    .section{width:100%;scroll-margin-top:90px;}
+    .section-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);margin-bottom:.35rem;}
+    .section-title{font-size:1.4rem;margin-bottom:.3rem;color:var(--text);}
+    .section-sub{font-size:.9rem;color:var(--muted);max-width:36rem;}
 
-/* FOOTER */
-footer{
-  margin-top:4rem;
-  font-size:.75rem;
-  color:var(--muted);
-  text-align:center;
-}
-</style>
+    /* Pitch Video */
+    .video-section{margin-bottom:2.5rem;}
+    .video-shell{border-radius:2rem;padding:1.25rem 1.25rem 1.5rem;background:radial-gradient(circle at top left,#e0e7ff,#e0f2fe 40%,#ffffff 100%);box-shadow:0 22px 52px rgba(15,23,42,0.22);display:flex;flex-direction:column;gap:.75rem;}
+    .video-banner{border-radius:1.6rem;overflow:hidden;background:#000;box-shadow:0 18px 40px rgba(15,23,42,0.38);}
+    .video-frame{width:100%;aspect-ratio:16/9;}
+    .video-frame iframe{width:100%;height:100%;border:0;display:block;}
+    .video-text-under{display:flex;flex-direction:column;gap:.25rem;margin-top:.5rem;}
+    .video-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);}
+    .video-title{font-size:1.6rem;font-weight:700;color:var(--text);}
+    .video-sub{font-size:.9rem;color:var(--muted);max-width:32rem;}
+
+    /* Hero layout */
+    .hero-layout{display:grid;gap:1.8rem;}
+    @media (min-width:768px){.hero-layout{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:center;gap:2.1rem;}}
+    .hero{display:flex;flex-direction:column;gap:1.3rem;}
+    .hero-tagline{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .9rem;border-radius:var(--radius-pill);font-size:.75rem;background:#eef2ff;border:1px solid rgba(129,140,248,0.6);color:var(--muted);width:fit-content;}
+    .hero-tagline span{font-weight:700;color:var(--accent-strong);}
+    h1{font-size:2.1rem;line-height:1.12;letter-spacing:-.02em;font-weight:800;color:var(--text);}
+    @media (min-width:640px){h1{font-size:2.6rem;}}
+    @media (min-width:1024px){h1{font-size:3.05rem;}}
+    .hero-sub{font-size:.98rem;color:var(--muted);max-width:32rem;}
+    .hero-sub strong{color:var(--text);font-weight:500;}
+    .hero-ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:.4rem;}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:1.1rem;margin-top:.4rem;font-size:.78rem;color:var(--muted);}
+    .hero-meta-item{display:flex;align-items:center;}
+    .meta-dot{width:6px;height:6px;border-radius:999px;background:var(--accent-strong);opacity:.9;margin-right:.4rem;display:inline-block;}
+
+    /* Features */
+    .features-wrapper{margin-top:1.3rem;}
+    .features{margin-top:.6rem;display:grid;gap:.9rem;}
+    @media (min-width:640px){.features{grid-template-columns:repeat(2,minmax(0,1fr));}}
+    .feature-card{background:var(--card);border-radius:var(--radius-lg);padding:.95rem 1rem;border:1px solid rgba(203,213,225,0.9);box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:.3rem;transition:all .2s ease;}
+    .feature-card:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(15,23,42,0.16);border-color:var(--accent);}
+    .feature-header{display:flex;align-items:center;gap:.5rem;}
+    .feature-icon{width:30px;height:30px;border-radius:999px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+    .feature-label{font-size:.8rem;font-weight:600;color:var(--accent-strong);letter-spacing:.04em;text-transform:uppercase;}
+    .feature-text{font-size:.86rem;color:var(--muted);margin-top:.15rem;}
+
+    /* ===== iPHONE (interactive tabs) ===== */
+    .right{display:flex;align-items:center;justify-content:center;}
+
+    .iphone{
+      width:100%;
+      max-width:370px;
+      aspect-ratio:9/19;
+      border-radius:3rem;
+      background:linear-gradient(180deg,#0b0d14,#05060a);
+      padding:.9rem;
+      box-shadow:0 32px 80px rgba(0,0,0,0.62);
+      border:1px solid rgba(255,255,255,0.08);
+      position:relative;
+      user-select:none;
+    }
+    .iphone::before,.iphone::after{content:"";position:absolute;left:-3px;width:4px;border-radius:6px;background:rgba(255,255,255,0.08);}
+    .iphone::before{top:88px;height:44px;}
+    .iphone::after{top:146px;height:28px;}
+    .side-right{position:absolute;right:-3px;top:110px;width:4px;height:62px;border-radius:6px;background:rgba(255,255,255,0.08);}
+
+    .iphone-screen{
+      height:100%;
+      border-radius:2.35rem;
+      background:radial-gradient(circle at top, #131626 0%, #0b0d14 55%, #090a11 100%);
+      overflow:hidden;
+      position:relative;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .island{
+      position:absolute; top:10px; left:50%; transform:translateX(-50%);
+      width:44%; height:26px; border-radius:999px;
+      background:#000;
+      box-shadow:0 0 0 1px rgba(255,255,255,0.06), 0 10px 24px rgba(0,0,0,0.5);
+      z-index:5;
+    }
+
+    .ios-statusbar{
+      height:42px;
+      padding:14px 14px 0;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      color:#e5e7eb;
+      font-size:.76rem;
+      z-index:4;
+      position:relative;
+    }
+    .ios-time{font-weight:650;letter-spacing:.02em;}
+    .ios-icons{display:flex;gap:.4rem;align-items:center;opacity:.95;}
+    .ios-signal{width:16px;height:10px;border-radius:3px;border:1px solid rgba(255,255,255,0.22);position:relative;}
+    .ios-signal:before{content:"";position:absolute;left:2px;bottom:2px;width:3px;height:4px;border-radius:1px;background:rgba(255,255,255,0.32);box-shadow:4px 0 0 rgba(255,255,255,0.42),8px 0 0 rgba(255,255,255,0.55),12px 0 0 rgba(255,255,255,0.72);}
+    .ios-wifi{width:14px;height:10px;border:1px solid rgba(255,255,255,0.20);border-top:none;border-left:none;border-right:none;border-radius:999px;transform:translateY(1px);}
+    .ios-battery{width:20px;height:10px;border-radius:3px;border:1px solid rgba(255,255,255,0.20);position:relative;}
+    .ios-battery:before{content:"";position:absolute;right:-3px;top:3px;width:2px;height:4px;border-radius:1px;background:rgba(255,255,255,0.20);}
+    .ios-battery:after{content:"";position:absolute;left:2px;top:2px;width:13px;height:6px;border-radius:2px;background:rgba(168,85,247,0.70);}
+
+    .app-top{
+      padding:.35rem 14px .55rem;
+      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+      z-index:3; position:relative;
+    }
+    .app-title{color:#f1f5f9;font-weight:750;font-size:1.02rem;letter-spacing:.01em;}
+    .app-chip{
+      padding:.32rem .7rem;border-radius:999px;
+      background:rgba(124,58,237,0.20);
+      border:1px solid rgba(168,85,247,0.38);
+      color:#f3e8ff;font-size:.72rem;
+      display:flex;align-items:center;gap:.35rem;white-space:nowrap;
+      backdrop-filter:blur(10px);
+    }
+    .app-chip-dot{width:7px;height:7px;border-radius:50%;background:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.20);}
+
+    /* screens */
+    .app-home{
+      flex:1;
+      overflow-y:auto;
+      padding:0 14px 0;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    .app-home::-webkit-scrollbar{width:0;height:0;}
+    .screen{display:none;animation:fade .25s ease;}
+    .screen.active{display:block;}
+    @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+
+    /* home ui */
+    .home-hero{
+      margin-top:.15rem;border-radius:1.3rem;padding:1rem;
+      background:linear-gradient(135deg, rgba(168,85,247,0.22), rgba(15,23,42,0.92));
+      border:1px solid rgba(255,255,255,0.07);
+      box-shadow:0 16px 34px rgba(0,0,0,0.48);
+    }
+    .home-kicker{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#a5b4fc;opacity:.9;}
+    .home-title{margin-top:.35rem;font-weight:850;line-height:1.12;font-size:1.15rem;color:#f1f5f9;}
+    .home-sub{margin-top:.45rem;font-size:.84rem;line-height:1.45;color:#cbd5e1;opacity:.95;}
+
+    .row{display:flex;gap:.6rem;margin-top:.7rem;}
+    .pill-mini{
+      flex:1;border-radius:999px;padding:.48rem .7rem;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+      color:#e2e8f0;font-size:.72rem;
+      display:flex;align-items:center;justify-content:space-between;
+    }
+    .pill-mini b{font-weight:700;color:#fff;}
+    .pill-mini span{opacity:.9;}
+
+    .section-h{
+      margin:.85rem 0 .45rem;
+      display:flex;align-items:center;justify-content:space-between;
+      color:#94a3b8;font-size:.72rem;
+      letter-spacing:.14em;text-transform:uppercase;
+    }
+
+    .card{
+      border-radius:1.2rem;padding:.9rem;
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 14px 28px rgba(0,0,0,0.35);
+      margin-bottom:.6rem;
+    }
+    .q-title{color:#f8fafc;font-size:.95rem;font-weight:750;line-height:1.25;}
+    .q-meta{margin-top:.45rem;display:flex;gap:.45rem;flex-wrap:wrap;}
+    .tag{padding:.28rem .55rem;border-radius:999px;font-size:.7rem;border:1px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.05);color:#cbd5e1;}
+    .tag.p{background:rgba(168,85,247,0.14);border-color:rgba(168,85,247,0.22);color:#f3e8ff;}
+
+    .chatlist{display:flex;flex-direction:column;gap:.55rem;}
+    .chat{
+      display:flex;gap:.6rem;align-items:flex-start;
+      padding:.7rem .75rem;border-radius:1rem;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+    .avatar{
+      width:34px;height:34px;border-radius:12px;
+      background:linear-gradient(135deg, rgba(56,189,248,0.35), rgba(168,85,247,0.35));
+      border:1px solid rgba(255,255,255,0.10);
+      flex:0 0 auto;
+    }
+    .chat-main{min-width:0;}
+    .chat-title{color:#e2e8f0;font-size:.82rem;font-weight:700;display:flex;align-items:center;gap:.35rem;}
+    .dot{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,0.14);}
+    .chat-snippet{margin-top:.18rem;color:#94a3b8;font-size:.76rem;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:220px;}
+
+    .composer{
+      margin:.75rem 0 .9rem;
+      border-radius:1.1rem;padding:.75rem .85rem;
+      background:rgba(0,0,0,0.22);
+      border:1px solid rgba(255,255,255,0.08);
+      display:flex;align-items:center;justify-content:space-between;gap:.6rem;
+    }
+    .composer span{color:#94a3b8;font-size:.78rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .send{
+      width:34px;height:34px;border-radius:12px;
+      background:linear-gradient(135deg,#a855f7,#7c3aed);
+      display:flex;align-items:center;justify-content:center;
+      color:#fff;font-weight:900;
+      box-shadow:0 12px 22px rgba(124,58,237,0.38);
+      flex:0 0 auto;
+    }
+
+    /* Profile (Ich) */
+    .profile{margin-top:.4rem;text-align:center;}
+    .profile-avatar{
+      width:70px;height:70px;margin:0 auto .55rem;border-radius:26px;
+      background:linear-gradient(135deg,#a855f7,#38bdf8);
+      box-shadow:0 18px 32px rgba(0,0,0,0.45);
+      border:1px solid rgba(255,255,255,0.10);
+      position:relative;
+      overflow:hidden;
+    }
+    .profile-avatar:after{
+      content:"";
+      position:absolute;inset:-40%;
+      background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.45), transparent 55%);
+      transform:rotate(20deg);
+      opacity:.35;
+    }
+    .profile-name{color:#f8fafc;font-weight:800;letter-spacing:.01em;}
+    .profile-sub{font-size:.75rem;color:#94a3b8;margin-top:.1rem;}
+    .profile-text{margin-top:.4rem;font-size:.82rem;color:#cbd5e1;line-height:1.45;}
+    .settings{margin-top:.55rem;padding-left:0;list-style:none;font-size:.8rem;color:#cbd5e1;}
+    .settings li{
+      margin-bottom:.45rem;
+      padding:.55rem .7rem;
+      border-radius:1rem;
+      background:rgba(255,255,255,0.05);
+      border:1px solid rgba(255,255,255,0.08);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .settings li span{color:#94a3b8;font-size:.74rem;}
+
+    /* Tabbar */
+    .tabbar{
+      position:relative;
+      padding:10px 10px 16px;
+      background:rgba(10,12,18,.96);
+      border-top:1px solid rgba(255,255,255,0.08);
+      display:flex;
+      justify-content:space-around;
+      align-items:flex-end;
+      gap:2px;
+    }
+    .tab{
+      width:20%;
+      display:flex;flex-direction:column;align-items:center;gap:4px;
+      color:#94a3b8;font-size:.66rem;
+      cursor:pointer;
+      border-radius:12px;
+      padding:6px 0;
+      transition:transform .12s ease, background .12s ease, color .12s ease;
+    }
+    .tab:hover{background:rgba(255,255,255,0.05);}
+    .tab:active{transform:scale(.97);}
+    .tab .ico{font-size:1.1rem;line-height:1;}
+    .tab.active{color:#c084fc;}
+    .home-indicator{
+      position:absolute;left:50%;bottom:6px;transform:translateX(-50%);
+      width:34%;height:4px;border-radius:999px;
+      background:rgba(255,255,255,0.22);
+      box-shadow:0 8px 18px rgba(0,0,0,0.45);
+      pointer-events:none;
+    }
+
+    /* Termin bigger */
+    .termin-banner{margin-top:1.2rem;border-radius:1.4rem;overflow:hidden;box-shadow:0 18px 40px rgba(15,23,42,0.22);background:#000;width:min(520px,100%);margin-left:auto;margin-right:auto;}
+    .termin-banner img{width:100%;height:auto;display:block;}
+    .termin-cta{margin-top:.9rem;display:flex;justify-content:center;}
+
+    /* For whom */
+    .for-whom-layout{display:grid;gap:1.4rem;align-items:center;}
+    @media (min-width:768px){.for-whom-layout{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);}}
+    .for-whom-text{display:flex;flex-direction:column;gap:.6rem;}
+    .for-whom-visual{justify-self:center;max-width:420px;width:100%;}
+    .for-whom-visual img{width:100%;display:block;border-radius:1.4rem;box-shadow:0 18px 40px rgba(15,23,42,0.22);}
+    .section-pills{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem;}
+    .pill-tag{padding:.4rem .75rem;border-radius:var(--radius-pill);border:1px solid rgba(148,163,184,0.6);font-size:.8rem;color:var(--muted);background:var(--card);box-shadow:0 6px 14px rgba(15,23,42,0.06);}
+
+    /* FAQ */
+    .faq-list{margin-top:1rem;display:grid;gap:.6rem;}
+    .faq-item{background:var(--card);border-radius:.9rem;border:1px solid rgba(203,213,225,0.9);padding:.75rem .9rem;font-size:.86rem;box-shadow:0 8px 16px rgba(15,23,42,0.06);}
+    .faq-question{font-weight:500;margin-bottom:.2rem;}
+
+    /* Bottom CTA */
+    .bottom-cta{margin-top:1.5rem;padding:1.2rem 1rem;border-radius:var(--radius-xl);background:linear-gradient(135deg,var(--accent-strong),var(--accent-alt));border:1px solid rgba(15,23,42,0.06);display:flex;flex-direction:column;gap:.7rem;color:#e0f2fe;box-shadow:0 18px 40px rgba(15,23,42,0.35);}
+    @media (min-width:768px){.bottom-cta{flex-direction:row;align-items:center;justify-content:space-between;}}
+    .bottom-cta-text{max-width:26rem;}
+    .bottom-cta-title{font-size:1rem;font-weight:600;margin-bottom:.2rem;}
+    .bottom-cta-sub{font-size:.86rem;color:#e5e7eb;}
+    .bottom-cta-form{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.1rem;}
+    .bottom-cta-form input[type="email"]{padding:.65rem .8rem;border-radius:var(--radius-pill);border:none;background:rgba(15,23,42,0.16);color:#e5e7eb;font-size:.85rem;min-width:210px;outline:none;}
+    .bottom-cta-form input::placeholder{color:rgba(226,232,240,0.9);}
+    .bottom-cta-form .btn-primary{background:#fff;color:var(--accent-strong);box-shadow:none;}
+    .bottom-cta-form .btn-primary:hover{background:#e0f2fe;}
+
+    footer{margin-top:1.5rem;font-size:.75rem;color:var(--muted);display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;justify-content:space-between;border-top:1px solid rgba(203,213,225,0.9);padding-top:.9rem;}
+    .footer-links{display:flex;gap:.9rem;}
+    .footer-links a{color:var(--muted);text-decoration:none;}
+    .footer-links a:hover{text-decoration:underline;text-underline-offset:2px;}
+
+    @media (max-width:640px){
+      .page{padding:1.25rem 1rem 1rem;}
+      header{margin-bottom:1.6rem;}
+      .brand-title{font-size:1rem;}
+      .video-shell{padding:1rem 1rem 1.1rem;box-shadow:0 16px 36px rgba(15,23,42,0.18);}
+      .video-title{font-size:1.4rem;}
+      .video-sub{font-size:.88rem;}
+      .hero-layout{gap:1.4rem;}
+      h1{font-size:2rem;}
+      .hero-sub{font-size:.94rem;}
+      .hero-ctas{flex-direction:column;align-items:stretch;margin-top:.35rem;}
+      .hero-ctas .btn-primary,.hero-ctas .btn-secondary{width:100%;justify-content:center;}
+      .iphone{max-width:300px;}
+      .page::before,.page::after{animation:none;}
+      .chat-snippet{max-width:180px;}
+    }
+  </style>
 </head>
 
 <body>
-<div class="page">
-
-<header>
-  <div class="brand">
-    <div class="logo"></div>
-    <h1>DEEPLY</h1>
-  </div>
-  <nav>
-    <a href="#video">Pitch-Video</a>
-    <a href="#how">So funktioniert’s</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <div>
-    <h2>Weniger Oberflächlichkeit.<br>Mehr echte Connection.</h2>
-    <p>
-      Deeply ist dein Safe Space für ehrliche Gespräche – anonym,
-      ruhig und ohne Druck.
-    </p>
-    <div class="hero-actions">
-      <a href="#video" class="btn-primary">Video ansehen</a>
-      <a href="#how" class="btn-secondary">Wie funktioniert Deeply?</a>
-    </div>
-  </div>
-
-  <div class="phone">
-    <div class="phone-inner">
-      <div class="phone-header">
-        <span>Deeply</span>
-        <span>Safe Space</span>
+  <div class="page">
+    <header>
+      <div class="brand">
+        <div class="logo-circle">
+          <div class="logo-circle-inner">
+            <img src="Logo.png" alt="Deeply Logo" />
+          </div>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Deeply</div>
+          <div class="brand-sub">Tief reden. Echt fühlen.</div>
+        </div>
       </div>
-      <div class="phone-card">
-        Wann hast du dich zuletzt wirklich gesehen gefühlt?
+
+      <div class="header-right">
+        <nav class="nav">
+          <a href="#video"><span>▶</span><span>Pitch-Video</span></a>
+          <a href="#features"><span>✨</span><span>Features</span></a>
+          <a href="#how"><span>⚙</span><span>So funktioniert’s</span></a>
+          <a href="#termin"><span>📅</span><span>Termin</span></a>
+          <a href="#faq"><span>❓</span><span>FAQ</span></a>
+        </nav>
+
+        <div class="header-cta">
+          <div class="pill"><span class="pill-dot"></span><span>Beta in Vorbereitung</span></div>
+          <a href="#warteliste" class="small-link">Ich will dabei sein</a>
+        </div>
       </div>
-      <div class="phone-footer">
-        Kein Profil · Keine Likes
+    </header>
+
+    <main>
+      <!-- PITCH VIDEO -->
+      <section class="video-section section" id="video">
+        <div class="video-shell">
+          <div class="video-banner">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/5Y__JnfLhQU?autoplay=1&mute=1&loop=1&playlist=5Y__JnfLhQU&rel=0&modestbranding=1"
+                title="Deeply Pitch Video"
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+          <div class="video-text-under">
+            <div class="video-label">Pitch-Video</div>
+            <h2 class="video-title">Sei ehrlich: Schau dir <strong>Deeply in 40&nbsp;Sekunden</strong> an.</h2>
+            <p class="video-sub">Dein kurzer Überblick: Warum es Deeply gibt und für wen die App gedacht ist.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- HERO + iPHONE -->
+      <section class="hero-layout section">
+        <div class="hero">
+          <div class="hero-tagline"><span>Neue App</span><small>für echte Gespräche.</small></div>
+          <h1>Weniger Oberflächlichkeit. Mehr echte Connection.</h1>
+
+          <p class="hero-sub">
+            Finde deinen <strong>Safe Space</strong> für Gespräche. Deeply verbindet dich anonym mit Menschen,
+            die <strong>wirklich zuhören</strong> und dich sehen.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="#warteliste" class="btn-primary">Jetzt auf die Warteliste</a>
+            <a href="#how" class="btn-secondary">Wie funktioniert Deeply?</a>
+          </div>
+
+          <div class="hero-meta">
+            <div class="hero-meta-item"><span class="meta-dot"></span>Gespräche statt Profile</div>
+            <div class="hero-meta-item"><span class="meta-dot"></span>Anonym & sicher</div>
+            <div class="hero-meta-item"><span class="meta-dot"></span>Self-Care nach jedem Talk</div>
+          </div>
+
+          <div class="features-wrapper" id="features">
+            <div class="section-label">Was dich erwartet</div>
+            <div class="features">
+              <article class="feature-card">
+                <div class="feature-header"><div class="feature-icon">❓</div><div class="feature-label">Tagesfragen</div></div>
+                <p class="feature-text">Eine Frage pro Tag, die dich <strong>triggert</strong>: Nimm sie als Deep Dive mit Freund:innen oder neuen Matches.</p>
+              </article>
+              <article class="feature-card">
+                <div class="feature-header"><div class="feature-icon">🧭</div><div class="feature-label">Geführte Deep Talks</div></div>
+                <p class="feature-text">Dein <strong>Guide für schwierige Themen</strong>. Geführte Leitfäden geben dir Halt, ohne dich zu überfordern.</p>
+              </article>
+              <article class="feature-card">
+                <div class="feature-header"><div class="feature-icon">✨</div><div class="feature-label">Matching nach Antworten</div></div>
+                <p class="feature-text"><strong>Endlich Matching mit Substanz.</strong> Finde Menschen, die auf deiner Wellenlänge sind.</p>
+              </article>
+              <article class="feature-card">
+                <div class="feature-header"><div class="feature-icon">📝</div><div class="feature-label">Reflexion</div></div>
+                <p class="feature-text"><strong>Self-Care nach dem Talk.</strong> Halte fest, was dich bewegt hat. Lerne deine Grenzen und Wünsche privat kennen.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <!-- iPHONE APP (interactive) -->
+        <section class="right" aria-label="Deeply App Vorschau">
+          <div class="iphone">
+            <span class="side-right" aria-hidden="true"></span>
+
+            <div class="iphone-screen">
+              <div class="island" aria-hidden="true"></div>
+
+              <div class="ios-statusbar">
+                <span class="ios-time" id="phoneTime">19:41</span>
+                <div class="ios-icons">
+                  <span class="ios-signal" aria-hidden="true"></span>
+                  <span class="ios-wifi" aria-hidden="true"></span>
+                  <span class="ios-battery" aria-hidden="true"></span>
+                </div>
+              </div>
+
+              <div class="app-top">
+                <span class="app-title">Deeply</span>
+                <span class="app-chip"><span class="app-chip-dot"></span>Safe Space aktiv</span>
+              </div>
+
+              <div class="app-home" aria-label="Deeply Screens">
+                <!-- HOME -->
+                <div class="screen active" data-screen="home">
+                  <div class="home-hero">
+                    <div class="home-kicker">Today</div>
+                    <div class="home-title">Willkommen zurück.</div>
+                    <div class="home-sub">Nimm dir einen Moment – ohne Druck, ohne Publikum.</div>
+                    <div class="row">
+                      <div class="pill-mini"><b>Stimmung</b><span>ruhig</span></div>
+                      <div class="pill-mini"><b>Energie</b><span>low</span></div>
+                    </div>
+                  </div>
+
+                  <div class="section-h"><span>Frage des Tages</span></div>
+                  <div class="card">
+                    <div class="q-title">Wann hast du dich zuletzt wirklich gesehen gefühlt?</div>
+                    <div class="q-meta">
+                      <span class="tag p">sanft</span>
+                      <span class="tag">ehrlich</span>
+                      <span class="tag">3 min</span>
+                    </div>
+                  </div>
+
+                  <div class="section-h"><span>Aktive Räume</span></div>
+                  <div class="chatlist">
+                    <div class="chat">
+                      <div class="avatar"></div>
+                      <div class="chat-main">
+                        <div class="chat-title"><span class="dot"></span>Leiser Talk</div>
+                        <div class="chat-snippet">„Ich merke, wie müde ich vom Starksein bin…“</div>
+                      </div>
+                    </div>
+                    <div class="chat">
+                      <div class="avatar"></div>
+                      <div class="chat-main">
+                        <div class="chat-title">Gedanken ordnen</div>
+                        <div class="chat-snippet">„Vielleicht darf ich mir selbst mehr erlauben.“</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="composer">
+                    <span>Schreib einen Gedanken…</span>
+                    <div class="send">›</div>
+                  </div>
+                </div>
+
+                <!-- FRAGEN -->
+                <div class="screen" data-screen="questions">
+                  <div class="section-h"><span>Fragen</span></div>
+
+                  <div class="card"><div class="q-title">Was vermeide ich gerade – und warum?</div><div class="q-meta"><span class="tag p">reflexion</span><span class="tag">2–4 min</span></div></div>
+                  <div class="card"><div class="q-title">Wann war ich zuletzt mutig?</div><div class="q-meta"><span class="tag p">mut</span><span class="tag">2–3 min</span></div></div>
+                  <div class="card"><div class="q-title">Was würde ich sagen, wenn niemand urteilt?</div><div class="q-meta"><span class="tag p">ehrlich</span><span class="tag">3–5 min</span></div></div>
+
+                  <div class="composer">
+                    <span>Eigene Frage notieren…</span>
+                    <div class="send">+</div>
+                  </div>
+                </div>
+
+                <!-- TALKS -->
+                <div class="screen" data-screen="talks">
+                  <div class="section-h"><span>Talks</span></div>
+
+                  <div class="chatlist">
+                    <div class="chat">
+                      <div class="avatar"></div>
+                      <div class="chat-main">
+                        <div class="chat-title"><span class="dot"></span>Leiser Talk</div>
+                        <div class="chat-snippet">„Wenn ich ehrlich bin, hab ich Angst…“</div>
+                      </div>
+                    </div>
+                    <div class="chat">
+                      <div class="avatar"></div>
+                      <div class="chat-main">
+                        <div class="chat-title">Gedanken ordnen</div>
+                        <div class="chat-snippet">„Ich will wieder lernen, mir zu vertrauen.“</div>
+                      </div>
+                    </div>
+                    <div class="chat">
+                      <div class="avatar"></div>
+                      <div class="chat-main">
+                        <div class="chat-title">Neustart</div>
+                        <div class="chat-snippet">„Was, wenn ich mir selbst mehr Raum gebe?“</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="composer">
+                    <span>Neuen Talk starten…</span>
+                    <div class="send">›</div>
+                  </div>
+                </div>
+
+                <!-- ICH -->
+                <div class="screen" data-screen="me">
+                  <div class="profile">
+                    <div class="profile-avatar"></div>
+                    <div class="profile-name">Du</div>
+                    <div class="profile-sub">Anonym · Safe Space</div>
+                  </div>
+
+                  <div class="card">
+                    <div class="q-title">Status</div>
+                    <p class="profile-text">Heute lieber zuhören als reden.</p>
+                  </div>
+
+                  <div class="card">
+                    <div class="q-title">Konto</div>
+                    <ul class="settings">
+                      <li>🔒 Anonymität <span>aktiv</span></li>
+                      <li>🌙 Dark Mode <span>an</span></li>
+                      <li>🧘 Safe Space Regeln <span>Standard</span></li>
+                      <li>🔔 Benachrichtigungen <span>leise</span></li>
+                    </ul>
+                  </div>
+
+                  <div class="composer">
+                    <span>Profilnotiz bearbeiten…</span>
+                    <div class="send">✎</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="tabbar" role="navigation" aria-label="Tab Bar">
+                <div class="tab active" data-target="home"><div class="ico">🏠</div><small>Home</small></div>
+                <div class="tab" data-target="questions"><div class="ico">❓</div><small>Fragen</small></div>
+                <div class="tab" data-target="talks"><div class="ico">💬</div><small>Talks</small></div>
+                <div class="tab" data-target="me"><div class="ico">👤</div><small>Ich</small></div>
+                <div class="home-indicator" aria-hidden="true"></div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- TERMIN -->
+      <section class="section" id="termin">
+        <h2 class="section-title">Termin zum Kennenlernen</h2>
+        <p class="section-sub">Du möchtest über Deeply sprechen? Buch dir einfach einen Slot.</p>
+        <div class="termin-banner">
+          <img src="calendly-visual.png" alt="Klicke auf den Button, um direkt zu deinem Calendly-Kalender zu kommen und einen Termin zu buchen." />
+        </div>
+        <div class="termin-cta">
+          <a href="https://calendly.com/serap-aslan-2214/30min" target="_blank" rel="noopener noreferrer" class="btn-primary">
+            Termin auf Calendly buchen
+          </a>
+        </div>
+      </section>
+
+      <!-- FÜR WEN -->
+      <section class="section">
+        <div class="for-whom-layout">
+          <div class="for-whom-text">
+            <h2 class="section-title">Für wen ist Deeply?</h2>
+            <p class="section-sub">
+              Deeply ist für Menschen, die sich nach echten Gesprächen sehnen – sensibel, nachdenklich,
+              introvertiert oder einfach nur müde von Smalltalk.
+            </p>
+            <div class="section-pills">
+              <span class="pill-tag">Sensible & nachdenkliche Menschen</span>
+              <span class="pill-tag">Menschen, die sich manchmal einsam fühlen</span>
+              <span class="pill-tag">Für alle, die mehr als Swipen wollen</span>
+            </div>
+          </div>
+
+          <div class="for-whom-visual">
+            <img src="community-visual.png" alt="Drei junge Menschen unterschiedlicher Herkunft sitzen gemütlich zusammen und führen ein tiefes Gespräch in einem ruhigen Raum." />
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section" id="faq">
+        <h2 class="section-title">Häufige Fragen</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">Ist Deeply eine Dating-App?</div>
+            <div class="faq-answer">Nein. Wir matchen nach Authentizität, nicht nach Fotos.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Wie anonym sind die Gespräche?</div>
+            <div class="faq-answer">Komplett anonym. Kein öffentliches Profil, keine Fotos.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Kostet die App etwas?</div>
+            <div class="faq-answer">Die Beta ist <strong>kostenlos</strong>.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WARTELISTE -->
+      <section class="bottom-cta section" id="warteliste">
+        <div class="bottom-cta-text">
+          <div class="bottom-cta-title"><strong>Ready für den Deep Dive?</strong> Werde Teil der Community!</div>
+          <p class="bottom-cta-sub">Sicher dir deinen Platz auf der Warteliste. <strong>Kein Spam.</strong></p>
+        </div>
+        <form class="bottom-cta-form">
+          <input type="email" placeholder="Deine E-Mail-Adresse" required />
+          <button type="submit" class="btn-primary">Auf die Warteliste</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <span>© <span id="year"></span> Deeply • Für Menschen, die tiefer fühlen.</span>
+      <div class="footer-links">
+        <a href="#">Kontakt</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">Impressum</a>
       </div>
-    </div>
+    </footer>
   </div>
-</section>
 
-<section class="video" id="video">
-  <div class="video-frame">
-    <iframe
-      src="https://www.youtube.com/embed/5Y__JnfLhQU?autoplay=0&rel=0"
-      allowfullscreen
-      title="Deeply Pitch Video">
-    </iframe>
-  </div>
-</section>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Footer year
+      var yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-<section id="how">
-  <h2>So funktioniert Deeply</h2>
-  <div class="steps">
-    <div class="step">
-      <strong>1</strong><br>
-      Du startest mit einer ehrlichen Frage.
-    </div>
-    <div class="step">
-      <strong>2</strong><br>
-      Deeply verbindet dich anonym mit Gleichgesinnten.
-    </div>
-    <div class="step">
-      <strong>3</strong><br>
-      Du reflektierst – nur für dich.
-    </div>
-  </div>
-</section>
+      // iPhone time
+      var t = document.getElementById("phoneTime");
+      if (t) {
+        var d = new Date();
+        var hh = String(d.getHours()).padStart(2,"0");
+        var mm = String(d.getMinutes()).padStart(2,"0");
+        t.textContent = hh + ":" + mm;
+      }
 
-<footer>
-  © <span id="year"></span> Deeply · Für Menschen, die tiefer fühlen.
-</footer>
+      // Tabs -> Screens
+      var tabs = document.querySelectorAll(".tabbar .tab");
+      var screens = document.querySelectorAll(".app-home .screen");
+      var appHome = document.querySelector(".app-home");
 
-</div>
+      tabs.forEach(function(tab){
+        tab.addEventListener("click", function(){
+          var target = tab.getAttribute("data-target");
+          if (!target) return;
 
-<script>
-document.getElementById("year").textContent=new Date().getFullYear();
-</script>
+          tabs.forEach(function(t){ t.classList.remove("active"); });
+          tab.classList.add("active");
+
+          screens.forEach(function(s){
+            s.classList.toggle("active", s.getAttribute("data-screen") === target);
+          });
+
+          // reset scroll inside app
+          if (appHome) appHome.scrollTop = 0;
+        });
+      });
+    });
+  </script>
 </body>
 </html>

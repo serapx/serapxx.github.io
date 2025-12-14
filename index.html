@@ -13,36 +13,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <style>
-    :root {
-      --bg:#e0f2fe;
-      --card:#ffffff;
-      --soft:#f1f5f9;
-      --text:#0f172a;
-      --muted:#64748b;
-      --accent:#7c3aed;
-      --accent-soft:rgba(124,58,237,0.14);
-      --accent-strong:#6d28d9;
-      --accent-alt:#38bdf8;
-      --radius-xl:1.5rem;
-      --radius-lg:1.1rem;
-      --radius-pill:999px;
-      --shadow-soft:0 10px 26px rgba(15,23,42,0.10);
-      --shadow-strong:0 18px 46px rgba(124,58,237,0.32);
+    :root{
+      --bg:#e0f2fe; --card:#ffffff; --soft:#f1f5f9; --text:#0f172a; --muted:#64748b;
+      --accent:#7c3aed; --accent-soft:rgba(124,58,237,0.14); --accent-strong:#6d28d9; --accent-alt:#38bdf8;
+      --radius-xl:1.5rem; --radius-lg:1.1rem; --radius-pill:999px;
+      --shadow-soft:0 10px 26px rgba(15,23,42,0.10); --shadow-strong:0 18px 46px rgba(124,58,237,0.32);
     }
 
-    * {
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
-    }
-
-    html, body {
-      scroll-behavior:smooth;
-      overflow-x:hidden;
-      width:100%;
-    }
-
-    body {
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html,body{scroll-behavior:smooth;overflow-x:hidden;width:100%;}
+    body{
       font-family:"Inter",system-ui,-apple-system,sans-serif;
       background:linear-gradient(180deg,#e0f2fe 0,#eff6ff 40%,#f9fafb 100%);
       color:var(--text);
@@ -50,750 +30,187 @@
       -webkit-font-smoothing:antialiased;
     }
 
-    .page {
-      max-width:1120px;
-      margin:0 auto;
-      padding:1.75rem 1.25rem 1rem;
-      position:relative;
-      z-index:0;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-    }
-
-    .page::before,
-    .page::after {
-      content:"";
-      position:absolute;
-      z-index:-1;
-      border-radius:999px;
-      filter:blur(18px);
-      opacity:0.65;
-      pointer-events:none;
-      animation:float 18s ease-in-out infinite;
-    }
-
-    .page::before {
-      width:320px;
-      height:320px;
-      top:-120px;
-      right:-40px;
-      background:radial-gradient(circle at 30% 0%, #a855f7 0, var(--accent) 40%, #7dd3fc 100%);
-    }
-
-    .page::after {
-      width:260px;
-      height:260px;
-      bottom:-120px;
-      left:-40px;
-      background:radial-gradient(circle at 30% 0%, #818cf8 0, #a855f7 40%, #38bdf8 100%);
-      animation-delay:-8s;
-    }
-
-    @keyframes float {
-      0% { transform:translateY(0); }
-      50% { transform:translateY(16px); }
-      100% { transform:translateY(0); }
-    }
-
-    /* HEADER */
-
-    header {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:1.25rem;
-      margin-bottom:2.25rem;
-    }
-
-    .brand {display:flex; align-items:center; gap:.8rem;}
-    .logo-circle {
-      width:44px;
-      height:44px;
-      border-radius:16px;
-      padding:3px;
-      background:linear-gradient(135deg,var(--accent-strong),var(--accent),var(--accent-alt));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      box-shadow:0 10px 25px rgba(79,70,229,0.35);
-    }
-    .logo-circle-inner {
-      width:100%;
-      height:100%;
-      border-radius:13px;
-      background:#ffffff;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-    }
-    .logo-circle-inner img {width:80%; height:80%; object-fit:contain;}
-
-    .brand-text {display:flex; flex-direction:column; gap:0.15rem;}
-    .brand-title {font-weight:700; letter-spacing:.06em; font-size:1.1rem; text-transform:uppercase;}
-    .brand-sub {font-size:.8rem; color:var(--muted);}
-
-    .header-right {display:flex; align-items:center; gap:1.25rem;}
-
-    /* NAV TABS */
-
-    .nav {
-      display:none;
-      gap:.5rem;
-      font-size:.8rem;
-      padding:.35rem .45rem;
-      border-radius:var(--radius-pill);
-      background:rgba(255,255,255,0.85);
-      backdrop-filter:blur(6px);
-      box-shadow:0 10px 26px rgba(15,23,42,0.10);
-    }
-
-    .nav a {
-      display:inline-flex;
-      align-items:center;
-      gap:.35rem;
-      padding:.4rem .9rem;
-      border-radius:var(--radius-pill);
-      border:1px solid rgba(148,163,184,0.55);
-      background:rgba(255,255,255,0.98);
-      box-shadow:0 6px 14px rgba(148,163,184,0.25);
-      font-size:.78rem;
-      font-weight:500;
-      color:var(--muted);
-      text-decoration:none;
-      transition:all .18s ease;
-    }
-
-    .nav a:hover {
-      border-color:var(--accent-strong);
-      color:var(--accent-strong);
-      background:#ffffff;
-      box-shadow:0 12px 26px rgba(124,58,237,0.35);
-      transform:translateY(-1px);
-    }
-
-    .nav-icon {font-size:.9rem; opacity:.9;}
-    .nav-label {letter-spacing:.03em;}
-
-    @media (min-width:640px) {
-      .page::before,.page::after {animation:none;}
-    }
-
-    .header-cta {display:flex; align-items:center; gap:.6rem;}
-
-    .pill {
-      border-radius:var(--radius-pill);
-      padding:.35rem .8rem;
-      font-size:.75rem;
-      border:1px solid rgba(148,163,184,0.40);
-      background:rgba(255,255,255,0.95);
-      display:flex;
-      align-items:center;
-      gap:.45rem;
-      color:var(--muted);
-      box-shadow:0 8px 18px rgba(148,163,184,0.30);
-    }
-
-    .pill-dot {
-      width:8px;
-      height:8px;
-      border-radius:999px;
-      background:radial-gradient(circle at 30% 0%, #4ade80 0, #22c55e 40%, #15803d 100%);
-      box-shadow:0 0 0 3px rgba(34,197,94,0.18);
-      animation:pulse 2.2s ease-in-out infinite;
-    }
-
-    @keyframes softPulse {
-      0%,100% { transform:scale(1); }
-      50% { transform:scale(1.03); }
-    }
-
-    .phone-float{ animation:softPulse 6s ease-in-out infinite;}
-
-    .small-link {
-      border:none;
-      background:transparent;
-      color:var(--accent-strong);
-      font-size:.78rem;
-      cursor:pointer;
-      text-decoration:underline;
-      text-underline-offset:2px;
-    }
-
-    /* BUTTONS */
-
-    .btn-primary,
-    .btn-secondary {
-      border-radius:var(--radius-pill);
-      padding:.8rem 1.4rem;
-      font-size:.9rem;
-      font-weight:500;
-      border:none;
-      cursor:pointer;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:.45rem;
-      white-space:nowrap;
-      transition:all .2s ease;
-      text-decoration:none;
-    }
-
-    .btn-primary {
-      background:linear-gradient(135deg, var(--accent-strong), var(--accent));
-      color:white;
-      box-shadow:var(--shadow-strong);
-    }
-
-    .btn-primary:hover {
-      filter:brightness(1.06);
-      transform:translateY(-2px);
-      box-shadow:0 20px 40px rgba(124,58,237,0.45);
-    }
-
-    .btn-primary::after {
-      content:"›";
-      font-size:1rem;
-      margin-left:.1rem;
-      transition:transform .2s ease;
-    }
-
-    .btn-primary:hover::after {transform:translateX(2px);}
-
-    .btn-secondary {
-      background:white;
-      color:var(--accent-strong);
-      border:1px solid var(--accent);
-      box-shadow:0 8px 18px rgba(15,23,42,0.06);
-    }
-
-    .btn-secondary:hover {background:var(--accent-soft);}
-
-    main {
-      display:flex;
-      flex-direction:column;
-      gap:3rem;
-      flex:1;
-    }
-
-    .section {scroll-margin-top:90px;}
-    .section-label {font-size:.78rem; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); margin-bottom:.35rem;}
-    .section-title {font-size:1.4rem; margin-bottom:.3rem; color:var(--text);}
-    .section-sub {font-size:.9rem; color:var(--muted); max-width:36rem;}
-
-    /* PITCH-VIDEO */
-
-    .video-section {margin-bottom:2.5rem;}
-
-    .video-shell {
-      border-radius:2rem;
-      padding:1.25rem 1.25rem 1.5rem;
-      background:radial-gradient(circle at top left,#e0e7ff,#e0f2fe 40%,#ffffff 100%);
-      box-shadow:0 22px 52px rgba(15,23,42,0.22);
-      display:flex;
-      flex-direction:column;
-      gap:.75rem;
-    }
-
-    .video-banner {
-      border-radius:1.6rem;
-      overflow:hidden;
-      background:#000;
-      box-shadow:0 18px 40px rgba(15,23,42,0.38);
-    }
-
-    .video-frame {width:100%; aspect-ratio:16/9;}
-    .video-frame iframe {width:100%; height:100%; border:0; display:block;}
-
-    .video-text-under {display:flex; flex-direction:column; gap:.25rem; margin-top:.5rem;}
-    .video-label {font-size:.78rem; text-transform:uppercase; letter-spacing:.16em; color:var(--muted);}
-    .video-title {font-size:1.6rem; font-weight:700; color:var(--text);}
-    .video-sub {font-size:.9rem; color:var(--muted); max-width:32rem;}
-    .video-note {font-size:.78rem; color:var(--muted); margin-top:.25rem;}
-
-    /* HERO */
-
-    .hero-layout {display:grid; gap:1.8rem;}
-
-    @media (min-width:768px) {
-      .hero-layout {
-        grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);
-        align-items:center;
-        gap:2.1rem;
-      }
-    }
-
-    .hero {display:flex; flex-direction:column; gap:1.3rem;}
-
-    .hero-tagline {
-      display:inline-flex;
-      align-items:center;
-      gap:.5rem;
-      padding:.35rem .9rem;
-      border-radius:var(--radius-pill);
-      font-size:.75rem;
-      background:#eef2ff;
-      border:1px solid rgba(129,140,248,0.6);
-      color:var(--muted);
-      width:fit-content;
-    }
-
-    .hero-tagline span {font-weight:700; color:var(--accent-strong);}
-
-    h1 {
-      font-size:2.1rem;
-      line-height:1.12;
-      letter-spacing:-.02em;
-      font-weight:800;
-      color:var(--text);
-    }
-
-    @media (min-width:640px) {
-      h1 {font-size:2.6rem;}
-    }
-
-    @media (min-width:1024px) {
-      h1 {font-size:3.05rem;}
-    }
-
-    .hero-sub {font-size:.98rem; color:var(--muted); max-width:32rem;}
-    .hero-sub strong {color:var(--text); font-weight:500;}
-
-    .hero-ctas {
-      display:flex;
-      flex-wrap:wrap;
-      gap:.75rem;
-      margin-top:.4rem;
-    }
-
-    .hero-meta {
-      display:flex;
-      flex-wrap:wrap;
-      gap:1.1rem;
-      margin-top:.4rem;
-      font-size:.78rem;
-      color:var(--muted);
-    }
-
-    .hero-meta-item {display:flex; align-items:center;}
-    .meta-dot {
-      width:6px;
-      height:6px;
-      border-radius:999px;
-      background:var(--accent-strong);
-      opacity:.9;
-      margin-right:.4rem;
-      display:inline-block;
-    }
-
-    /* FEATURES */
-
-    .features-wrapper {margin-top:1.3rem;}
-    .features {margin-top:.6rem; display:grid; gap:.9rem;}
-
-    @media (min-width:640px) {
-      .features {
-        grid-template-columns:repeat(2, minmax(0,1fr));
-      }
-    }
-
-    .feature-card {
-      background:var(--card);
-      border-radius:var(--radius-lg);
-      padding:.95rem 1rem;
-      border:1px solid rgba(203,213,225,0.9);
-      box-shadow:var(--shadow-soft);
-      display:flex;
-      flex-direction:column;
-      gap:.3rem;
-      position:relative;
-      overflow:hidden;
-      transition:all .2s ease;
-    }
-
-    .feature-card:hover {
-      transform:translateY(-4px);
-      box-shadow:0 20px 42px rgba(15,23,42,0.16);
-      border-color:var(--accent);
-    }
-
-    .feature-header {display:flex; align-items:center; gap:.5rem;}
-    .feature-icon {
-      width:30px;
-      height:30px;
-      border-radius:999px;
-      background:var(--accent-soft);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:1.1rem;
-    }
-
-    .feature-label {
-      font-size:.8rem;
-      font-weight:600;
-      color:var(--accent-strong);
-      letter-spacing:.04em;
-      text-transform:uppercase;
-    }
-
-    .feature-text {font-size:.86rem; color:var(--muted); margin-top:.15rem;}
-
-    /* RIGHT COLUMN WRAPPER */
-
-    .right {
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-
-    /* DEEPLY PHONE – DARK MODE SAFE SPACE */
-
-    .deeply-phone {
-      position:relative;
-      width:100%;
-      max-width:340px;
-      aspect-ratio:9/19;
-      border-radius:2.4rem;
-      background:linear-gradient(180deg,#0d0f16 0%, #11131b 40%, #0b0d14 100%);
-      box-shadow:0 22px 48px rgba(0,0,0,0.55);
-      border:1px solid rgba(255,255,255,0.05);
-      padding:0.8rem;
-      display:flex;
-      flex-direction:column;
-      overflow:hidden;
-    }
-
-    .deeply-inner {
-      flex:1;
-      background:radial-gradient(circle at top, #141623 0%, #090a11 60%);
-      border-radius:2rem;
-      padding:1.1rem 1rem 1.3rem;
-      color:#e2e8f0;
-      display:flex;
-      flex-direction:column;
-      gap:1.1rem;
-    }
-
-    .deeply-island {
-      width:40%;
-      height:18px;
-      border-radius:999px;
-      background:#000;
-      margin:0 auto 0.7rem;
-      opacity:0.8;
-    }
-
-    .deeply-header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      font-size:.85rem;
-      color:#cbd5e1;
-    }
-
-    .deeply-badge {
-      padding:.28rem .65rem;
-      border-radius:999px;
-      background:rgba(124,58,237,0.2);
-      border:1px solid rgba(168,85,247,0.4);
-      display:flex;
-      align-items:center;
-      gap:.35rem;
-      font-size:.72rem;
-      color:#d6bcfa;
-    }
-
-    .deeply-badge-dot {
-      width:7px;
-      height:7px;
-      border-radius:50%;
-      background:#a855f7;
-      box-shadow:0 0 0 3px rgba(168,85,247,0.25);
-    }
-
-    .deeply-question-box {
-      background:linear-gradient(135deg,#1b1f32 0%, #111423 70%);
-      border:1px solid rgba(168,85,247,0.2);
-      padding:1rem;
-      border-radius:1.3rem;
-      box-shadow:0 14px 28px rgba(0,0,0,0.55);
-      display:flex;
-      flex-direction:column;
-      gap:.65rem;
-    }
-
-    .deeply-question {
-      font-size:1rem;
-      line-height:1.45;
-      font-weight:600;
-      color:#f1f5f9;
-    }
-
-    .deeply-question span {
-      color:#c084fc;
-      font-weight:700;
-    }
-
-    .deeply-answers {
-      display:flex;
-      flex-direction:column;
-      gap:.55rem;
-      margin-top:.2rem;
-    }
-
-    .deeply-answer {
-      padding:.65rem .9rem;
-      background:#0f1120;
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:1rem;
-      font-size:.82rem;
-      color:#cbd5e1;
-    }
-
-    .deeply-start {
-      margin-top:auto;
-      padding:.75rem 1.2rem;
-      background:linear-gradient(135deg,#a855f7,#7c3aed);
-      border-radius:999px;
-      text-align:center;
-      color:white;
-      font-size:.85rem;
-      font-weight:600;
-      cursor:pointer;
-      box-shadow:0 14px 34px rgba(124,58,237,0.45);
-    }
-
-    .deeply-footer {
-      text-align:center;
-      font-size:.75rem;
-      opacity:.65;
-      margin-top:.35rem;
-    }
-
-    .deeply-float {
-      position:absolute;
-      left:-12px;
-      top:150px;
-      padding:.45rem .75rem;
-      border-radius:999px;
-      background:rgba(255,255,255,0.08);
-      color:#cbd5e1;
-      font-size:.72rem;
-      backdrop-filter:blur(8px);
-      box-shadow:0 14px 34px rgba(0,0,0,0.35);
-      display:flex;
-      align-items:center;
-      gap:.35rem;
-      animation:float 12s ease-in-out infinite;
-    }
-
-    .deeply-float-dot {
-      width:6px;
-      height:6px;
-      border-radius:50%;
-      background:#22c55e;
-    }
-
-    /* HOW IT WORKS */
-
-    .steps {margin-top:1rem; display:grid; gap:.9rem;}
-
-    @media (min-width:640px) {
-      .steps {
-        grid-template-columns:repeat(3, minmax(0,1fr));
-      }
-    }
-
-    .step-card {
-      background:var(--card);
-      border-radius:var(--radius-lg);
-      padding:.9rem .95rem;
-      border:1px solid rgba(203,213,225,0.9);
-      font-size:.86rem;
-      color:var(--muted);
-      box-shadow:var(--shadow-soft);
-      position:relative;
-      overflow:hidden;
-      transition:all .2s ease;
-    }
-
-    .step-card:hover {transform:translateY(-3px); border-color:var(--accent);}
-    .step-number {
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:22px;
-      height:22px;
-      border-radius:999px;
-      background:var(--accent-soft);
-      color:var(--accent-strong);
-      font-size:.78rem;
-      font-weight:600;
-      margin-bottom:.4rem;
-    }
-
-    .step-title {
-      font-size:.9rem;
-      color:var(--text);
-      font-weight:500;
-      margin-bottom:.15rem;
-    }
-
-    /* TERMIN / CALENDLY */
-
-    .termin-banner {
-      margin-top:1.2rem;
-      border-radius:1.4rem;
-      overflow:hidden;
-      box-shadow:0 18px 40px rgba(15,23,42,0.22);
-      background:#000;
-      width:min(420px,100%);
-      margin-left:auto;
-      margin-right:auto;
-    }
-
-    .termin-banner img {width:100%; height:auto; display:block;}
-    .termin-cta {margin-top:.9rem; display:flex; justify-content:center;}
-
-    /* FÜR WEN IST DEEPLY? */
-
-    .for-whom-layout {display:grid; gap:1.4rem; align-items:center;}
-
-    @media (min-width:768px) {
-      .for-whom-layout {
-        grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
-      }
-    }
-
-    .for-whom-text {display:flex; flex-direction:column; gap:.6rem;}
-    .for-whom-visual {justify-self:center; max-width:420px; width:100%;}
-    .for-whom-visual img {
-      width:100%;
-      display:block;
-      border-radius:1.4rem;
-      box-shadow:0 18px 40px rgba(15,23,42,0.22);
-    }
-
-    /* PILLS */
-
-    .section-pills {margin-top:1rem; display:flex; flex-wrap:wrap; gap:.5rem;}
-    .pill-tag {
-      padding:.4rem .75rem;
-      border-radius:var(--radius-pill);
-      border:1px solid rgba(148,163,184,0.6);
-      font-size:.8rem;
-      color:var(--muted);
-      background:var(--card);
-      box-shadow:0 6px 14px rgba(15,23,42,0.06);
-    }
-
-    /* FAQ */
-
-    .faq-list {margin-top:1rem; display:grid; gap:.6rem;}
-    .faq-item {
-      background:var(--card);
-      border-radius:.9rem;
-      border:1px solid rgba(203,213,225,0.9);
-      padding:.75rem .9rem;
-      font-size:.86rem;
-      box-shadow:0 8px 16px rgba(15,23,42,0.06);
-    }
-
-    .faq-question {font-weight:500; margin-bottom:.2rem;}
-
-    /* BOTTOM CTA */
-
-    .bottom-cta {
-      margin-top:1.5rem;
-      padding:1.2rem 1rem;
-      border-radius:var(--radius-xl);
-      background:linear-gradient(135deg, var(--accent-strong), var(--accent-alt));
-      border:1px solid rgba(15,23,42,0.06);
-      display:flex;
-      flex-direction:column;
-      gap:.7rem;
-      color:#e0f2fe;
-      box-shadow:0 18px 40px rgba(15,23,42,0.35);
-    }
-
-    @media (min-width:768px) {
-      .bottom-cta {
-        flex-direction:row;
-        align-items:center;
-        justify-content:space-between;
-      }
-    }
-
-    .bottom-cta-text {max-width:26rem;}
-    .bottom-cta-title {font-size:1rem; font-weight:600; margin-bottom:.2rem;}
-    .bottom-cta-sub {font-size:.86rem;color:#e5e7eb;}
-
-    .bottom-cta-form {
-      display:flex;
-      flex-wrap:wrap;
-      gap:.6rem;
-      margin-top:.1rem;
-    }
-
-    .bottom-cta-form input[type="email"] {
-      padding:.65rem .8rem;
-      border-radius:var(--radius-pill);
-      border:none;
-      background:rgba(15,23,42,0.16);
-      color:#e5e7eb;
-      font-size:.85rem;
-      min-width:210px;
-      outline:none;
-    }
-
-    .bottom-cta-form input::placeholder {color:rgba(226,232,240,0.9);}
-
-    .bottom-cta-form .btn-primary {
-      background:white;
-      color:var(--accent-strong);
-      box-shadow:none;
-    }
-
-    .bottom-cta-form .btn-primary:hover {background:#e0f2fe;}
-
-    /* FOOTER */
-
-    footer {margin-top:1.5rem; font-size:.75rem; color:var(--muted); display:flex; flex-wrap:wrap; align-items:center; gap:.8rem; justify-content:space-between; border-top:1px solid rgba(203,213,225,0.9); padding-top:.9rem;}
-
-    .footer-links {display:flex; gap:.9rem;}
-    .footer-links a {color:var(--muted); text-decoration:none;}
-    .footer-links a:hover {text-decoration:underline; text-underline-offset:2px;}
-
-    /* MOBILE */
-
-    @media (max-width:640px) {
-      .page {padding:1.25rem 1rem 1rem;}
-      header {margin-bottom:1.6rem;}
-      .brand-title {font-size:1rem;}
-      .video-shell {padding:1rem 1rem 1.1rem; box-shadow:0 16px 36px rgba(15,23,42,0.18);}
-      .video-title {font-size:1.4rem;}
-      .video-sub {font-size:0.88rem;}
-      .hero-layout {gap:1.4rem;}
-      h1 {font-size:2rem;}
-      .hero-sub {font-size:0.94rem;}
-      .hero-ctas {flex-direction:column; align-items:stretch; margin-top:0.35rem;}
-      .hero-ctas .btn-primary,
-      .hero-ctas .btn-secondary {width:100%; justify-content:center;}
-      .deeply-phone {max-width:270px; margin-top:0.3rem;}
-      .steps {grid-template-columns:1fr;}
-      .termin-banner {margin-top:0.9rem;}
-      .termin-cta {margin-top:0.7rem;}
-      .bottom-cta {padding:1rem 0.9rem;}
-      .bottom-cta-form {flex-direction:column; align-items:stretch;}
-      .bottom-cta-form input[type="email"],
-      .bottom-cta-form .btn-primary {width:100%;}
-      .for-whom-layout {grid-template-columns:1fr;}
-      .for-whom-visual {max-width:100%;}
+    .page{max-width:1120px;margin:0 auto;padding:1.75rem 1.25rem 1rem;position:relative;z-index:0;min-height:100vh;display:flex;flex-direction:column;}
+    .page::before,.page::after{content:"";position:absolute;z-index:-1;border-radius:999px;filter:blur(18px);opacity:.65;pointer-events:none;animation:float 18s ease-in-out infinite;}
+    .page::before{width:320px;height:320px;top:-120px;right:-40px;background:radial-gradient(circle at 30% 0%, #a855f7 0, var(--accent) 40%, #7dd3fc 100%);}
+    .page::after{width:260px;height:260px;bottom:-120px;left:-40px;background:radial-gradient(circle at 30% 0%, #818cf8 0, #a855f7 40%, #38bdf8 100%);animation-delay:-8s;}
+    @keyframes float{0%{transform:translateY(0);}50%{transform:translateY(16px);}100%{transform:translateY(0);} }
+
+    header{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;margin-bottom:2.25rem;}
+    .brand{display:flex;align-items:center;gap:.8rem;}
+    .logo-circle{width:44px;height:44px;border-radius:16px;padding:3px;background:linear-gradient(135deg,var(--accent-strong),var(--accent),var(--accent-alt));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 25px rgba(79,70,229,0.35);}
+    .logo-circle-inner{width:100%;height:100%;border-radius:13px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    .logo-circle-inner img{width:80%;height:80%;object-fit:contain;}
+    .brand-text{display:flex;flex-direction:column;gap:.15rem;}
+    .brand-title{font-weight:700;letter-spacing:.06em;font-size:1.1rem;text-transform:uppercase;}
+    .brand-sub{font-size:.8rem;color:var(--muted);}
+    .header-right{display:flex;align-items:center;gap:1.25rem;}
+
+    .nav{display:none;gap:.5rem;font-size:.8rem;padding:.35rem .45rem;border-radius:var(--radius-pill);background:rgba(255,255,255,.85);backdrop-filter:blur(6px);box-shadow:0 10px 26px rgba(15,23,42,0.10);}
+    .nav a{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .9rem;border-radius:var(--radius-pill);border:1px solid rgba(148,163,184,0.55);background:rgba(255,255,255,0.98);box-shadow:0 6px 14px rgba(148,163,184,0.25);font-size:.78rem;font-weight:500;color:var(--muted);text-decoration:none;transition:all .18s ease;}
+    .nav a:hover{border-color:var(--accent-strong);color:var(--accent-strong);background:#fff;box-shadow:0 12px 26px rgba(124,58,237,.35);transform:translateY(-1px);}
+    .nav-icon{font-size:.9rem;opacity:.9;}
+    .nav-label{letter-spacing:.03em;}
+    @media (min-width:768px){.nav{display:flex;}}
+
+    .header-cta{display:flex;align-items:center;gap:.6rem;}
+    .pill{border-radius:var(--radius-pill);padding:.35rem .8rem;font-size:.75rem;border:1px solid rgba(148,163,184,0.40);background:rgba(255,255,255,0.95);display:flex;align-items:center;gap:.45rem;color:var(--muted);box-shadow:0 8px 18px rgba(148,163,184,0.30);}
+    .pill-dot{width:8px;height:8px;border-radius:999px;background:radial-gradient(circle at 30% 0%, #4ade80 0, #22c55e 40%, #15803d 100%);box-shadow:0 0 0 3px rgba(34,197,94,0.18);animation:pulse 2.2s ease-in-out infinite;}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.25);opacity:.7;}}
+    .small-link{border:none;background:transparent;color:var(--accent-strong);font-size:.78rem;cursor:pointer;text-decoration:underline;text-underline-offset:2px;}
+
+    .btn-primary,.btn-secondary{border-radius:var(--radius-pill);padding:.8rem 1.4rem;font-size:.9rem;font-weight:500;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:.45rem;white-space:nowrap;transition:all .2s ease;text-decoration:none;}
+    .btn-primary{background:linear-gradient(135deg,var(--accent-strong),var(--accent));color:#fff;box-shadow:var(--shadow-strong);}
+    .btn-primary:hover{filter:brightness(1.06);transform:translateY(-2px);box-shadow:0 20px 40px rgba(124,58,237,.45);}
+    .btn-primary::after{content:"›";font-size:1rem;margin-left:.1rem;transition:transform .2s ease;}
+    .btn-primary:hover::after{transform:translateX(2px);}
+    .btn-secondary{background:#fff;color:var(--accent-strong);border:1px solid var(--accent);box-shadow:0 8px 18px rgba(15,23,42,0.06);}
+    .btn-secondary:hover{background:var(--accent-soft);}
+
+    main{display:flex;flex-direction:column;gap:3rem;flex:1;}
+    .section{width:100%;scroll-margin-top:90px;}
+    .section-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);margin-bottom:.35rem;}
+    .section-title{font-size:1.4rem;margin-bottom:.3rem;color:var(--text);}
+    .section-sub{font-size:.9rem;color:var(--muted);max-width:36rem;}
+
+    .video-section{margin-bottom:2.5rem;}
+    .video-shell{border-radius:2rem;padding:1.25rem 1.25rem 1.5rem;background:radial-gradient(circle at top left,#e0e7ff,#e0f2fe 40%,#ffffff 100%);box-shadow:0 22px 52px rgba(15,23,42,0.22);display:flex;flex-direction:column;gap:.75rem;}
+    .video-banner{border-radius:1.6rem;overflow:hidden;background:#000;box-shadow:0 18px 40px rgba(15,23,42,0.38);}
+    .video-frame{width:100%;aspect-ratio:16/9;}
+    .video-frame iframe{width:100%;height:100%;border:0;display:block;}
+    .video-text-under{display:flex;flex-direction:column;gap:.25rem;margin-top:.5rem;}
+    .video-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.16em;color:var(--muted);}
+    .video-title{font-size:1.6rem;font-weight:700;color:var(--text);}
+    .video-sub{font-size:.9rem;color:var(--muted);max-width:32rem;}
+
+    .hero-layout{display:grid;gap:1.8rem;}
+    @media (min-width:768px){.hero-layout{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:center;gap:2.1rem;}}
+
+    .hero{display:flex;flex-direction:column;gap:1.3rem;}
+    .hero-tagline{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .9rem;border-radius:var(--radius-pill);font-size:.75rem;background:#eef2ff;border:1px solid rgba(129,140,248,0.6);color:var(--muted);width:fit-content;}
+    .hero-tagline span{font-weight:700;color:var(--accent-strong);}
+    h1{font-size:2.1rem;line-height:1.12;letter-spacing:-.02em;font-weight:800;color:var(--text);}
+    @media (min-width:640px){h1{font-size:2.6rem;}}
+    @media (min-width:1024px){h1{font-size:3.05rem;}}
+    .hero-sub{font-size:.98rem;color:var(--muted);max-width:32rem;}
+    .hero-sub strong{color:var(--text);font-weight:500;}
+    .hero-ctas{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:.4rem;}
+    .hero-meta{display:flex;flex-wrap:wrap;gap:1.1rem;margin-top:.4rem;font-size:.78rem;color:var(--muted);}
+    .hero-meta-item{display:flex;align-items:center;}
+    .meta-dot{width:6px;height:6px;border-radius:999px;background:var(--accent-strong);opacity:.9;margin-right:.4rem;display:inline-block;}
+
+    .features-wrapper{margin-top:1.3rem;}
+    .features{margin-top:.6rem;display:grid;gap:.9rem;}
+    @media (min-width:640px){.features{grid-template-columns:repeat(2,minmax(0,1fr));}}
+    .feature-card{background:var(--card);border-radius:var(--radius-lg);padding:.95rem 1rem;border:1px solid rgba(203,213,225,0.9);box-shadow:var(--shadow-soft);display:flex;flex-direction:column;gap:.3rem;position:relative;overflow:hidden;transition:all .2s ease;}
+    .feature-card:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(15,23,42,0.16);border-color:var(--accent);}
+    .feature-header{display:flex;align-items:center;gap:.5rem;}
+    .feature-icon{width:30px;height:30px;border-radius:999px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+    .feature-label{font-size:.8rem;font-weight:600;color:var(--accent-strong);letter-spacing:.04em;text-transform:uppercase;}
+    .feature-text{font-size:.86rem;color:var(--muted);margin-top:.15rem;}
+
+    .right{display:flex;align-items:center;justify-content:center;}
+
+    /* ====== PHONE – MINI-HOMEPAGE (SCROLLABLE) ====== */
+    .deeply-phone{position:relative;width:100%;max-width:340px;aspect-ratio:9/19;border-radius:2.4rem;background:linear-gradient(180deg,#0d0f16 0%, #11131b 40%, #0b0d14 100%);box-shadow:0 22px 48px rgba(0,0,0,0.55);border:1px solid rgba(255,255,255,0.05);padding:.8rem;display:flex;flex-direction:column;overflow:hidden;}
+    .deeply-inner{flex:1;border-radius:2rem;background:radial-gradient(circle at top,#141623 0%, #090a11 60%);overflow:hidden;display:flex;flex-direction:column;}
+    .deeply-top{padding:1.05rem 1rem .65rem;color:#e2e8f0;position:relative;}
+    .deeply-island{width:42%;height:18px;border-radius:999px;background:#000;margin:0 auto .75rem;opacity:.85;}
+    .deeply-header{display:flex;align-items:center;justify-content:space-between;font-size:.85rem;color:#cbd5e1;}
+    .deeply-badge{padding:.28rem .65rem;border-radius:999px;background:rgba(124,58,237,0.20);border:1px solid rgba(168,85,247,0.40);display:flex;align-items:center;gap:.35rem;font-size:.72rem;color:#e9d5ff;}
+    .deeply-badge-dot{width:7px;height:7px;border-radius:50%;background:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.22);}
+
+    /* Das grüne Badge: FIX weiter unten + KEINE Animation */
+    .deeply-float{position:absolute;left:14px;top:92px;padding:.42rem .7rem;border-radius:999px;background:rgba(34,197,94,0.14);border:1px solid rgba(34,197,94,0.35);color:#d1fae5;font-size:.72rem;display:flex;align-items:center;gap:.35rem;backdrop-filter:blur(8px);box-shadow:0 10px 24px rgba(0,0,0,0.35);animation:none;transform:none;pointer-events:none;}
+    .deeply-float-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;}
+
+    /* Scrollbarer Screen */
+    .deeply-screen{flex:1;overflow-y:auto;padding:0 1rem 1rem;color:#e2e8f0;scrollbar-width:none;}
+    .deeply-screen::-webkit-scrollbar{width:0;height:0;}
+
+    .d-card{border-radius:1.2rem;padding:.95rem;background:linear-gradient(135deg, rgba(168,85,247,0.16), rgba(15,23,42,0.92));border:1px solid rgba(168,85,247,0.18);box-shadow:0 14px 28px rgba(0,0,0,0.45);margin:.65rem 0;}
+    .d-kicker{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#a5b4fc;opacity:.95;}
+    .d-title{margin-top:.35rem;font-weight:800;line-height:1.15;font-size:1.1rem;color:#f1f5f9;}
+    .d-sub{margin-top:.35rem;font-size:.85rem;line-height:1.45;color:#cbd5e1;opacity:.95;}
+    .d-sub strong{color:#f8fafc;font-weight:600;}
+    .d-chiprow{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem;}
+    .d-chip{font-size:.72rem;color:#dbeafe;background:rgba(59,130,246,0.14);border:1px solid rgba(59,130,246,0.22);padding:.32rem .55rem;border-radius:999px;}
+    .d-chip.p{background:rgba(168,85,247,0.14);border-color:rgba(168,85,247,0.25);color:#f3e8ff;}
+
+    .d-section{margin-top:.85rem;}
+    .d-section-title{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;margin:.65rem 0 .35rem;}
+    .d-item{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:.75rem .85rem;margin:.45rem 0;}
+    .d-item h4{font-size:.85rem;color:#f1f5f9;margin-bottom:.2rem;}
+    .d-item p{font-size:.78rem;color:#cbd5e1;line-height:1.4;opacity:.95;}
+
+    .d-cta{margin-top:1rem;border-radius:999px;padding:.78rem 1.1rem;background:linear-gradient(135deg,#a855f7,#7c3aed);text-align:center;color:#fff;font-size:.86rem;font-weight:700;box-shadow:0 14px 34px rgba(124,58,237,0.45);}
+    .d-foot{margin-top:.6rem;text-align:center;font-size:.74rem;color:#94a3b8;opacity:.9;padding-bottom:.4rem;}
+
+    .steps{margin-top:1rem;display:grid;gap:.9rem;}
+    @media (min-width:640px){.steps{grid-template-columns:repeat(3,minmax(0,1fr));}}
+    .step-card{background:var(--card);border-radius:var(--radius-lg);padding:.9rem .95rem;border:1px solid rgba(203,213,225,0.9);font-size:.86rem;color:var(--muted);box-shadow:var(--shadow-soft);transition:all .2s ease;}
+    .step-card:hover{transform:translateY(-3px);border-color:var(--accent);}
+    .step-number{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:var(--accent-soft);color:var(--accent-strong);font-size:.78rem;font-weight:600;margin-bottom:.4rem;}
+    .step-title{font-size:.9rem;color:var(--text);font-weight:500;margin-bottom:.15rem;}
+
+    /* Termin Bild größer */
+    .termin-banner{margin-top:1.2rem;border-radius:1.4rem;overflow:hidden;box-shadow:0 18px 40px rgba(15,23,42,0.22);background:#000;width:min(480px,100%);margin-left:auto;margin-right:auto;}
+    .termin-banner img{width:100%;height:auto;display:block;}
+    .termin-cta{margin-top:.9rem;display:flex;justify-content:center;}
+
+    .for-whom-layout{display:grid;gap:1.4rem;align-items:center;}
+    @media (min-width:768px){.for-whom-layout{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);}}
+    .for-whom-text{display:flex;flex-direction:column;gap:.6rem;}
+    .for-whom-visual{justify-self:center;max-width:420px;width:100%;}
+    .for-whom-visual img{width:100%;display:block;border-radius:1.4rem;box-shadow:0 18px 40px rgba(15,23,42,0.22);}
+
+    .section-pills{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem;}
+    .pill-tag{padding:.4rem .75rem;border-radius:var(--radius-pill);border:1px solid rgba(148,163,184,0.6);font-size:.8rem;color:var(--muted);background:var(--card);box-shadow:0 6px 14px rgba(15,23,42,0.06);}
+
+    .faq-list{margin-top:1rem;display:grid;gap:.6rem;}
+    .faq-item{background:var(--card);border-radius:.9rem;border:1px solid rgba(203,213,225,0.9);padding:.75rem .9rem;font-size:.86rem;box-shadow:0 8px 16px rgba(15,23,42,0.06);}
+    .faq-question{font-weight:500;margin-bottom:.2rem;}
+
+    .bottom-cta{margin-top:1.5rem;padding:1.2rem 1rem;border-radius:var(--radius-xl);background:linear-gradient(135deg,var(--accent-strong),var(--accent-alt));border:1px solid rgba(15,23,42,0.06);display:flex;flex-direction:column;gap:.7rem;color:#e0f2fe;box-shadow:0 18px 40px rgba(15,23,42,0.35);}
+    @media (min-width:768px){.bottom-cta{flex-direction:row;align-items:center;justify-content:space-between;}}
+    .bottom-cta-text{max-width:26rem;}
+    .bottom-cta-title{font-size:1rem;font-weight:600;margin-bottom:.2rem;}
+    .bottom-cta-sub{font-size:.86rem;color:#e5e7eb;}
+    .bottom-cta-form{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.1rem;}
+    .bottom-cta-form input[type="email"]{padding:.65rem .8rem;border-radius:var(--radius-pill);border:none;background:rgba(15,23,42,0.16);color:#e5e7eb;font-size:.85rem;min-width:210px;outline:none;}
+    .bottom-cta-form input::placeholder{color:rgba(226,232,240,0.9);}
+    .bottom-cta-form .btn-primary{background:#fff;color:var(--accent-strong);box-shadow:none;}
+    .bottom-cta-form .btn-primary:hover{background:#e0f2fe;}
+
+    footer{margin-top:1.5rem;font-size:.75rem;color:var(--muted);display:flex;flex-wrap:wrap;align-items:center;gap:.8rem;justify-content:space-between;border-top:1px solid rgba(203,213,225,0.9);padding-top:.9rem;}
+    .footer-links{display:flex;gap:.9rem;}
+    .footer-links a{color:var(--muted);text-decoration:none;}
+    .footer-links a:hover{text-decoration:underline;text-underline-offset:2px;}
+
+    @media (max-width:640px){
+      .page{padding:1.25rem 1rem 1rem;}
+      header{margin-bottom:1.6rem;}
+      .brand-title{font-size:1rem;}
+      .video-shell{padding:1rem 1rem 1.1rem;box-shadow:0 16px 36px rgba(15,23,42,0.18);}
+      .video-title{font-size:1.4rem;}
+      .video-sub{font-size:.88rem;}
+      .hero-layout{gap:1.4rem;}
+      h1{font-size:2rem;}
+      .hero-sub{font-size:.94rem;}
+      .hero-ctas{flex-direction:column;align-items:stretch;margin-top:.35rem;}
+      .hero-ctas .btn-primary,.hero-ctas .btn-secondary{width:100%;justify-content:center;}
+      .deeply-phone{max-width:270px;margin-top:.3rem;}
+      .steps{grid-template-columns:1fr;}
+      .bottom-cta{padding:1rem .9rem;}
+      .bottom-cta-form{flex-direction:column;align-items:stretch;}
+      .bottom-cta-form input[type="email"],.bottom-cta-form .btn-primary{width:100%;}
+      .for-whom-layout{grid-template-columns:1fr;}
+      .for-whom-visual{max-width:100%;}
+      .page::before,.page::after{animation:none;} /* mobile smoother */
     }
   </style>
 </head>
+
 <body>
   <div class="page">
     <header>
@@ -811,40 +228,21 @@
 
       <div class="header-right">
         <nav class="nav">
-          <a href="#video">
-            <span class="nav-icon">▶</span>
-            <span class="nav-label">Pitch-Video</span>
-          </a>
-          <a href="#features">
-            <span class="nav-icon">✨</span>
-            <span class="nav-label">Features</span>
-          </a>
-          <a href="#how">
-            <span class="nav-icon">⚙</span>
-            <span class="nav-label">So funktioniert’s</span>
-          </a>
-          <a href="#termin">
-            <span class="nav-icon">📅</span>
-            <span class="nav-label">Termin</span>
-          </a>
-          <a href="#faq">
-            <span class="nav-icon">❓</span>
-            <span class="nav-label">FAQ</span>
-          </a>
+          <a href="#video"><span class="nav-icon">▶</span><span class="nav-label">Pitch-Video</span></a>
+          <a href="#features"><span class="nav-icon">✨</span><span class="nav-label">Features</span></a>
+          <a href="#how"><span class="nav-icon">⚙</span><span class="nav-label">So funktioniert’s</span></a>
+          <a href="#termin"><span class="nav-icon">📅</span><span class="nav-label">Termin</span></a>
+          <a href="#faq"><span class="nav-icon">❓</span><span class="nav-label">FAQ</span></a>
         </nav>
 
         <div class="header-cta">
-          <div class="pill">
-            <span class="pill-dot"></span>
-            <span>Beta in Vorbereitung</span>
-          </div>
+          <div class="pill"><span class="pill-dot"></span><span>Beta in Vorbereitung</span></div>
           <a href="#warteliste" class="small-link">Ich will dabei sein</a>
         </div>
       </div>
     </header>
 
     <main>
-      <!-- PITCH-VIDEO -->
       <section class="video-section section" id="video">
         <div class="video-shell">
           <div class="video-banner">
@@ -859,26 +257,16 @@
           </div>
           <div class="video-text-under">
             <div class="video-label">Pitch-Video</div>
-            <h2 class="video-title">
-              Sei ehrlich: Schau dir <strong>Deeply in 40&nbsp;Sekunden</strong> an.
-            </h2>
-            <p class="video-sub">
-              Dein kurzer Überblick: Warum es Deeply gibt und für wen die App gedacht ist.
-            </p>
+            <h2 class="video-title">Sei ehrlich: Schau dir <strong>Deeply in 40&nbsp;Sekunden</strong> an.</h2>
+            <p class="video-sub">Dein kurzer Überblick: Warum es Deeply gibt und für wen die App gedacht ist.</p>
           </div>
         </div>
       </section>
 
-      <!-- HERO -->
       <section class="hero-layout section">
         <div class="hero">
-          <div class="hero-tagline">
-            <span>Neue App</span>
-            <small>für echte Gespräche.</small>
-          </div>
-
+          <div class="hero-tagline"><span>Neue App</span><small>für echte Gespräche.</small></div>
           <h1>Weniger Oberflächlichkeit. Mehr echte Connection.</h1>
-
           <p class="hero-sub">
             Finde deinen <strong>Safe Space</strong> für Gespräche. Deeply verbindet dich anonym mit Menschen,
             die <strong>wirklich zuhören</strong> und dich sehen.
@@ -890,151 +278,131 @@
           </div>
 
           <div class="hero-meta">
-            <div class="hero-meta-item">
-              <span class="meta-dot"></span>
-              Gespräche statt Profile
-            </div>
-            <div class="hero-meta-item">
-              <span class="meta-dot"></span>
-              Anonym & sicher
-            </div>
-            <div class="hero-meta-item">
-              <span class="meta-dot"></span>
-              Self-Care nach jedem Talk
-            </div>
+            <div class="hero-meta-item"><span class="meta-dot"></span>Gespräche statt Profile</div>
+            <div class="hero-meta-item"><span class="meta-dot"></span>Anonym & sicher</div>
+            <div class="hero-meta-item"><span class="meta-dot"></span>Self-Care nach jedem Talk</div>
           </div>
 
           <div class="features-wrapper" id="features">
             <div class="section-label">Was dich erwartet</div>
             <div class="features">
               <article class="feature-card">
-                <div class="feature-header">
-                  <div class="feature-icon">❓</div>
-                  <div class="feature-label">Tagesfragen</div>
-                </div>
-                <p class="feature-text">
-                  Eine Frage pro Tag, die dich <strong>triggert</strong>: Nimm sie als Deep Dive mit Freund:innen oder neuen Matches.
-                </p>
+                <div class="feature-header"><div class="feature-icon">❓</div><div class="feature-label">Tagesfragen</div></div>
+                <p class="feature-text">Eine Frage pro Tag, die dich <strong>triggert</strong>: Nimm sie als Deep Dive mit Freund:innen oder neuen Matches.</p>
               </article>
 
               <article class="feature-card">
-                <div class="feature-header">
-                  <div class="feature-icon">🧭</div>
-                  <div class="feature-label">Geführte Deep Talks</div>
-                </div>
-                <p class="feature-text">
-                  Dein <strong>Guide für schwierige Themen</strong>. Geführte Leitfäden geben dir Halt, ohne dich zu überfordern.
-                </p>
+                <div class="feature-header"><div class="feature-icon">🧭</div><div class="feature-label">Geführte Deep Talks</div></div>
+                <p class="feature-text">Dein <strong>Guide für schwierige Themen</strong>. Geführte Leitfäden geben dir Halt, ohne dich zu überfordern.</p>
               </article>
 
               <article class="feature-card">
-                <div class="feature-header">
-                  <div class="feature-icon">✨</div>
-                  <div class="feature-label">Matching nach Antworten</div>
-                </div>
-                <p class="feature-text">
-                  <strong>Endlich Matching mit Substanz.</strong> Finde Menschen, die auf deiner Wellenlänge sind.
-                </p>
+                <div class="feature-header"><div class="feature-icon">✨</div><div class="feature-label">Matching nach Antworten</div></div>
+                <p class="feature-text"><strong>Endlich Matching mit Substanz.</strong> Finde Menschen, die auf deiner Wellenlänge sind.</p>
               </article>
 
               <article class="feature-card">
-                <div class="feature-header">
-                  <div class="feature-icon">📝</div>
-                  <div class="feature-label">Reflexion</div>
-                </div>
-                <p class="feature-text">
-                  <strong>Self-Care nach dem Talk.</strong> Halte fest, was dich bewegt hat.
-                  Lerne deine Grenzen und Wünsche privat kennen.
-                </p>
+                <div class="feature-header"><div class="feature-icon">📝</div><div class="feature-label">Reflexion</div></div>
+                <p class="feature-text"><strong>Self-Care nach dem Talk.</strong> Halte fest, was dich bewegt hat. Lerne deine Grenzen und Wünsche privat kennen.</p>
               </article>
             </div>
           </div>
         </div>
 
-        <!-- PHONE MOCKUP – DEEPLY DARK MODE SAFE SPACE -->
+        <!-- PHONE MOCKUP: MINI-HOMEPAGE (SCROLLABLE) -->
         <section class="right" aria-label="Deeply App Vorschau">
           <div class="deeply-phone">
-            <div class="deeply-float">
-              <span class="deeply-float-dot"></span>
-              Neue Frage verfügbar ✨
-            </div>
-
             <div class="deeply-inner">
-              <div class="deeply-island"></div>
 
-              <div class="deeply-header">
-                <span>Deeply</span>
-                <div class="deeply-badge">
-                  <span class="deeply-badge-dot"></span>
-                  Safe Space aktiv
+              <div class="deeply-top">
+                <div class="deeply-island"></div>
+
+                <div class="deeply-header">
+                  <span>Deeply</span>
+                  <div class="deeply-badge">
+                    <span class="deeply-badge-dot"></span>
+                    Safe Space aktiv
+                  </div>
+                </div>
+
+                <!-- FIX: weiter unten -->
+                <div class="deeply-float">
+                  <span class="deeply-float-dot"></span>
+                  Neue Frage verfügbar ✨
                 </div>
               </div>
 
-              <div class="deeply-question-box">
-                <div class="deeply-question">
-                  Wann hast du dich zuletzt <span>wirklich verstanden</span> gefühlt?
+              <div class="deeply-screen">
+                <div class="d-card">
+                  <div class="d-kicker">Heute</div>
+                  <div class="d-title">Weniger Oberflächlichkeit.<br/>Mehr echte Connection.</div>
+                  <div class="d-sub">Ein Ort für Gespräche, die nicht nach <strong>Smalltalk</strong> schmecken.</div>
+                  <div class="d-chiprow">
+                    <span class="d-chip p">Anonym</span>
+                    <span class="d-chip p">Sicher</span>
+                    <span class="d-chip">Kein Profil</span>
+                    <span class="d-chip">Keine Likes</span>
+                  </div>
                 </div>
 
-                <div class="deeply-answers">
-                  <div class="deeply-answer">Ich teile meine Gedanken in Ruhe.</div>
-                  <div class="deeply-answer">Deeply matched mich mit Gleichgesinnten.</div>
+                <div class="d-section">
+                  <div class="d-section-title">Frage des Tages</div>
+                  <div class="d-item">
+                    <h4>Wann hast du dich zuletzt wirklich verstanden gefühlt?</h4>
+                    <p>Wähle eine Richtung – Deeply führt dich sanft rein.</p>
+                  </div>
+
+                  <div class="d-item">
+                    <h4>Antworten</h4>
+                    <p>• Ich teile meine Gedanken in Ruhe.<br/>• Deeply matched mich mit Gleichgesinnten.</p>
+                  </div>
                 </div>
+
+                <div class="d-section">
+                  <div class="d-section-title">Features</div>
+                  <div class="d-item"><h4>Geführte Deep Talks</h4><p>Leitfäden geben Halt – ohne Druck.</p></div>
+                  <div class="d-item"><h4>Matching nach Antworten</h4><p>Mehr Substanz. Weniger Oberfläche.</p></div>
+                  <div class="d-item"><h4>Reflexion</h4><p>Nach dem Talk: Gedanken festhalten. Nur für dich.</p></div>
+                </div>
+
+                <div class="d-section">
+                  <div class="d-section-title">So funktioniert’s</div>
+                  <div class="d-item"><h4>1) Frage wählen</h4><p>Eine Frage pro Tag – oder ein Thema.</p></div>
+                  <div class="d-item"><h4>2) Match & Gespräch</h4><p>Anonym verbunden. Kein Smalltalk.</p></div>
+                  <div class="d-item"><h4>3) Reflektieren</h4><p>Dein Safe Space danach.</p></div>
+                </div>
+
+                <div class="d-cta">Gespräch starten ›</div>
+                <div class="d-foot">Anonym. Kein Profil. Keine Likes.</div>
               </div>
 
-              <div class="deeply-start">
-                Gespräch starten ›
-              </div>
-
-              <div class="deeply-footer">Anonym. Kein Profil. Keine Likes.</div>
             </div>
           </div>
         </section>
       </section>
 
-      <!-- SO FUNKTIONIERT'S -->
       <section class="section" id="how">
         <h2 class="section-title">So funktioniert Deeply</h2>
         <div class="steps">
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <div class="step-title">Frage wählen</div>
-            <p>Wähle ein Thema oder nutze die <strong>gefühlvolle Frage des Tages</strong>.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <div class="step-title">Match & Gespräch</div>
-            <p>Deeply verbindet dich anonym mit Gleichgesinnten. Kein Smalltalk.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <div class="step-title">Reflektieren</div>
-            <p>Nach dem Gespräch: Halte deine Gedanken fest. <strong>Nur für dich.</strong></p>
-          </div>
+          <div class="step-card"><div class="step-number">1</div><div class="step-title">Frage wählen</div><p>Wähle ein Thema oder nutze die <strong>gefühlvolle Frage des Tages</strong>.</p></div>
+          <div class="step-card"><div class="step-number">2</div><div class="step-title">Match & Gespräch</div><p>Deeply verbindet dich anonym mit Gleichgesinnten. Kein Smalltalk.</p></div>
+          <div class="step-card"><div class="step-number">3</div><div class="step-title">Reflektieren</div><p>Nach dem Gespräch: Halte deine Gedanken fest. <strong>Nur für dich.</strong></p></div>
         </div>
       </section>
 
-      <!-- TERMIN / CALENDLY -->
       <section class="section" id="termin">
         <h2 class="section-title">Termin zum Kennenlernen</h2>
-        <p class="section-sub">
-          Du möchtest über Deeply sprechen? Buch dir einfach einen Slot.
-        </p>
+        <p class="section-sub">Du möchtest über Deeply sprechen? Buch dir einfach einen Slot.</p>
         <div class="termin-banner">
           <img src="calendly-visual.png" alt="Klicke auf den Button, um direkt zu deinem Calendly-Kalender zu kommen und einen Termin zu buchen." />
         </div>
         <div class="termin-cta">
-          <a
-            href="https://calendly.com/serap-aslan-2214/30min"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn-primary"
-          >
+          <a href="https://calendly.com/serap-aslan-2214/30min" target="_blank" rel="noopener noreferrer" class="btn-primary">
             Termin auf Calendly buchen
           </a>
         </div>
       </section>
 
-      <!-- FÜR WEN IST DEEPLY? -->
       <section class="section">
         <div class="for-whom-layout">
           <div class="for-whom-text">
@@ -1051,42 +419,24 @@
           </div>
 
           <div class="for-whom-visual">
-            <img
-              src="community-visual.png"
-              alt="Drei junge Menschen unterschiedlicher Herkunft sitzen gemütlich zusammen und führen ein tiefes Gespräch in einem ruhigen Raum."
-            />
+            <img src="community-visual.png" alt="Drei junge Menschen unterschiedlicher Herkunft sitzen gemütlich zusammen und führen ein tiefes Gespräch in einem ruhigen Raum." />
           </div>
         </div>
       </section>
 
-      <!-- FAQ -->
       <section class="section" id="faq">
         <h2 class="section-title">Häufige Fragen</h2>
         <div class="faq-list">
-          <div class="faq-item">
-            <div class="faq-question">Ist Deeply eine Dating-App?</div>
-            <div class="faq-answer">Nein. Wir matchen nach Authentizität, nicht nach Fotos.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">Wie anonym sind die Gespräche?</div>
-            <div class="faq-answer">Komplett anonym. Kein öffentliches Profil, keine Fotos.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-question">Kostet die App etwas?</div>
-            <div class="faq-answer">Die Beta ist <strong>kostenlos</strong>.</div>
-          </div>
+          <div class="faq-item"><div class="faq-question">Ist Deeply eine Dating-App?</div><div class="faq-answer">Nein. Wir matchen nach Authentizität, nicht nach Fotos.</div></div>
+          <div class="faq-item"><div class="faq-question">Wie anonym sind die Gespräche?</div><div class="faq-answer">Komplett anonym. Kein öffentliches Profil, keine Fotos.</div></div>
+          <div class="faq-item"><div class="faq-question">Kostet die App etwas?</div><div class="faq-answer">Die Beta ist <strong>kostenlos</strong>.</div></div>
         </div>
       </section>
 
-      <!-- WARTELISTE -->
       <section class="bottom-cta section" id="warteliste">
         <div class="bottom-cta-text">
-          <div class="bottom-cta-title">
-            <strong>Ready für den Deep Dive?</strong> Werde Teil der Community!
-          </div>
-          <p class="bottom-cta-sub">
-            Sicher dir deinen Platz auf der Warteliste. <strong>Kein Spam.</strong>
-          </p>
+          <div class="bottom-cta-title"><strong>Ready für den Deep Dive?</strong> Werde Teil der Community!</div>
+          <p class="bottom-cta-sub">Sicher dir deinen Platz auf der Warteliste. <strong>Kein Spam.</strong></p>
         </div>
         <form class="bottom-cta-form">
           <input type="email" placeholder="Deine E-Mail-Adresse" required />
@@ -1107,12 +457,8 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-  
-      // Jahr im Footer
       var yearEl = document.getElementById("year");
-      if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-      }
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
     });
   </script>
 </body>

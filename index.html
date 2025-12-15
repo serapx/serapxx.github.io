@@ -109,7 +109,7 @@
     .feature-label{font-size:.8rem;font-weight:600;color:var(--accent-strong);letter-spacing:.04em;text-transform:uppercase;}
     .feature-text{font-size:.86rem;color:var(--muted);margin-top:.15rem;}
 
-    /* ===== iPHONE (interactive tabs) ===== */
+    /* ===== MORE iPHONE LOOK ===== */
     .right{display:flex;align-items:center;justify-content:center;}
 
     .iphone{
@@ -122,12 +122,13 @@
       box-shadow:0 32px 80px rgba(0,0,0,0.62);
       border:1px solid rgba(255,255,255,0.08);
       position:relative;
-      user-select:none;
     }
+
+    /* side buttons (tiny detail) */
     .iphone::before,.iphone::after{content:"";position:absolute;left:-3px;width:4px;border-radius:6px;background:rgba(255,255,255,0.08);}
     .iphone::before{top:88px;height:44px;}
     .iphone::after{top:146px;height:28px;}
-    .side-right{position:absolute;right:-3px;top:110px;width:4px;height:62px;border-radius:6px;background:rgba(255,255,255,0.08);}
+    .iphone .side-right{position:absolute;right:-3px;top:110px;width:4px;height:62px;border-radius:6px;background:rgba(255,255,255,0.08);}
 
     .iphone-screen{
       height:100%;
@@ -139,14 +140,21 @@
       flex-direction:column;
     }
 
+    /* Dynamic Island */
     .island{
-      position:absolute; top:10px; left:50%; transform:translateX(-50%);
-      width:44%; height:26px; border-radius:999px;
+      position:absolute;
+      top:10px;
+      left:50%;
+      transform:translateX(-50%);
+      width:44%;
+      height:26px;
+      border-radius:999px;
       background:#000;
       box-shadow:0 0 0 1px rgba(255,255,255,0.06), 0 10px 24px rgba(0,0,0,0.5);
       z-index:5;
     }
 
+    /* iOS statusbar */
     .ios-statusbar{
       height:42px;
       padding:14px 14px 0;
@@ -167,23 +175,33 @@
     .ios-battery:before{content:"";position:absolute;right:-3px;top:3px;width:2px;height:4px;border-radius:1px;background:rgba(255,255,255,0.20);}
     .ios-battery:after{content:"";position:absolute;left:2px;top:2px;width:13px;height:6px;border-radius:2px;background:rgba(168,85,247,0.70);}
 
+    /* App header row (under statusbar) */
     .app-top{
       padding:.35rem 14px .55rem;
-      display:flex; align-items:center; justify-content:space-between; gap:.75rem;
-      z-index:3; position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:.75rem;
+      z-index:3;
+      position:relative;
     }
     .app-title{color:#f1f5f9;font-weight:750;font-size:1.02rem;letter-spacing:.01em;}
     .app-chip{
-      padding:.32rem .7rem;border-radius:999px;
+      padding:.32rem .7rem;
+      border-radius:999px;
       background:rgba(124,58,237,0.20);
       border:1px solid rgba(168,85,247,0.38);
-      color:#f3e8ff;font-size:.72rem;
-      display:flex;align-items:center;gap:.35rem;white-space:nowrap;
+      color:#f3e8ff;
+      font-size:.72rem;
+      display:flex;
+      align-items:center;
+      gap:.35rem;
+      white-space:nowrap;
       backdrop-filter:blur(10px);
     }
     .app-chip-dot{width:7px;height:7px;border-radius:50%;background:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.20);}
 
-    /* screens */
+    /* Scrollable app homepage */
     .app-home{
       flex:1;
       overflow-y:auto;
@@ -192,13 +210,11 @@
       scrollbar-width:none;
     }
     .app-home::-webkit-scrollbar{width:0;height:0;}
-    .screen{display:none;animation:fade .25s ease;}
-    .screen.active{display:block;}
-    @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
 
-    /* home ui */
     .home-hero{
-      margin-top:.15rem;border-radius:1.3rem;padding:1rem;
+      margin-top:.15rem;
+      border-radius:1.3rem;
+      padding:1rem;
       background:linear-gradient(135deg, rgba(168,85,247,0.22), rgba(15,23,42,0.92));
       border:1px solid rgba(255,255,255,0.07);
       box-shadow:0 16px 34px rgba(0,0,0,0.48);
@@ -207,30 +223,44 @@
     .home-title{margin-top:.35rem;font-weight:850;line-height:1.12;font-size:1.15rem;color:#f1f5f9;}
     .home-sub{margin-top:.45rem;font-size:.84rem;line-height:1.45;color:#cbd5e1;opacity:.95;}
 
-    .row{display:flex;gap:.6rem;margin-top:.7rem;}
+    .row{
+      display:flex;
+      gap:.6rem;
+      margin-top:.7rem;
+    }
     .pill-mini{
-      flex:1;border-radius:999px;padding:.48rem .7rem;
+      flex:1;
+      border-radius:999px;
+      padding:.48rem .7rem;
       background:rgba(255,255,255,0.06);
       border:1px solid rgba(255,255,255,0.08);
-      color:#e2e8f0;font-size:.72rem;
-      display:flex;align-items:center;justify-content:space-between;
+      color:#e2e8f0;
+      font-size:.72rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
     }
     .pill-mini b{font-weight:700;color:#fff;}
     .pill-mini span{opacity:.9;}
 
     .section-h{
       margin:.85rem 0 .45rem;
-      display:flex;align-items:center;justify-content:space-between;
-      color:#94a3b8;font-size:.72rem;
-      letter-spacing:.14em;text-transform:uppercase;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      color:#94a3b8;
+      font-size:.72rem;
+      letter-spacing:.14em;
+      text-transform:uppercase;
     }
+    .section-h a{color:#a5b4fc;text-decoration:none;font-weight:600;letter-spacing:.06em;text-transform:none;font-size:.72rem;opacity:.95;}
 
     .card{
-      border-radius:1.2rem;padding:.9rem;
+      border-radius:1.2rem;
+      padding:.9rem;
       background:rgba(255,255,255,0.06);
       border:1px solid rgba(255,255,255,0.08);
       box-shadow:0 14px 28px rgba(0,0,0,0.35);
-      margin-bottom:.6rem;
     }
     .q-title{color:#f8fafc;font-size:.95rem;font-weight:750;line-height:1.25;}
     .q-meta{margin-top:.45rem;display:flex;gap:.45rem;flex-wrap:wrap;}
@@ -239,8 +269,11 @@
 
     .chatlist{display:flex;flex-direction:column;gap:.55rem;}
     .chat{
-      display:flex;gap:.6rem;align-items:flex-start;
-      padding:.7rem .75rem;border-radius:1rem;
+      display:flex;
+      gap:.6rem;
+      align-items:flex-start;
+      padding:.7rem .75rem;
+      border-radius:1rem;
       background:rgba(255,255,255,0.05);
       border:1px solid rgba(255,255,255,0.08);
     }
@@ -257,10 +290,14 @@
 
     .composer{
       margin:.75rem 0 .9rem;
-      border-radius:1.1rem;padding:.75rem .85rem;
+      border-radius:1.1rem;
+      padding:.75rem .85rem;
       background:rgba(0,0,0,0.22);
       border:1px solid rgba(255,255,255,0.08);
-      display:flex;align-items:center;justify-content:space-between;gap:.6rem;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:.6rem;
     }
     .composer span{color:#94a3b8;font-size:.78rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
     .send{
@@ -272,40 +309,7 @@
       flex:0 0 auto;
     }
 
-    /* Profile (Ich) */
-    .profile{margin-top:.4rem;text-align:center;}
-    .profile-avatar{
-      width:70px;height:70px;margin:0 auto .55rem;border-radius:26px;
-      background:linear-gradient(135deg,#a855f7,#38bdf8);
-      box-shadow:0 18px 32px rgba(0,0,0,0.45);
-      border:1px solid rgba(255,255,255,0.10);
-      position:relative;
-      overflow:hidden;
-    }
-    .profile-avatar:after{
-      content:"";
-      position:absolute;inset:-40%;
-      background:radial-gradient(circle at 30% 20%, rgba(255,255,255,0.45), transparent 55%);
-      transform:rotate(20deg);
-      opacity:.35;
-    }
-    .profile-name{color:#f8fafc;font-weight:800;letter-spacing:.01em;}
-    .profile-sub{font-size:.75rem;color:#94a3b8;margin-top:.1rem;}
-    .profile-text{margin-top:.4rem;font-size:.82rem;color:#cbd5e1;line-height:1.45;}
-    .settings{margin-top:.55rem;padding-left:0;list-style:none;font-size:.8rem;color:#cbd5e1;}
-    .settings li{
-      margin-bottom:.45rem;
-      padding:.55rem .7rem;
-      border-radius:1rem;
-      background:rgba(255,255,255,0.05);
-      border:1px solid rgba(255,255,255,0.08);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-    }
-    .settings li span{color:#94a3b8;font-size:.74rem;}
-
-    /* Tabbar */
+    /* Bottom tab bar + iOS home indicator */
     .tabbar{
       position:relative;
       padding:10px 10px 16px;
@@ -319,19 +323,19 @@
     .tab{
       width:20%;
       display:flex;flex-direction:column;align-items:center;gap:4px;
-      color:#94a3b8;font-size:.66rem;
-      cursor:pointer;
-      border-radius:12px;
-      padding:6px 0;
-      transition:transform .12s ease, background .12s ease, color .12s ease;
+      color:#94a3b8;
+      font-size:.66rem;
     }
-    .tab:hover{background:rgba(255,255,255,0.05);}
-    .tab:active{transform:scale(.97);}
     .tab .ico{font-size:1.1rem;line-height:1;}
     .tab.active{color:#c084fc;}
     .home-indicator{
-      position:absolute;left:50%;bottom:6px;transform:translateX(-50%);
-      width:34%;height:4px;border-radius:999px;
+      position:absolute;
+      left:50%;
+      bottom:6px;
+      transform:translateX(-50%);
+      width:34%;
+      height:4px;
+      border-radius:999px;
       background:rgba(255,255,255,0.22);
       box-shadow:0 8px 18px rgba(0,0,0,0.45);
       pointer-events:none;
@@ -348,6 +352,7 @@
     .for-whom-text{display:flex;flex-direction:column;gap:.6rem;}
     .for-whom-visual{justify-self:center;max-width:420px;width:100%;}
     .for-whom-visual img{width:100%;display:block;border-radius:1.4rem;box-shadow:0 18px 40px rgba(15,23,42,0.22);}
+
     .section-pills{margin-top:1rem;display:flex;flex-wrap:wrap;gap:.5rem;}
     .pill-tag{padding:.4rem .75rem;border-radius:var(--radius-pill);border:1px solid rgba(148,163,184,0.6);font-size:.8rem;color:var(--muted);background:var(--card);box-shadow:0 6px 14px rgba(15,23,42,0.06);}
 
@@ -490,7 +495,7 @@
           </div>
         </div>
 
-        <!-- iPHONE APP (interactive) -->
+        <!-- iPHONE APP HOME (MORE CONTENT) -->
         <section class="right" aria-label="Deeply App Vorschau">
           <div class="iphone">
             <span class="side-right" aria-hidden="true"></span>
@@ -512,136 +517,79 @@
                 <span class="app-chip"><span class="app-chip-dot"></span>Safe Space aktiv</span>
               </div>
 
-              <div class="app-home" aria-label="Deeply Screens">
-                <!-- HOME -->
-                <div class="screen active" data-screen="home">
-                  <div class="home-hero">
-                    <div class="home-kicker">Today</div>
-                    <div class="home-title">Willkommen zurück.</div>
-                    <div class="home-sub">Nimm dir einen Moment – ohne Druck, ohne Publikum.</div>
-                    <div class="row">
-                      <div class="pill-mini"><b>Stimmung</b><span>ruhig</span></div>
-                      <div class="pill-mini"><b>Energie</b><span>low</span></div>
-                    </div>
-                  </div>
+              <div class="app-home" aria-label="Deeply Home">
+                <div class="home-hero">
+                  <div class="home-kicker">Today</div>
+                  <div class="home-title">Willkommen zurück.</div>
+                  <div class="home-sub">Nimm dir einen Moment – ohne Druck, ohne Publikum.</div>
 
-                  <div class="section-h"><span>Frage des Tages</span></div>
-                  <div class="card">
-                    <div class="q-title">Wann hast du dich zuletzt wirklich gesehen gefühlt?</div>
-                    <div class="q-meta">
-                      <span class="tag p">sanft</span>
-                      <span class="tag">ehrlich</span>
-                      <span class="tag">3 min</span>
-                    </div>
-                  </div>
-
-                  <div class="section-h"><span>Aktive Räume</span></div>
-                  <div class="chatlist">
-                    <div class="chat">
-                      <div class="avatar"></div>
-                      <div class="chat-main">
-                        <div class="chat-title"><span class="dot"></span>Leiser Talk</div>
-                        <div class="chat-snippet">„Ich merke, wie müde ich vom Starksein bin…“</div>
-                      </div>
-                    </div>
-                    <div class="chat">
-                      <div class="avatar"></div>
-                      <div class="chat-main">
-                        <div class="chat-title">Gedanken ordnen</div>
-                        <div class="chat-snippet">„Vielleicht darf ich mir selbst mehr erlauben.“</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="composer">
-                    <span>Schreib einen Gedanken…</span>
-                    <div class="send">›</div>
+                  <div class="row">
+                    <div class="pill-mini"><b>Stimmung</b><span>ruhig</span></div>
+                    <div class="pill-mini"><b>Energie</b><span>low</span></div>
                   </div>
                 </div>
 
-                <!-- FRAGEN -->
-                <div class="screen" data-screen="questions">
-                  <div class="section-h"><span>Fragen</span></div>
+                <div class="section-h">
+                  <span>Frage des Tages</span>
+                  <a href="#">Öffnen</a>
+                </div>
 
-                  <div class="card"><div class="q-title">Was vermeide ich gerade – und warum?</div><div class="q-meta"><span class="tag p">reflexion</span><span class="tag">2–4 min</span></div></div>
-                  <div class="card"><div class="q-title">Wann war ich zuletzt mutig?</div><div class="q-meta"><span class="tag p">mut</span><span class="tag">2–3 min</span></div></div>
-                  <div class="card"><div class="q-title">Was würde ich sagen, wenn niemand urteilt?</div><div class="q-meta"><span class="tag p">ehrlich</span><span class="tag">3–5 min</span></div></div>
-
-                  <div class="composer">
-                    <span>Eigene Frage notieren…</span>
-                    <div class="send">+</div>
+                <div class="card">
+                  <div class="q-title">Wann hast du dich zuletzt wirklich gesehen gefühlt?</div>
+                  <div class="q-meta">
+                    <span class="tag p">sanft</span>
+                    <span class="tag">ehrlich</span>
+                    <span class="tag">2–4 min</span>
                   </div>
                 </div>
 
-                <!-- TALKS -->
-                <div class="screen" data-screen="talks">
-                  <div class="section-h"><span>Talks</span></div>
+                <div class="section-h">
+                  <span>Aktive Räume</span>
+                  <a href="#">Alle</a>
+                </div>
 
-                  <div class="chatlist">
-                    <div class="chat">
-                      <div class="avatar"></div>
-                      <div class="chat-main">
-                        <div class="chat-title"><span class="dot"></span>Leiser Talk</div>
-                        <div class="chat-snippet">„Wenn ich ehrlich bin, hab ich Angst…“</div>
-                      </div>
-                    </div>
-                    <div class="chat">
-                      <div class="avatar"></div>
-                      <div class="chat-main">
-                        <div class="chat-title">Gedanken ordnen</div>
-                        <div class="chat-snippet">„Ich will wieder lernen, mir zu vertrauen.“</div>
-                      </div>
-                    </div>
-                    <div class="chat">
-                      <div class="avatar"></div>
-                      <div class="chat-main">
-                        <div class="chat-title">Neustart</div>
-                        <div class="chat-snippet">„Was, wenn ich mir selbst mehr Raum gebe?“</div>
-                      </div>
+                <div class="chatlist">
+                  <div class="chat">
+                    <div class="avatar"></div>
+                    <div class="chat-main">
+                      <div class="chat-title"><span class="dot"></span>Leiser Talk</div>
+                      <div class="chat-snippet">„Ich glaube, ich habe mich lange angepasst…“</div>
                     </div>
                   </div>
 
-                  <div class="composer">
-                    <span>Neuen Talk starten…</span>
-                    <div class="send">›</div>
+                  <div class="chat">
+                    <div class="avatar"></div>
+                    <div class="chat-main">
+                      <div class="chat-title">Gedanken ordnen</div>
+                      <div class="chat-snippet">„Was wäre, wenn ich weniger perfekt sein müsste?“</div>
+                    </div>
                   </div>
                 </div>
 
-                <!-- ICH -->
-                <div class="screen" data-screen="me">
-                  <div class="profile">
-                    <div class="profile-avatar"></div>
-                    <div class="profile-name">Du</div>
-                    <div class="profile-sub">Anonym · Safe Space</div>
-                  </div>
+                <div class="section-h">
+                  <span>Notiz</span>
+                  <a href="#">Bearbeiten</a>
+                </div>
 
-                  <div class="card">
-                    <div class="q-title">Status</div>
-                    <p class="profile-text">Heute lieber zuhören als reden.</p>
+                <div class="card" style="padding:.85rem;">
+                  <div class="q-title" style="font-size:.9rem;">Ein Satz für mich</div>
+                  <div style="margin-top:.35rem;color:#cbd5e1;font-size:.8rem;line-height:1.45;opacity:.95;">
+                    „Heute darf es langsam sein. Ich muss niemandem etwas beweisen.“
                   </div>
+                </div>
 
-                  <div class="card">
-                    <div class="q-title">Konto</div>
-                    <ul class="settings">
-                      <li>🔒 Anonymität <span>aktiv</span></li>
-                      <li>🌙 Dark Mode <span>an</span></li>
-                      <li>🧘 Safe Space Regeln <span>Standard</span></li>
-                      <li>🔔 Benachrichtigungen <span>leise</span></li>
-                    </ul>
-                  </div>
-
-                  <div class="composer">
-                    <span>Profilnotiz bearbeiten…</span>
-                    <div class="send">✎</div>
-                  </div>
+                <div class="composer">
+                  <span>Schreib einen Gedanken…</span>
+                  <div class="send">›</div>
                 </div>
               </div>
 
               <div class="tabbar" role="navigation" aria-label="Tab Bar">
-                <div class="tab active" data-target="home"><div class="ico">🏠</div><small>Home</small></div>
-                <div class="tab" data-target="questions"><div class="ico">❓</div><small>Fragen</small></div>
-                <div class="tab" data-target="talks"><div class="ico">💬</div><small>Talks</small></div>
-                <div class="tab" data-target="me"><div class="ico">👤</div><small>Ich</small></div>
+                <div class="tab active"><div class="ico">🏠</div><small>Home</small></div>
+                <div class="tab"><div class="ico">❓</div><small>Fragen</small></div>
+                <div class="tab"><div class="ico">💬</div><small>Talks</small></div>
+                <div class="tab"><div class="ico">📝</div><small>Notiz</small></div>
+                <div class="tab"><div class="ico">👤</div><small>Ich</small></div>
                 <div class="home-indicator" aria-hidden="true"></div>
               </div>
 
@@ -730,11 +678,9 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      // Footer year
       var yearEl = document.getElementById("year");
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-      // iPhone time
       var t = document.getElementById("phoneTime");
       if (t) {
         var d = new Date();
@@ -742,28 +688,6 @@
         var mm = String(d.getMinutes()).padStart(2,"0");
         t.textContent = hh + ":" + mm;
       }
-
-      // Tabs -> Screens
-      var tabs = document.querySelectorAll(".tabbar .tab");
-      var screens = document.querySelectorAll(".app-home .screen");
-      var appHome = document.querySelector(".app-home");
-
-      tabs.forEach(function(tab){
-        tab.addEventListener("click", function(){
-          var target = tab.getAttribute("data-target");
-          if (!target) return;
-
-          tabs.forEach(function(t){ t.classList.remove("active"); });
-          tab.classList.add("active");
-
-          screens.forEach(function(s){
-            s.classList.toggle("active", s.getAttribute("data-screen") === target);
-          });
-
-          // reset scroll inside app
-          if (appHome) appHome.scrollTop = 0;
-        });
-      });
     });
   </script>
 </body>

@@ -109,14 +109,6 @@
     .feature-label{font-size:.8rem;font-weight:600;color:var(--accent-strong);letter-spacing:.04em;text-transform:uppercase;}
     .feature-text{font-size:.86rem;color:var(--muted);margin-top:.15rem;}
 
-    /* "So funktioniert's" section */
-    .steps{margin-top:1rem;display:grid;gap:.9rem;}
-    @media (min-width:640px){.steps{grid-template-columns:repeat(3,minmax(0,1fr));}}
-    .step-card{background:var(--card);border-radius:var(--radius-lg);padding:.9rem .95rem;border:1px solid rgba(203,213,225,0.9);font-size:.86rem;color:var(--muted);box-shadow:var(--shadow-soft);transition:all .2s ease;}
-    .step-card:hover{transform:translateY(-3px);border-color:var(--accent);}
-    .step-number{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background:var(--accent-soft);color:var(--accent-strong);font-size:.78rem;font-weight:600;margin-bottom:.4rem;}
-    .step-title{font-size:.9rem;color:var(--text);font-weight:600;margin-bottom:.15rem;}
-
     /* ===== iPHONE (interactive tabs) ===== */
     .right{display:flex;align-items:center;justify-content:center;}
 
@@ -191,6 +183,7 @@
     }
     .app-chip-dot{width:7px;height:7px;border-radius:50%;background:#a855f7;box-shadow:0 0 0 3px rgba(168,85,247,0.20);}
 
+    /* screens */
     .app-home{
       flex:1;
       overflow-y:auto;
@@ -203,6 +196,7 @@
     .screen.active{display:block;}
     @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
 
+    /* home ui */
     .home-hero{
       margin-top:.15rem;border-radius:1.3rem;padding:1rem;
       background:linear-gradient(135deg, rgba(168,85,247,0.22), rgba(15,23,42,0.92));
@@ -311,6 +305,7 @@
     }
     .settings li span{color:#94a3b8;font-size:.74rem;}
 
+    /* Tabbar */
     .tabbar{
       position:relative;
       padding:10px 10px 16px;
@@ -322,10 +317,12 @@
       gap:2px;
     }
     .tab{
-      width:25%;
+      width:20%;
       display:flex;flex-direction:column;align-items:center;gap:4px;
       color:#94a3b8;font-size:.66rem;
-      cursor:pointer;border-radius:12px;padding:6px 0;
+      cursor:pointer;
+      border-radius:12px;
+      padding:6px 0;
       transition:transform .12s ease, background .12s ease, color .12s ease;
     }
     .tab:hover{background:rgba(255,255,255,0.05);}
@@ -391,7 +388,6 @@
       .iphone{max-width:300px;}
       .page::before,.page::after{animation:none;}
       .chat-snippet{max-width:180px;}
-      .tab{width:25%;}
     }
   </style>
 </head>
@@ -462,8 +458,6 @@
 
           <div class="hero-ctas">
             <a href="#warteliste" class="btn-primary">Jetzt auf die Warteliste</a>
-
-            <!-- ✅ Clickable to section -->
             <a href="#how" class="btn-secondary">Wie funktioniert Deeply?</a>
           </div>
 
@@ -656,30 +650,6 @@
         </section>
       </section>
 
-      <!-- ✅ SO FUNKTIONIERT'S (anchor target) -->
-      <section class="section" id="how">
-        <h2 class="section-title">So funktioniert Deeply</h2>
-        <p class="section-sub">Drei Schritte – und du bist drin.</p>
-
-        <div class="steps">
-          <div class="step-card">
-            <div class="step-number">1</div>
-            <div class="step-title">Frage wählen</div>
-            <p>Wähle ein Thema oder nutze die <strong>gefühlvolle Frage des Tages</strong>.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">2</div>
-            <div class="step-title">Match & Gespräch</div>
-            <p>Deeply verbindet dich anonym mit Gleichgesinnten. Kein Smalltalk.</p>
-          </div>
-          <div class="step-card">
-            <div class="step-number">3</div>
-            <div class="step-title">Reflektieren</div>
-            <p>Nach dem Gespräch: Halte deine Gedanken fest. <strong>Nur für dich.</strong></p>
-          </div>
-        </div>
-      </section>
-
       <!-- TERMIN -->
       <section class="section" id="termin">
         <h2 class="section-title">Termin zum Kennenlernen</h2>
@@ -790,21 +760,8 @@
             s.classList.toggle("active", s.getAttribute("data-screen") === target);
           });
 
+          // reset scroll inside app
           if (appHome) appHome.scrollTop = 0;
-        });
-      });
-
-      // ✅ Smooth anchor scroll (prevents “hanging” on some browsers)
-      document.querySelectorAll('a[href^="#"]').forEach(function(a){
-        a.addEventListener("click", function(e){
-          var id = a.getAttribute("href");
-          if (!id || id.length < 2) return;
-
-          var el = document.querySelector(id);
-          if (!el) return;
-
-          e.preventDefault();
-          el.scrollIntoView({ behavior:"smooth", block:"start" });
         });
       });
     });
